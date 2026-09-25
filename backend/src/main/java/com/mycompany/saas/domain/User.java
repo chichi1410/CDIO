@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users")
+@Table(name = "nguoi_dung")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,30 +26,42 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "ho_ten", nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @JsonIgnore
-    @Column(nullable = false)
+    @Column(name = "mat_khau", nullable = false)
     private String password;
 
+    @Column(name = "so_dien_thoai")
+    private String phone;
+
+    @Column(name = "anh_dai_dien")
     private String avatarUrl;
 
+    @Column(name = "tieu_su")
+    private String bio;
+
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "vai_tro", nullable = false)
     private Role role = Role.ROLE_USER;
 
-    @Column(nullable = false)
+    @Column(name = "trang_thai_hoat_dong", nullable = false)
     private boolean active = true;
 
-    @Column(nullable = false, updatable = false)
+    @Column(name = "da_xac_thuc_email", nullable = false)
+    private boolean emailVerified = false;
+
+    @Column(name = "ngay_tao", nullable = false, updatable = false)
     private Instant createdAt;
 
+    @Column(name = "ngay_cap_nhat")
     private Instant updatedAt;
 
     @PrePersist
