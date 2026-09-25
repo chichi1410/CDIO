@@ -7,23 +7,13 @@ USR-005	Xác thực	Tài khoản	Cập nhật hồ sơ	Học viên/Giảng viên
 CRS-001	Quản lý Khóa học	Khóa học	Thêm khóa học mới	Giảng viên			Chưa bắt đầu	Giao diện tạo khóa học
 CRS-002	Quản lý Khóa học	Khóa học	Tải lên video bài giảng	Giảng viên			Chưa bắt đầu	Xử lý dung lượng file lớn
 CRS-003	Khám phá	Tìm kiếm	Lọc khóa học theo danh mục	Học viên			Chưa bắt đầu	
-CRS-004	Khám phá	Đánh giá	Chấm điểm và bình luận	Học viên			Chưa bắt đầu	
-CRS-005	Quản lý Khóa học	Tài liệu	Upload file PDF/Zip đính kèm	Giảng viên			Chưa bắt đầu	Lưu trữ trên Server
-CRS-006	Quản lý Khóa học	Ngân hàng câu hỏi	Thêm/sửa câu trắc nghiệm	Giảng viên			Chưa bắt đầu	
-CRS-007	Quản lý Khóa học	Bài tập	Chấm điểm bài tự luận	Giảng viên			Chưa bắt đầu	
 PAY-001	Thanh toán	Giỏ hàng	Thêm/Xóa khóa học	Học viên			Chưa bắt đầu	Lưu local storage hoặc DB
+CRS-005	Quản lý Khóa học	Tài liệu	Upload file PDF/Zip đính kèm	Giảng viên			Chưa bắt đầu	Lưu trữ trên Server
 PAY-002	Thanh toán	Checkout	Thanh toán qua VNPay	Học viên			Chưa bắt đầu	Đang test API sandbox
 PAY-003	Thanh toán	Lịch sử	Xem lịch sử giao dịch	Học viên			Chưa bắt đầu	
 LRN-001	Hỗ trợ học tập	Trình phát	Xem video bài giảng	Học viên			Chưa bắt đầu	
-LRN-002	Hỗ trợ học tập	Trắc nghiệm	Làm bài quiz cuối chương	Học viên			Chưa bắt đầu	Tự động chấm điểm
-LRN-003	Hỗ trợ học tập	Phòng học ảo	Tạo link phòng Live	Giảng viên			Chưa bắt đầu	Nhúng API Google Meet
-LRN-004	Hỗ trợ học tập	Phòng học ảo	Tham gia phòng Live	Học viên			Chưa bắt đầu	
-LRN-005	Hỗ trợ học tập	Chứng chỉ	Cấp phát chứng chỉ tự động	Hệ thống			Chưa bắt đầu	Xuất file PDF
-LRN-006	Hỗ trợ học tập	Ghi chú	Ghi chú theo timestamp video	Học viên			Chưa bắt đầu	
-LRN-007	Hỗ trợ học tập	Hỏi đáp (Q&A)	Gửi câu hỏi dưới bài giảng	Học viên			Chưa bắt đầu	Sử dụng SignalR
 NOT-001	Thông báo	Email	Gửi email nhắc lịch học/thanh toán	Hệ thống			Chưa bắt đầu	Dùng SMTP
 NOT-002	Thông báo	In-app Notification	Hiển thị thông báo trên chuông	Hệ thống			Chưa bắt đầu	
-MKT-001	Marketing	Khuyến mãi	Tạo mã Voucher giảm giá	Admin/GV			Chưa bắt đầu	
 ADM-001	Quản trị	Người dùng	Quản lý danh sách tài khoản	Admin			Chưa bắt đầu	Phân quyền Role
 ADM-002	Quản trị	Thống kê	Báo cáo doanh thu tháng	Admin			Chưa bắt đầu	Vẽ biểu đồ
 ADM-003	Quản trị	Phê duyệt	Duyệt khóa học trước khi public	Admin			Chưa bắt đầu	
