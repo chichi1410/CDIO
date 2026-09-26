@@ -60,18 +60,6 @@ npm run build
 npm run dev
 ```
 
-Truy cập giao diện tại: `http://localhost:3000`
-
----
-
-## 🔐 Luồng Xác Thực Cross-Stack (JWT OAuth2)
-
-1. **Đăng ký**: User gửi thông tin qua form trên Frontend (`POST /api/v1/auth/register`). Backend mã hóa password qua `BCryptPasswordEncoder` và lưu vào MySQL.
-2. **Đăng nhập**: User gửi email & password (`POST /api/v1/auth/login`). Backend xác thực và sinh **RSA256 Signed JWT Token**.
-3. **Lưu Token**: Frontend lưu JWT vào `localStorage` và tự động đính kèm header `Authorization: Bearer <token>` vào mọi API request tiếp theo.
-4. **Truy cập Dashboard**: Frontend gọi `GET /api/v1/auth/me` để lấy thông tin người dùng đang đăng nhập và hiển thị trên giao diện Dashboard.
-
----
 
 ## ⚙️ Biến Môi Trường
 
