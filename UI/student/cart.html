@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ Hàng | Language Learning Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #9333ea; --accent-pink: #ec4899;
+      --bg-light: #f8fafc; --text-main: #0f172a; --text-sub: #475569;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: var(--bg-light); color: var(--text-main); min-height: 100vh; }
+
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px);
+      border-bottom: 1.5px solid rgba(255, 255, 255, 0.9);
+      padding: 1rem 5%; display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand-icon { width: 42px; height: 42px; background: linear-gradient(135deg, var(--primary), var(--accent-pink)); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.25rem; }
+    .brand-title { font-size: 1.35rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .container { max-width: 1200px; margin: 3rem auto; padding: 0 5%; }
+    .page-h1 { font-size: 2rem; font-weight: 800; margin-bottom: 2rem; }
+
+    .cart-grid { display: grid; grid-template-columns: 1fr 380px; gap: 2rem; }
+
+    .cart-item {
+      background: white; border-radius: 24px; padding: 1.5rem; margin-bottom: 1rem;
+      display: flex; gap: 1.5rem; align-items: center; border: 1.5px solid #f1f5f9;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+    }
+    .cart-thumb { width: 120px; height: 80px; border-radius: 16px; background-size: cover; background-position: center; flex-shrink: 0; }
+    .cart-info { flex: 1; }
+    .cart-title { font-weight: 800; font-size: 1.05rem; margin-bottom: 0.25rem; }
+    .cart-price { font-weight: 800; font-size: 1.2rem; color: var(--primary); }
+
+    .summary-card {
+      background: white; border-radius: 28px; padding: 2rem; border: 1.5px solid #f1f5f9;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.04); height: fit-content;
+    }
+
+    .summary-h2 { font-size: 1.2rem; font-weight: 800; margin-bottom: 1.5rem; }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 1rem; font-weight: 600; color: var(--text-sub); }
+    .summary-total { font-size: 1.3rem; font-weight: 800; color: var(--text-main); border-top: 1px solid #e2e8f0; padding-top: 1rem; margin-top: 1rem; }
+
+    .voucher-wrap { display: flex; gap: 8px; margin: 1.5rem 0; }
+    .voucher-input { flex: 1; padding: 0.75rem 1rem; border-radius: 9999px; border: 1.5px solid #cbd5e1; outline: none; font-weight: 600; }
+    .btn-apply { padding: 0.75rem 1.25rem; border-radius: 9999px; border: none; background: #334155; color: white; font-weight: 700; cursor: pointer; }
+
+    .btn-checkout {
+      display: block; width: 100%; padding: 1rem; border-radius: 9999px; border: none;
+      background: linear-gradient(135deg, var(--primary), var(--accent-pink));
+      color: white; font-weight: 800; text-align: center; text-decoration: none;
+      box-shadow: 0 10px 25px rgba(147, 51, 234, 0.3); font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="../index.html" class="brand-logo">
+      <div class="brand-icon"><i class="fa-solid fa-language"></i></div>
+      <span class="brand-title">Language Learning</span>
+    </a>
+  </header>
+
+  <div class="container">
+    <h1 class="page-h1">Giỏ Hàng Của Bạn (2 Khóa học)</h1>
+
+    <div class="cart-grid">
+      <div>
+        <div class="cart-item">
+          <div class="cart-thumb" style="background-image: url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=300');"></div>
+          <div class="cart-info">
+            <div class="cart-title">Tiếng Anh Giao Tiếp Siêu Phản Xạ Cùng Người Bản Xứ</div>
+            <div style="font-size: 0.85rem; color: #64748b;">Giảng viên: Cô Emily Watson</div>
+          </div>
+          <div class="cart-price">1,290,000đ</div>
+          <i class="fa-solid fa-trash-can" style="color: #94a3b8; cursor: pointer; margin-left: 1rem;"></i>
+        </div>
+
+        <div class="cart-item">
+          <div class="cart-thumb" style="background-image: url('https://images.unsplash.com/photo-1528164344705-47542687990d?w=300');"></div>
+          <div class="cart-info">
+            <div class="cart-title">Chinh Phục N5 - N4 Tiếng Nhật Cấp Tốc</div>
+            <div style="font-size: 0.85rem; color: #64748b;">Giảng viên: Thầy Kenji Tanaka</div>
+          </div>
+          <div class="cart-price">1,450,000đ</div>
+          <i class="fa-solid fa-trash-can" style="color: #94a3b8; cursor: pointer; margin-left: 1rem;"></i>
+        </div>
+      </div>
+
+      <div class="summary-card">
+        <h2 class="summary-h2">Tóm Tắt Đơn Hàng</h2>
+        <div class="summary-row"><span>Tạm tính</span> <span>2,740,000đ</span></div>
+        <div class="summary-row"><span>Giảm giá Voucher (CHAOMUNG2026)</span> <span style="color: #059669;">-200,000đ</span></div>
+
+        <div class="voucher-wrap">
+          <input type="text" value="CHAOMUNG2026" class="voucher-input">
+          <button class="btn-apply">Áp dụng</button>
+        </div>
+
+        <div class="summary-row summary-total">
+          <span>Tổng thanh toán</span>
+          <span style="color: var(--primary);">2,540,000đ</span>
+        </div>
+
+        <a href="checkout.html" class="btn-checkout">TIẾN HÀNH THANH TOÁN</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

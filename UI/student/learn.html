@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đang Học Bài | Language Learning Workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #9333ea; --accent-pink: #ec4899;
+      --bg-dark: #0f172a; --card-bg: #1e293b; --text-light: #f8fafc;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: var(--bg-dark); color: var(--text-light); min-height: 100vh; overflow-x: hidden; }
+
+    header {
+      background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px);
+      border-bottom: 1px solid #334155; padding: 0.9rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: white; }
+    .brand-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--primary), var(--accent-pink)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .course-title-header { font-size: 1rem; font-weight: 700; color: #94a3b8; border-left: 2px solid #334155; padding-left: 1rem; }
+
+    .btn-back { padding: 0.5rem 1rem; border-radius: 9999px; background: #334155; color: white; text-decoration: none; font-weight: 700; font-size: 0.85rem; }
+
+    /* Learn Grid Layout */
+    .learn-layout { display: grid; grid-template-columns: 1fr 380px; height: calc(100vh - 65px); }
+
+    .main-workspace { display: flex; flex-direction: column; overflow-y: auto; background: #090d16; }
+
+    .video-container {
+      width: 100%; aspect-ratio: 16/9; background: #000; position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    video { width: 100%; height: 100%; object-fit: contain; }
+
+    /* Interactive Tabs Section Below Video */
+    .interactive-section { padding: 2rem; background: var(--bg-dark); flex: 1; }
+
+    .tabs-header { display: flex; gap: 1rem; border-bottom: 1px solid #334155; padding-bottom: 1rem; margin-bottom: 1.5rem; }
+    .tab-btn {
+      padding: 0.65rem 1.2rem; border-radius: 9999px; border: none; background: transparent;
+      color: #94a3b8; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.2s;
+    }
+    .tab-btn.active { background: var(--primary); color: white; }
+
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    /* Timestamp Notes */
+    .note-input-wrap { display: flex; gap: 10px; margin-bottom: 1.5rem; }
+    .note-input {
+      flex: 1; padding: 0.8rem 1.2rem; border-radius: 9999px; border: 1px solid #334155;
+      background: var(--card-bg); color: white; outline: none; font-size: 0.9rem;
+    }
+    .btn-add-note {
+      padding: 0.8rem 1.5rem; border-radius: 9999px; border: none;
+      background: linear-gradient(135deg, var(--primary), var(--accent-pink));
+      color: white; font-weight: 700; cursor: pointer;
+    }
+
+    .note-item {
+      background: var(--card-bg); border-radius: 16px; padding: 1rem 1.25rem; margin-bottom: 0.75rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .timestamp-badge {
+      background: rgba(147, 51, 234, 0.2); color: #c084fc; padding: 4px 10px;
+      border-radius: 9999px; font-weight: 700; font-size: 0.82rem; cursor: pointer;
+    }
+
+    /* Sidebar Curriculum */
+    .sidebar-curriculum { background: var(--card-bg); border-left: 1px solid #334155; overflow-y: auto; }
+    .sidebar-title { padding: 1.25rem; font-weight: 800; font-size: 1.05rem; border-bottom: 1px solid #334155; }
+
+    .chapter-group { border-bottom: 1px solid #334155; }
+    .chapter-name { padding: 1rem 1.25rem; background: rgba(15, 23, 42, 0.5); font-weight: 700; font-size: 0.9rem; color: #cbd5e1; }
+
+    .sidebar-lesson-item {
+      padding: 1rem 1.25rem; display: flex; align-items: center; gap: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.88rem;
+      cursor: pointer; transition: background 0.2s; color: #94a3b8;
+    }
+    .sidebar-lesson-item:hover, .sidebar-lesson-item.active { background: rgba(147, 51, 234, 0.15); color: white; }
+    .sidebar-lesson-item.completed .check-icon { color: #10b981; }
+
+    @media (max-width: 900px) {
+      .learn-layout { grid-template-columns: 1fr; height: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div style="display: flex; align-items: center; gap: 1.5rem;">
+      <a href="dashboard.html" class="brand-logo">
+        <div class="brand-icon"><i class="fa-solid fa-language"></i></div>
+      </a>
+      <span class="course-title-header">Tiếng Anh Giao Tiếp Siêu Phản Xạ • Bài 2: Kỹ thuật nối âm và nuốt âm</span>
+    </div>
+    <a href="dashboard.html" class="btn-back"><i class="fa-solid fa-xmark"></i> Thoát</a>
+  </header>
+
+  <div class="learn-layout">
+    <!-- Main Workspace Video Player & Interactive Tabs -->
+    <div class="main-workspace">
+      <div class="video-container">
+        <!-- Sample HTML5 Video Demo -->
+        <video controls poster="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=1000">
+          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="interactive-section">
+        <div class="tabs-header">
+          <button class="tab-btn active" onclick="switchTab('notesTab', this)">📝 Ghi Chú Timestamp</button>
+          <button class="tab-btn" onclick="switchTab('qaTab', this)">💬 Thảo Luận Q&A</button>
+          <button class="tab-btn" onclick="switchTab('quizTab', this)">✍️ Bài Tập & Quiz</button>
+        </div>
+
+        <!-- Tab 1: Timestamp Notes -->
+        <div id="notesTab" class="tab-pane active">
+          <div class="note-input-wrap">
+            <input type="text" placeholder="Nhập ghi chú tại thời điểm hiện tại..." class="note-input">
+            <button class="btn-add-note"><i class="fa-solid fa-plus"></i> Thêm Ghi Chú (02:45)</button>
+          </div>
+          <div class="note-item">
+            <div>
+              <span class="timestamp-badge"><i class="fa-solid fa-clock"></i> 01:20</span>
+              <span style="margin-left: 10px;">Quy tắc nối âm giữa Phụ âm cuối và Nguyên âm đầu.</span>
+            </div>
+            <i class="fa-solid fa-trash" style="color: #64748b; cursor: pointer;"></i>
+          </div>
+        </div>
+
+        <!-- Tab 2: Q&A -->
+        <div id="qaTab" class="tab-pane">
+          <div style="margin-bottom: 1rem;">
+            <input type="text" placeholder="Đặt câu hỏi cho giảng viên..." class="note-input" style="width: 100%;">
+          </div>
+          <p style="color: #64748b; font-size: 0.9rem;">Chưa có câu hỏi nào dưới bài học này.</p>
+        </div>
+
+        <!-- Tab 3: Quiz -->
+        <div id="quizTab" class="tab-pane">
+          <div style="background: var(--card-bg); padding: 1.5rem; border-radius: 20px;">
+            <h4 style="margin-bottom: 1rem;">Bài Quiz Kiểm Tra Cuối Bài (3 câu)</h4>
+            <a href="#" style="display: inline-block; padding: 0.7rem 1.5rem; background: var(--primary); color: white; border-radius: 9999px; text-decoration: none; font-weight: 700;">Làm bài kiểm tra ngay</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar Curriculum -->
+    <aside class="sidebar-curriculum">
+      <div class="sidebar-title">Nội Dung Khóa Học (12 Bài)</div>
+      
+      <div class="chapter-group">
+        <div class="chapter-name">Chương 1: Phát âm IPA Chuẩn</div>
+        <div class="sidebar-lesson-item completed">
+          <i class="fa-solid fa-circle-check check-icon"></i>
+          <span>Bài 1: Nguyên âm đơn & đôi</span>
+        </div>
+        <div class="sidebar-lesson-item active">
+          <i class="fa-regular fa-circle-play"></i>
+          <span>Bài 2: Kỹ thuật nối âm & nuốt âm</span>
+        </div>
+      </div>
+
+      <div class="chapter-group">
+        <div class="chapter-name">Chương 2: Giao Tiếp Cơ Bản</div>
+        <div class="sidebar-lesson-item">
+          <i class="fa-solid fa-lock"></i>
+          <span>Bài 3: Mẫu câu phá băng cuộc trò chuyện</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+  </script>
+</body>
+</html>

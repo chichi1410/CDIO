@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tiếng Anh Giao Tiếp Siêu Phản Xạ | Language Learning Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #9333ea; --accent-pink: #ec4899;
+      --bg-light: #f8fafc; --text-main: #0f172a; --text-sub: #475569;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: var(--bg-light); color: var(--text-main); min-height: 100vh; }
+
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px);
+      border-bottom: 1.5px solid rgba(255, 255, 255, 0.9);
+      padding: 1rem 5%; display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand-icon { width: 42px; height: 42px; background: linear-gradient(135deg, var(--primary), var(--accent-pink)); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.25rem; }
+    .brand-title { font-size: 1.35rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--text-sub); font-weight: 600; }
+
+    .hero-banner {
+      background: linear-gradient(135deg, #1e1b4b 0%, #31104b 100%);
+      color: white; padding: 4rem 5%; position: relative;
+    }
+
+    .hero-content { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1fr 380px; gap: 3rem; }
+
+    .course-badge {
+      display: inline-block; padding: 6px 16px; border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);
+      font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem;
+    }
+
+    .course-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2; }
+    .course-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 1.5rem; line-height: 1.6; }
+
+    .course-stats { display: flex; gap: 2rem; font-size: 0.9rem; margin-bottom: 1.5rem; opacity: 0.9; }
+
+    /* Sticky Purchase Card */
+    .sticky-card {
+      background: white; border-radius: 32px; padding: 2rem; color: var(--text-main);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2); position: relative; z-index: 20;
+    }
+
+    .preview-video-placeholder {
+      height: 200px; border-radius: 20px; background: #000; margin-bottom: 1.5rem;
+      display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;
+      cursor: pointer; position: relative; overflow: hidden;
+      background-size: cover; background-position: center;
+      background-image: url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600');
+    }
+
+    .play-btn {
+      width: 65px; height: 65px; border-radius: 50%; background: rgba(255,255,255,0.9);
+      color: var(--primary); display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3); transition: transform 0.2s ease;
+    }
+
+    .play-btn:hover { transform: scale(1.1); }
+
+    .price-wrap { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+    .current-price { font-size: 2rem; font-weight: 800; color: var(--primary); }
+    .old-price { text-decoration: line-through; color: #94a3b8; font-size: 1.1rem; }
+
+    .btn-buy {
+      width: 100%; padding: 1rem; border-radius: 9999px; border: none;
+      background: linear-gradient(135deg, var(--primary), var(--accent-pink));
+      color: white; font-weight: 800; font-size: 1rem; cursor: pointer;
+      box-shadow: 0 10px 25px rgba(147, 51, 234, 0.3); margin-bottom: 0.75rem;
+      display: block; text-align: center; text-decoration: none;
+    }
+
+    .btn-cart {
+      width: 100%; padding: 1rem; border-radius: 9999px;
+      border: 1.5px solid rgba(147, 51, 234, 0.3); background: rgba(147, 51, 234, 0.05);
+      color: var(--primary); font-weight: 800; font-size: 1rem; cursor: pointer;
+      display: block; text-align: center; text-decoration: none;
+    }
+
+    .main-body { max-width: 1300px; margin: 3rem auto; padding: 0 5%; display: grid; grid-template-columns: 1fr 380px; gap: 3rem; }
+
+    .curriculum-section { background: white; border-radius: 28px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.04); margin-bottom: 2rem; }
+    .section-h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem; }
+
+    .chapter-item { border: 1.5px solid #f1f5f9; border-radius: 18px; margin-bottom: 1rem; overflow: hidden; }
+    .chapter-header { padding: 1.2rem; background: #f8fafc; font-weight: 700; display: flex; justify-content: space-between; cursor: pointer; }
+    .lesson-list { padding: 1rem 1.2rem; list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+    .lesson-item { display: flex; justify-content: space-between; font-size: 0.92rem; color: var(--text-sub); }
+
+    @media (max-width: 992px) {
+      .hero-content, .main-body { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="brand-logo">
+      <div class="brand-icon"><i class="fa-solid fa-language"></i></div>
+      <span class="brand-title">Language Learning</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="courses.html">Khóa học</a></li>
+      <li><a href="student/dashboard.html">Học viên</a></li>
+    </ul>
+    <a href="auth/login.html" class="btn-buy" style="padding: 0.6rem 1.4rem; width: auto; margin: 0;">Đăng nhập</a>
+  </header>
+
+  <section class="hero-banner">
+    <div class="hero-content">
+      <div>
+        <span class="course-badge">🇬🇧 Tiếng Anh Giao Tiếp</span>
+        <h1 class="course-title">Tiếng Anh Giao Tiếp Siêu Phản Xạ Cùng Người Bản Xứ</h1>
+        <p class="course-subtitle">Luyện tập phát âm chuẩn IPA, phá tan nỗi sợ nói tiếng Anh, làm chủ 100+ chủ đề giao tiếp thực tế hàng ngày.</p>
+        <div class="course-stats">
+          <span><i class="fa-solid fa-star text-amber-400"></i> 4.9 (1,240 đánh giá)</span>
+          <span><i class="fa-solid fa-users"></i> 3,450 học viên</span>
+          <span><i class="fa-solid fa-clock"></i> 35 giờ bài giảng</span>
+        </div>
+      </div>
+
+      <!-- Purchase Card -->
+      <div class="sticky-card">
+        <div class="preview-video-placeholder">
+          <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+        </div>
+        <div class="price-wrap">
+          <span class="current-price">1,290,000đ</span>
+          <span class="old-price">2,500,000đ</span>
+        </div>
+        <a href="student/cart.html" class="btn-buy"><i class="fa-solid fa-cart-shopping"></i> MUA NGAY KHIẾN HỌC BẠI</a>
+        <a href="student/cart.html" class="btn-cart">Thêm vào giỏ hàng</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="main-body">
+    <div>
+      <section class="curriculum-section">
+        <h2 class="section-h2">Chương Trình Học (Curriculum)</h2>
+        
+        <div class="chapter-item">
+          <div class="chapter-header">
+            <span>Chương 1: Chuẩn hóa phát âm IPA & Ngữ điệu tự nhiên</span>
+            <span>4 bài học • 45 phút</span>
+          </div>
+          <ul class="lesson-list">
+            <li class="lesson-item"><span><i class="fa-regular fa-circle-play"></i> Bài 1: Nguyên âm đơn & nguyên âm đôi chuẩn Anh - Mỹ</span> <span>12:30</span></li>
+            <li class="lesson-item"><span><i class="fa-regular fa-circle-play"></i> Bài 2: Kỹ thuật nối âm và nuốt âm như người bản xứ</span> <span>15:10</span></li>
+          </ul>
+        </div>
+
+        <div class="chapter-item">
+          <div class="chapter-header">
+            <span>Chương 2: Giao tiếp làm quen & Giới thiệu bản thân</span>
+            <span>5 bài học • 60 phút</span>
+          </div>
+          <ul class="lesson-list">
+            <li class="lesson-item"><span><i class="fa-regular fa-circle-play"></i> Bài 3: Các mẫu câu phá băng cuộc trò chuyện (Ice Breaking)</span> <span>14:20</span></li>
+            <li class="lesson-item"><span><i class="fa-regular fa-circle-play"></i> Bài 4: Giới thiệu sở thích & công việc đầy cuốn hút</span> <span>18:45</span></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+</body>
+</html>

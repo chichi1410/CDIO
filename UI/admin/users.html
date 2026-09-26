@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Lý Người Dùng | Admin Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root { --primary: #9333ea; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: #f8fafc; color: #0f172a; min-height: 100vh; }
+
+    header { background: #0f172a; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; color: white; }
+    .container { max-width: 1200px; margin: 2.5rem auto; padding: 0 5%; }
+
+    .card-box { background: white; border-radius: 28px; padding: 2rem; border: 1.5px solid #f1f5f9; box-shadow: 0 10px 25px rgba(0,0,0,0.03); }
+
+    .table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    .table th, .table td { padding: 1rem; text-align: left; border-bottom: 1px solid #f1f5f9; font-size: 0.92rem; }
+    .table th { font-weight: 800; color: #64748b; }
+
+    .badge-role { padding: 4px 12px; border-radius: 9999px; font-weight: 700; font-size: 0.78rem; }
+    .role-student { background: #e0f2fe; color: #0369a1; }
+    .role-instructor { background: #f3e8ff; color: #6b21a8; }
+    .role-admin { background: #ffe4e6; color: #be123c; }
+
+    .btn-action { padding: 0.4rem 0.9rem; border-radius: 9999px; border: none; font-size: 0.8rem; font-weight: 700; cursor: pointer; }
+    .btn-lock { background: #fee2e2; color: #dc2626; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="dashboard.html" style="font-weight: 800; text-decoration: none; color: white;"> Quay lại Admin Dashboard</a>
+    <span style="font-weight: 800;">Quản Lý Người Dùng & Phân Quyền</span>
+  </header>
+
+  <div class="container">
+    <div class="card-box">
+      <h2 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem;">Danh Sách Tài Khoản Trong Hệ Thống</h2>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Họ và tên</th>
+            <th>Email</th>
+            <th>Vai trò (Role)</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#101</td>
+            <td style="font-weight: 700;">Nguyen Van A</td>
+            <td>nguyenvana@gmail.com</td>
+            <td><span class="badge-role role-student">ROLE_USER (Học viên)</span></td>
+            <td style="color: #16a34a; font-weight: 700;">Hoạt động</td>
+            <td><button class="btn-action btn-lock"><i class="fa-solid fa-lock"></i> Khóa tài khoản</button></td>
+          </tr>
+          <tr>
+            <td>#102</td>
+            <td style="font-weight: 700;">Cô Emily Watson</td>
+            <td>emily@language.edu.vn</td>
+            <td><span class="badge-role role-instructor">ROLE_INSTRUCTOR (Giảng viên)</span></td>
+            <td style="color: #16a34a; font-weight: 700;">Hoạt động</td>
+            <td><button class="btn-action btn-lock"><i class="fa-solid fa-lock"></i> Khóa tài khoản</button></td>
+          </tr>
+          <tr>
+            <td>#103</td>
+            <td style="font-weight: 700;">System Administrator</td>
+            <td>admin@saas.com</td>
+            <td><span class="badge-role role-admin">ROLE_ADMIN (Quản trị)</span></td>
+            <td style="color: #16a34a; font-weight: 700;">Hoạt động</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>

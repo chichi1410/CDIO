@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng Quản Trị Hệ Thống | Language Learning Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --primary: #9333ea; --accent-pink: #ec4899;
+      --bg-light: #f8fafc; --text-main: #0f172a; --text-sub: #475569;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: var(--bg-light); color: var(--text-main); min-height: 100vh; }
+
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px);
+      border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 5%; display: flex; align-items: center; justify-content: space-between; color: white;
+    }
+    .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: white; }
+    .brand-icon { width: 42px; height: 42px; background: linear-gradient(135deg, var(--primary), var(--accent-pink)); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; }
+    .brand-title { font-size: 1.35rem; font-weight: 800; }
+
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: #94a3b8; font-weight: 600; }
+    .nav-links a.active { color: white; }
+
+    .container { max-width: 1300px; margin: 2.5rem auto; padding: 0 5%; }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
+    .stat-card {
+      background: white; border-radius: 28px; padding: 1.75rem; border: 1.5px solid #f1f5f9;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+    }
+    .stat-val { font-size: 2.2rem; font-weight: 800; color: var(--primary); margin-top: 0.5rem; }
+    .stat-lbl { font-size: 0.88rem; color: #64748b; font-weight: 600; }
+
+    .chart-container {
+      background: white; border-radius: 28px; padding: 2rem; border: 1.5px solid #f1f5f9;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.03); margin-bottom: 2.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="../index.html" class="brand-logo">
+      <div class="brand-icon"><i class="fa-solid fa-user-shield"></i></div>
+      <span class="brand-title">Quản Trị Hệ Thống (Admin Portal)</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="dashboard.html" class="active">Báo cáo Doanh thu</a></li>
+      <li><a href="users.html">Quản lý Người dùng</a></li>
+      <li><a href="courses-approval.html">Duyệt Khóa học</a></li>
+      <li><a href="marketing.html">Banner & Voucher</a></li>
+    </ul>
+  </header>
+
+  <div class="container">
+    <h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem;">Tổng Quan Hệ Thống & Doanh Thu</h1>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-lbl">Tổng Doanh Thu Sàn</div>
+        <div class="stat-val">128,500,000đ</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-lbl">Tổng Người Dùng</div>
+        <div class="stat-val">15,420</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-lbl">Khóa Học Đã Duyệt</div>
+        <div class="stat-val">84</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-lbl">Chờ Duyệt Mới</div>
+        <div class="stat-val" style="color: #ec4899;">3 khóa</div>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="chart-container">
+      <h2 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 1.5rem;">Biểu Đồ Doanh Thu Tháng (VNĐ)</h2>
+      <canvas id="revenueChart" height="100"></canvas>
+    </div>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9'],
+        datasets: [{
+          label: 'Doanh thu (VNĐ)',
+          data: [15000000, 22000000, 18000000, 28000000, 35000000, 42500000],
+          backgroundColor: '#9333ea',
+          borderRadius: 12
+        }]
+      }
+    });
+  </script>
+</body>
+</html>

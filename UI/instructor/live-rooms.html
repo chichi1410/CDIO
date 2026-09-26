@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Lý Phòng Học Live | Kênh Giảng Viên</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root { --primary: #9333ea; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: #f8fafc; color: #0f172a; min-height: 100vh; }
+
+    header { background: white; border-bottom: 1.5px solid #f1f5f9; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
+    .container { max-width: 1000px; margin: 2.5rem auto; padding: 0 5%; }
+
+    .card-box { background: white; border-radius: 28px; padding: 2rem; border: 1.5px solid #f1f5f9; box-shadow: 0 10px 25px rgba(0,0,0,0.03); margin-bottom: 2rem; }
+    .btn-create { padding: 0.8rem 1.8rem; border-radius: 9999px; background: #9333ea; color: white; border: none; font-weight: 700; cursor: pointer; }
+
+    .form-group { margin-bottom: 1.25rem; }
+    .form-input { width: 100%; padding: 0.8rem 1.2rem; border-radius: 14px; border: 1.5px solid #cbd5e1; outline: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="dashboard.html" style="font-weight: 800; text-decoration: none; color: #9333ea;"> Quay lại Dashboard Giảng Viên</a>
+    <span style="font-weight: 800;">Lên Lịch Phòng Học Live</span>
+  </header>
+
+  <div class="container">
+    <div class="card-box">
+      <h2 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 1.5rem;">Tạo Buổi Học Live Trực Tuyến Mới</h2>
+      
+      <div class="form-group">
+        <label style="display: block; font-weight: 700; margin-bottom: 0.5rem;">Tiêu đề buổi học</label>
+        <input type="text" placeholder="Luyện Nói Tiếng Anh Chủ Đề Travel & Food" class="form-input">
+      </div>
+
+      <div class="form-group">
+        <label style="display: block; font-weight: 700; margin-bottom: 0.5rem;">Đường link Google Meet / Zoom</label>
+        <input type="url" placeholder="https://meet.google.com/abc-defg-hij" class="form-input">
+      </div>
+
+      <div class="form-group">
+        <label style="display: block; font-weight: 700; margin-bottom: 0.5rem;">Thời gian bắt đầu</label>
+        <input type="datetime-local" class="form-input">
+      </div>
+
+      <button class="btn-create">TẠO PHÒNG HỌC LIVE</button>
+    </div>
+  </div>
+
+</body>
+</html>
