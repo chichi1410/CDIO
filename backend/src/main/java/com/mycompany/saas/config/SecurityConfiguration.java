@@ -65,6 +65,21 @@ public class SecurityConfiguration {
                                 "/api/v1/auth/logout"
                         ).permitAll()
                         .requestMatchers(
+                                "/",
+                                "/index.html",
+                                "/*.html",
+                                "/**/*.html",
+                                "/**/*.css",
+                                "/**/*.js",
+                                "/**/*.png",
+                                "/**/*.jpg",
+                                "/**/*.jpeg",
+                                "/**/*.svg",
+                                "/**/*.ico",
+                                "/admin/**",
+                                "/auth/**",
+                                "/instructor/**",
+                                "/student/**",
                                 "/actuator/**",
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",

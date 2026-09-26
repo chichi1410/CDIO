@@ -1,0 +1,2173 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hồ Sơ Cá Nhân | LHD – Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-grad: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
+      --primary-color: #0b63e5;
+      --purple-color: #8b5cf6;
+      --pink-color: #ec4899;
+      --bg-page: #f8fafc;
+      --text-main: #0f172a;
+      --text-sub: #475569;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --border-subtle: rgba(226, 232, 240, 0.85);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient background glows */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.45;
+    }
+
+    .bg-orb-1 {
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, #38bdf8 0%, #818cf8 100%);
+      top: -120px;
+      right: -100px;
+    }
+
+    .bg-orb-2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #f472b6 0%, #c084fc 100%);
+      bottom: -100px;
+      left: -100px;
+    }
+
+    /* Sticky Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.85rem 4%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary-grad);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
+    }
+
+    .brand-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      background: var(--primary-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-sub);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      transition: all 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary-color);
+      background: rgba(11, 99, 229, 0.08);
+      font-weight: 700;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-circle-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1.5px solid #e2e8f0;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #334155;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      font-size: 1.05rem;
+    }
+
+    .nav-circle-btn:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: #0b63e5;
+      transform: translateY(-1px);
+    }
+
+    .btn-menu {
+      border-color: rgba(11, 99, 229, 0.25);
+      color: #0b63e5;
+    }
+
+    .btn-menu i {
+      color: #0b63e5;
+      font-size: 1.15rem;
+    }
+
+    .btn-menu:hover {
+      background: rgba(11, 99, 229, 0.08);
+      border-color: #0b63e5;
+    }
+
+    .bell-badge {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 19px;
+      height: 19px;
+      background: #ef4444;
+      color: #ffffff;
+      border-radius: 50%;
+      font-size: 0.72rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #ffffff;
+      box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
+    }
+
+    .cart-badge-count {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 19px;
+      height: 19px;
+      background: #ec4899;
+      color: #ffffff;
+      border-radius: 50%;
+      font-size: 0.72rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #ffffff;
+      box-shadow: 0 2px 6px rgba(236, 72, 153, 0.4);
+    }
+
+    .user-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 16px 4px 5px;
+      background: #ffffff;
+      border: 1.5px solid #8b5cf6;
+      border-radius: 9999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 10px rgba(139, 92, 246, 0.15);
+    }
+
+    .user-capsule:hover {
+      border-color: #0b63e5;
+      background: #f8fafc;
+      box-shadow: 0 4px 14px rgba(139, 92, 246, 0.25);
+    }
+
+    .user-capsule-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #8b5cf6;
+      background: #e2e8f0;
+    }
+
+    .user-capsule-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #0f172a;
+      white-space: nowrap;
+    }
+
+    /* ── User Pill (Active / Current Page) – dùng trong profile.html navbar ── */
+    .user-pill-active {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 16px 4px 5px;
+      background: linear-gradient(135deg, rgba(11,99,229,0.07) 0%, rgba(139,92,246,0.10) 100%);
+      border: 2px solid #8b5cf6;
+      border-radius: 9999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 12px rgba(139, 92, 246, 0.18);
+    }
+
+    .user-pill-active:hover {
+      border-color: #0b63e5;
+      background: linear-gradient(135deg, rgba(11,99,229,0.12) 0%, rgba(236,72,153,0.08) 100%);
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.28);
+      transform: translateY(-1px);
+    }
+
+    .user-pill-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #8b5cf6;
+      background: #e2e8f0;
+      flex-shrink: 0;
+    }
+
+    .user-pill-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #0f172a;
+      white-space: nowrap;
+    }
+
+    /* Dropdowns */
+    .nav-dropdown {
+      position: absolute;
+      top: calc(100% + 14px);
+      right: 0;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      padding: 0.75rem;
+      min-width: 250px;
+      display: none;
+      flex-direction: column;
+      z-index: 1100;
+      animation: dropdownFadeIn 0.2s ease;
+    }
+
+    .nav-dropdown.show {
+      display: flex;
+    }
+
+    @keyframes dropdownFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .dropdown-header {
+      padding: 0.75rem 1rem 0.5rem;
+      border-bottom: 1px solid #f1f5f9;
+      margin-bottom: 0.35rem;
+    }
+
+    .dropdown-header-title {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: #0f172a;
+    }
+
+    .dropdown-header-sub {
+      font-size: 0.78rem;
+      color: #64748b;
+    }
+
+    .dropdown-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.65rem 1rem;
+      border-radius: 12px;
+      color: #334155;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+
+    .dropdown-link i {
+      font-size: 1rem;
+      color: #0b63e5;
+      width: 20px;
+      text-align: center;
+    }
+
+    .dropdown-link:hover {
+      background: #f1f5f9;
+      color: #0b63e5;
+    }
+
+    .dropdown-link.logout-link {
+      color: #dc2626;
+    }
+
+    .dropdown-link.logout-link:hover {
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+
+    .dropdown-link.logout-link i {
+      color: #dc2626;
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background: #f1f5f9;
+      margin: 0.35rem 0;
+    }
+
+    /* Student Mega Dropdown */
+    .student-mega-dropdown {
+      min-width: 290px;
+      max-width: 320px;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+      padding: 0.85rem;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+      border: 1.5px solid rgba(226, 232, 240, 0.95);
+    }
+
+    .menu-user-banner {
+      background: linear-gradient(135deg, #091e42 0%, #1e1b4b 60%, #31104b 100%);
+      border-radius: 18px;
+      padding: 1.1rem;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 4px 15px rgba(15, 23, 42, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-user-banner-glow {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #8b5cf6;
+      filter: blur(25px);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .menu-banner-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      object-fit: cover;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .menu-banner-name {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .menu-banner-email {
+      font-size: 0.75rem;
+      color: #cbd5e1;
+    }
+
+    .menu-banner-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.7rem;
+      color: #4ade80;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .menu-section-header {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.5rem 0.75rem 0.25rem;
+      margin-top: 0.25rem;
+    }
+
+    /* Modal Backdrop Base */
+    .chat-modal-backdrop,
+    .avatar-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .chat-modal-backdrop.show,
+    .avatar-modal-backdrop.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .chat-modal-card,
+    .avatar-modal-card {
+      width: 100%;
+      max-width: 520px;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transform: scale(0.95) translateY(15px);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .chat-modal-backdrop.show .chat-modal-card,
+    .avatar-modal-backdrop.show .avatar-modal-card {
+      transform: scale(1) translateY(0);
+    }
+
+    /* Avatar Modal Styles */
+    .avatar-modal-card {
+      max-width: 560px;
+    }
+
+    .avatar-modal-header {
+      padding: 1.25rem 1.5rem;
+      background: linear-gradient(135deg, #091e42 0%, #1e1b4b 60%, #31104b 100%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .avatar-modal-header h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin: 0;
+      color: #ffffff !important;
+    }
+
+    .avatar-modal-header p {
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      margin: 2px 0 0 0;
+    }
+
+    .avatar-modal-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .avatar-modal-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+    }
+
+    .avatar-modal-body {
+      padding: 1.5rem;
+      max-height: calc(85vh - 130px);
+      overflow-y: auto;
+    }
+
+    .avatar-preview-section {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.25rem;
+      background: #f8fafc;
+      border: 1.5px dashed #cbd5e1;
+      border-radius: 20px;
+      margin-bottom: 1.25rem;
+    }
+
+    .avatar-preview-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .avatar-preview-img {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 3.5px solid #8b5cf6;
+      object-fit: cover;
+      background: #ffffff;
+      box-shadow: 0 8px 20px rgba(139, 92, 246, 0.25);
+    }
+
+    .avatar-preview-badge {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary-grad);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      border: 2px solid #ffffff;
+    }
+
+    .avatar-upload-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex-grow: 1;
+    }
+
+    .btn-upload-file {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0.75rem 1.4rem;
+      border-radius: 12px;
+      background: var(--primary-grad);
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(139, 92, 246, 0.3);
+      transition: all 0.2s ease;
+      text-align: center;
+      border: none;
+    }
+
+    .btn-upload-file:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(139, 92, 246, 0.4);
+    }
+
+    .upload-hint {
+      font-size: 0.78rem;
+      color: #64748b;
+      margin: 0;
+    }
+
+    .btn-reset-avatar {
+      background: none;
+      border: none;
+      color: #64748b;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 2px 0;
+      text-align: left;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.15s ease;
+    }
+
+    .btn-reset-avatar:hover {
+      color: #dc2626;
+    }
+
+    .avatar-divider {
+      display: flex;
+      align-items: center;
+      margin: 1.25rem 0 1rem;
+      color: #94a3b8;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+
+    .avatar-divider::before,
+    .avatar-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e2e8f0;
+    }
+
+    .avatar-divider span {
+      padding: 0 12px;
+    }
+
+    .avatar-presets-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .preset-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 8px;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: #ffffff;
+      position: relative;
+    }
+
+    .preset-card:hover {
+      border-color: #8b5cf6;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+    }
+
+    .preset-card.selected {
+      border-color: #8b5cf6;
+      background: rgba(139, 92, 246, 0.05);
+      box-shadow: 0 0 0 2px #8b5cf6;
+    }
+
+    .preset-avatar-img {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 6px;
+      border: 1.5px solid #e2e8f0;
+    }
+
+    .preset-card-name {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #334155;
+      text-align: center;
+    }
+
+    .preset-check-icon {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #8b5cf6;
+      color: #ffffff;
+      font-size: 0.65rem;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preset-card.selected .preset-check-icon {
+      display: flex;
+    }
+
+    .avatar-modal-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      background: #f8fafc;
+    }
+
+    .btn-avatar-cancel {
+      padding: 0.65rem 1.4rem;
+      border-radius: 9999px;
+      border: 1.5px solid #cbd5e1;
+      background: #ffffff;
+      color: #475569;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-avatar-cancel:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    .btn-avatar-save {
+      padding: 0.65rem 1.6rem;
+      border-radius: 9999px;
+      background: var(--primary-grad);
+      color: #ffffff;
+      border: none;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(139, 92, 246, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-avatar-save:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(139, 92, 246, 0.45);
+    }
+
+    /* Admin Chat Modal Styles */
+    .chat-modal-header {
+      padding: 1.25rem 1.5rem;
+      background: linear-gradient(135deg, #091e42 0%, #1e1b4b 60%, #31104b 100%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .chat-header-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chat-admin-avatar-wrap {
+      position: relative;
+    }
+
+    .chat-admin-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0b63e5;
+      font-size: 1.2rem;
+      border: 2px solid #8b5cf6;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .chat-online-dot {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 2px solid #ffffff;
+    }
+
+    .chat-modal-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .chat-modal-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+    }
+
+    .chat-modal-body {
+      padding: 1.25rem 1.5rem;
+      height: 340px;
+      overflow-y: auto;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chat-msg {
+      display: flex;
+      gap: 10px;
+      max-width: 82%;
+    }
+
+    .chat-msg.admin {
+      align-self: flex-start;
+    }
+
+    .chat-msg.user {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+
+    .chat-msg-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+
+    .chat-msg.admin .chat-msg-avatar {
+      background: #e0e7ff;
+      color: #4338ca;
+    }
+
+    .chat-msg.user .chat-msg-avatar {
+      background: #fce7f3;
+      color: #db2777;
+    }
+
+    .chat-bubble {
+      padding: 0.75rem 1.1rem;
+      border-radius: 18px;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .chat-msg.admin .chat-bubble {
+      background: #ffffff;
+      color: #1e293b;
+      border: 1px solid #e2e8f0;
+      border-top-left-radius: 4px;
+    }
+
+    .chat-msg.user .chat-bubble {
+      background: var(--primary-grad);
+      color: #ffffff;
+      border-top-right-radius: 4px;
+    }
+
+    .chat-time {
+      font-size: 0.7rem;
+      margin-top: 4px;
+      opacity: 0.75;
+      text-align: right;
+    }
+
+    .chat-quick-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 0.5rem 1.5rem;
+      background: #f1f5f9;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .chat-tag-btn {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 0.76rem;
+      color: #475569;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.15s ease;
+    }
+
+    .chat-tag-btn:hover {
+      border-color: #8b5cf6;
+      color: #8b5cf6;
+      background: #f5f3ff;
+    }
+
+    .chat-modal-footer {
+      padding: 1rem 1.5rem;
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 0.75rem 1.1rem;
+      border-radius: 9999px;
+      border: 1.5px solid #cbd5e1;
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.2s ease;
+      background: #f8fafc;
+    }
+
+    .chat-input:focus {
+      border-color: #8b5cf6;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+    }
+
+    .chat-send-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--primary-grad);
+      border: none;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.05rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.35);
+    }
+
+    .chat-send-btn:hover {
+      transform: scale(1.06);
+    }
+
+    /* Container */
+    .profile-container {
+      max-width: 1240px;
+      margin: 2.5rem auto 4rem;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero Banner Card */
+    .profile-hero {
+      background: linear-gradient(135deg, #091e42 0%, #1e1b4b 50%, #31104b 100%);
+      border-radius: 28px;
+      padding: 2.5rem;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2);
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .hero-glow-blob {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      filter: blur(70px);
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .hero-glow-1 {
+      top: -100px;
+      right: -80px;
+      background: #8b5cf6;
+    }
+
+    .hero-glow-2 {
+      bottom: -100px;
+      left: 30%;
+      background: #ec4899;
+    }
+
+    .profile-hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .profile-user-left {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+    }
+
+    .profile-avatar-wrap {
+      position: relative;
+    }
+
+    .profile-avatar-img {
+      width: 104px;
+      height: 104px;
+      border-radius: 50%;
+      border: 4px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      background: #ffffff;
+    }
+
+    .avatar-edit-badge {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--primary-grad);
+      border: 2.5px solid #ffffff;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease;
+    }
+
+    .avatar-edit-badge:hover {
+      transform: scale(1.1);
+    }
+
+    .profile-name-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.5px;
+    }
+
+    .profile-sub-info {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .verified-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 9999px;
+      background: rgba(34, 197, 94, 0.16);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      color: #4ade80;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .profile-stats-bar {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .stat-box {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 18px;
+      padding: 1rem 1.4rem;
+      text-align: center;
+      min-width: 110px;
+    }
+
+    .stat-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: var(--primary-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-lbl {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* Main Layout Grid */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2rem;
+    }
+
+    /* Sidebar Navigation */
+    .profile-sidebar {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.5rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
+      height: fit-content;
+      position: sticky;
+      top: 90px;
+    }
+
+    .sidebar-menu-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.75rem;
+      padding-left: 0.5rem;
+    }
+
+    .sidebar-nav-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.85rem 1.1rem;
+      border-radius: 14px;
+      background: none;
+      border: none;
+      text-align: left;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-sub);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: 6px;
+    }
+
+    .sidebar-nav-btn i {
+      font-size: 1.05rem;
+      width: 22px;
+      color: #94a3b8;
+      transition: color 0.2s ease;
+    }
+
+    .sidebar-nav-btn:hover {
+      background: #f1f5f9;
+      color: var(--text-main);
+    }
+
+    .sidebar-nav-btn.active {
+      background: var(--primary-grad);
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(139, 92, 246, 0.35);
+    }
+
+    .sidebar-nav-btn.active i {
+      color: #ffffff;
+    }
+
+    .sidebar-divider {
+      height: 1px;
+      background: #e2e8f0;
+      margin: 1.25rem 0;
+    }
+
+    .btn-sidebar-logout {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.85rem 1.1rem;
+      border-radius: 14px;
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-sidebar-logout:hover {
+      background: #ef4444;
+      color: #ffffff;
+    }
+
+    /* Content Cards */
+    .tab-content-panel {
+      display: none;
+    }
+
+    .tab-content-panel.active {
+      display: block;
+      animation: fadeInTab 0.3s ease forwards;
+    }
+
+    @keyframes fadeInTab {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .content-box {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2.2rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
+      margin-bottom: 2rem;
+    }
+
+    .box-header {
+      margin-bottom: 1.8rem;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .box-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .box-title i {
+      color: var(--purple-color);
+    }
+
+    .box-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-sub);
+      margin-top: 4px;
+    }
+
+    /* Form Fields */
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .form-label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .form-input {
+      padding: 0.85rem 1.1rem;
+      border-radius: 14px;
+      border: 1.5px solid #cbd5e1;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s ease;
+      background: #f8fafc;
+    }
+
+    .form-input:focus {
+      border-color: #8b5cf6;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+    }
+
+    .form-input:disabled {
+      background: #e2e8f0;
+      color: #64748b;
+      cursor: not-allowed;
+    }
+
+    .btn-save-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.85rem 2rem;
+      border-radius: 9999px;
+      background: var(--primary-grad);
+      color: #ffffff;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+      transition: all 0.25s ease;
+    }
+
+    .btn-save-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(139, 92, 246, 0.45);
+    }
+
+    /* Order / Transaction Table */
+    .order-item-card {
+      border: 1.5px solid #f1f5f9;
+      border-radius: 18px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+
+    .order-item-card:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    }
+
+    .order-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .order-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(14, 165, 233, 0.1);
+      color: #0284c7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .order-code {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      font-weight: 700;
+    }
+
+    .order-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin: 2px 0;
+    }
+
+    .order-date {
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    .order-price-wrap {
+      text-align: right;
+    }
+
+    .order-price {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary-color);
+    }
+
+    .order-badge-success {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      background: #dcfce7;
+      color: #16a34a;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    /* Notification Item */
+    .notif-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      border-radius: 16px;
+      background: #f8fafc;
+      margin-bottom: 0.75rem;
+      border: 1px solid #f1f5f9;
+    }
+
+    .notif-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(139, 92, 246, 0.12);
+      color: #8b5cf6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .notif-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+
+    .notif-desc {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      line-height: 1.4;
+    }
+
+    .notif-time {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    /* Toast */
+    .profile-toast {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 1rem 1.6rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .profile-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 900px) {
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-sidebar {
+        position: relative;
+        top: 0;
+      }
+
+      .form-row-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="brand-logo">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <span class="brand-title">LHD – Learning</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="../index.html">Trang chủ</a></li>
+        <li><a href="../courses.html">Khóa học</a></li>
+        <li><a href="dashboard.html">Bảng điều khiển</a></li>
+      </ul>
+    </div>
+
+    <div class="header-right">
+      <a href="cart.html" class="nav-circle-btn" title="Giỏ hàng">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </a>
+
+      <a href="profile.html" class="user-pill-active" title="Hồ sơ cá nhân">
+        <img
+          src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64' shape-rendering='crispEdges'><rect width='64' height='64' fill='%23a4c68d'/><rect x='0' y='0' width='64' height='28' fill='%237ba36a'/><rect x='6' y='8' width='12' height='14' fill='%23507c43'/><rect x='46' y='10' width='14' height='12' fill='%23507c43'/><rect x='22' y='4' width='20' height='8' fill='%23669152'/><rect x='0' y='32' width='64' height='32' fill='%23c4936d'/><rect x='0' y='42' width='64' height='22' fill='%23b17c54'/><rect x='20' y='12' width='24' height='16' fill='%231e1e24'/><rect x='22' y='16' width='20' height='20' fill='%23fddbc3'/><rect x='24' y='34' width='16' height='4' fill='%23fbc5a3'/><rect x='18' y='10' width='28' height='8' fill='%2322242a'/><rect x='18' y='18' width='6' height='8' fill='%2322242a'/><rect x='40' y='18' width='6' height='8' fill='%2322242a'/><rect x='24' y='14' width='8' height='6' fill='%2330323a'/><rect x='34' y='14' width='8' height='5' fill='%2322242a'/><rect x='18' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='42' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='25' y='25' width='4' height='4' fill='%231e1e24'/><rect x='35' y='25' width='4' height='4' fill='%231e1e24'/><rect x='23' y='28' width='4' height='2' fill='%23f7a799'/><rect x='37' y='28' width='4' height='2' fill='%23f7a799'/><rect x='29' y='31' width='6' height='2' fill='%23d97d64'/><rect x='22' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='32' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='31' y='24' width='2' height='2' fill='%23111'/><rect x='24' y='22' width='2' height='2' fill='%23ffffff'/><rect x='34' y='22' width='2' height='2' fill='%23ffffff'/><rect x='16' y='38' width='32' height='26' fill='%232b2d35'/><rect x='28' y='38' width='8' height='8' fill='%23b91c1c'/><rect x='22' y='38' width='6' height='26' fill='%233a3d47'/><rect x='36' y='38' width='6' height='26' fill='%233a3d47'/><rect x='29' y='44' width='6' height='20' fill='%23dc2626'/><rect x='31' y='42' width='2' height='22' fill='%23991b1b'/></svg>"
+          class="user-pill-avatar" id="navbarPillAvatar" alt="Avatar">
+        <span class="user-pill-name">Huỳnh Tấn Lộc</span>
+      </a>
+
+      <button type="button" class="nav-circle-btn" id="btnPageLogout" title="Đăng xuất">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="profile-container">
+
+    <!-- 1. Hero Card: User Overview & Verification Badge -->
+    <section class="profile-hero">
+      <div class="hero-glow-blob hero-glow-1"></div>
+      <div class="hero-glow-blob hero-glow-2"></div>
+
+      <div class="profile-hero-content">
+        <div class="profile-user-left">
+          <div class="profile-avatar-wrap" id="heroAvatarWrap" style="cursor:pointer;" title="Bấm để đổi ảnh đại diện">
+            <img
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64' shape-rendering='crispEdges'><rect width='64' height='64' fill='%23a4c68d'/><rect x='0' y='0' width='64' height='28' fill='%237ba36a'/><rect x='6' y='8' width='12' height='14' fill='%23507c43'/><rect x='46' y='10' width='14' height='12' fill='%23507c43'/><rect x='22' y='4' width='20' height='8' fill='%23669152'/><rect x='0' y='32' width='64' height='32' fill='%23c4936d'/><rect x='0' y='42' width='64' height='22' fill='%23b17c54'/><rect x='20' y='12' width='24' height='16' fill='%231e1e24'/><rect x='22' y='16' width='20' height='20' fill='%23fddbc3'/><rect x='24' y='34' width='16' height='4' fill='%23fbc5a3'/><rect x='18' y='10' width='28' height='8' fill='%2322242a'/><rect x='18' y='18' width='6' height='8' fill='%2322242a'/><rect x='40' y='18' width='6' height='8' fill='%2322242a'/><rect x='24' y='14' width='8' height='6' fill='%2330323a'/><rect x='34' y='14' width='8' height='5' fill='%2322242a'/><rect x='18' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='42' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='25' y='25' width='4' height='4' fill='%231e1e24'/><rect x='35' y='25' width='4' height='4' fill='%231e1e24'/><rect x='23' y='28' width='4' height='2' fill='%23f7a799'/><rect x='37' y='28' width='4' height='2' fill='%23f7a799'/><rect x='29' y='31' width='6' height='2' fill='%23d97d64'/><rect x='22' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='32' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='31' y='24' width='2' height='2' fill='%23111'/><rect x='24' y='22' width='2' height='2' fill='%23ffffff'/><rect x='34' y='22' width='2' height='2' fill='%23ffffff'/><rect x='16' y='38' width='32' height='26' fill='%232b2d35'/><rect x='28' y='38' width='8' height='8' fill='%23b91c1c'/><rect x='22' y='38' width='6' height='26' fill='%233a3d47'/><rect x='36' y='38' width='6' height='26' fill='%233a3d47'/><rect x='29' y='44' width='6' height='20' fill='%23dc2626'/><rect x='31' y='42' width='2' height='22' fill='%23991b1b'/></svg>"
+              class="profile-avatar-img" id="heroAvatarImg" alt="Avatar">
+            <div class="avatar-edit-badge" id="avatarEditBadge" title="Đổi ảnh đại diện">
+              <i class="fa-solid fa-camera"></i>
+            </div>
+          </div>
+
+          <div>
+            <h1 class="profile-name-title">Huỳnh Tấn Lộc</h1>
+            <div class="profile-sub-info">
+              <span><i class="fa-regular fa-envelope"></i> tanloc@lhd.edu.vn</span>
+              <span>•</span>
+              <span><i class="fa-solid fa-id-card"></i> ID: HV-2026-889</span>
+            </div>
+            <div>
+              <span class="verified-pill">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Thành viên / Đã xác thực</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-stats-bar">
+          <div class="stat-box">
+            <div class="stat-num">3</div>
+            <div class="stat-lbl">Khóa học</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">2</div>
+            <div class="stat-lbl">Chứng chỉ</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">89h</div>
+            <div class="stat-lbl">Thời lượng học</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Grid with Tabs -->
+    <div class="profile-grid">
+
+      <!-- Left Sidebar -->
+      <aside class="profile-sidebar">
+        <div class="sidebar-menu-title">Tùy chọn tài khoản</div>
+        <button type="button" class="sidebar-nav-btn active" data-tab="tab-profile">
+          <i class="fa-solid fa-user-gear"></i>
+          <span>Thông tin cá nhân</span>
+        </button>
+        <button type="button" class="sidebar-nav-btn" data-tab="tab-security">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>Đổi mật khẩu / Bảo mật</span>
+        </button>
+        <button type="button" class="sidebar-nav-btn" data-tab="tab-orders">
+          <i class="fa-solid fa-receipt"></i>
+          <span>Lịch sử giao dịch</span>
+        </button>
+        <button type="button" class="sidebar-nav-btn" data-tab="tab-notifs">
+          <i class="fa-solid fa-bell"></i>
+          <span>Thông báo học tập</span>
+        </button>
+
+        <div class="sidebar-divider"></div>
+
+        <div class="sidebar-menu-title">Điều hướng nhanh</div>
+        <button type="button" class="sidebar-nav-btn" onclick="window.location.href='dashboard.html'">
+          <i class="fa-solid fa-book-bookmark"></i>
+          <span>Khóa học của tôi</span>
+        </button>
+        <button type="button" class="sidebar-nav-btn" onclick="window.location.href='cart.html'">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span>Giỏ hàng học viên</span>
+        </button>
+
+        <div class="sidebar-divider"></div>
+
+        <button type="button" class="btn-sidebar-logout" id="btnSideLogout">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Đăng xuất tài khoản</span>
+        </button>
+      </aside>
+
+      <!-- Right Main Content -->
+      <div class="profile-main-content">
+
+        <!-- TAB 1: Profile Information -->
+        <div class="tab-content-panel active" id="tab-profile">
+          <div class="content-box">
+            <div class="box-header">
+              <div>
+                <h2 class="box-title"><i class="fa-solid fa-user-pen"></i> Thông Tin Cá Nhân</h2>
+                <div class="box-subtitle">Cập nhật thông tin hồ sơ học viên và mục tiêu ngôn ngữ của bạn</div>
+              </div>
+            </div>
+
+            <form id="profileForm">
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Họ và tên học viên</label>
+                  <input type="text" class="form-input" value="Huỳnh Tấn Lộc" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Mã số học viên</label>
+                  <input type="text" class="form-input" value="HV-2026-889" disabled>
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Địa chỉ Email</label>
+                  <input type="email" class="form-input" value="tanloc@lhd.edu.vn" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Số điện thoại liên hệ</label>
+                  <input type="tel" class="form-input" value="0901 234 567" placeholder="Nhập số điện thoại">
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Ngày sinh</label>
+                  <input type="date" class="form-input" value="2002-10-14">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Giới tính</label>
+                  <select class="form-input">
+                    <option value="male" selected>Nam</option>
+                    <option value="female">Nữ</option>
+                    <option value="other">Khác</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Mục tiêu học tập & Ghi chú cá nhân</label>
+                <textarea class="form-input" rows="3"
+                  style="resize: vertical;">Mục tiêu năm 2026: Đạt chứng chỉ IELTS Academic 7.5+ và chinh phục kỳ thi JLPT N3 vào tháng 12.</textarea>
+              </div>
+
+              <div style="margin-top: 1.5rem;">
+                <button type="submit" class="btn-save-primary">
+                  <i class="fa-solid fa-floppy-disk"></i>
+                  <span>Lưu thay đổi hồ sơ</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- TAB 2: Security & Password -->
+        <div class="tab-content-panel" id="tab-security">
+          <div class="content-box">
+            <div class="box-header">
+              <div>
+                <h2 class="box-title"><i class="fa-solid fa-lock"></i> Đổi Mật Khẩu & Bảo Mật</h2>
+                <div class="box-subtitle">Bảo vệ tài khoản học viên với mật khẩu mạnh và bảo mật hai lớp</div>
+              </div>
+            </div>
+
+            <form id="securityForm">
+              <div class="form-group">
+                <label class="form-label">Mật khẩu hiện tại</label>
+                <input type="password" class="form-input" placeholder="••••••••••••" required>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Mật khẩu mới</label>
+                  <input type="password" class="form-input" placeholder="Nhập ít nhất 8 ký tự" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Xác nhận mật khẩu mới</label>
+                  <input type="password" class="form-input" placeholder="Nhập lại mật khẩu mới" required>
+                </div>
+              </div>
+
+              <div
+                style="padding: 1rem 1.25rem; background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 16px; margin: 1.2rem 0; display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                  <div style="font-weight: 800; font-size: 0.95rem; color: #166534;"><i
+                      class="fa-solid fa-shield-check"></i> Xác thực 2 bước (2FA)</div>
+                  <div style="font-size: 0.82rem; color: #15803d; margin-top: 2px;">Bảo vệ tài khoản qua mã xác minh OTP
+                    gửi về Email.</div>
+                </div>
+                <span
+                  style="background: #22c55e; color: white; padding: 4px 12px; border-radius: 9999px; font-size: 0.78rem; font-weight: 800;">ĐANG
+                  BẬT</span>
+              </div>
+
+              <button type="submit" class="btn-save-primary">
+                <i class="fa-solid fa-key"></i>
+                <span>Cập nhật mật khẩu mới</span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- TAB 3: Purchase History -->
+        <div class="tab-content-panel" id="tab-orders">
+          <div class="content-box">
+            <div class="box-header">
+              <div>
+                <h2 class="box-title"><i class="fa-solid fa-file-invoice-dollar"></i> Lịch Sử Giao Dịch & Hóa Đơn</h2>
+                <div class="box-subtitle">Xem các hóa đơn thanh toán VNPay và lịch sử mua khóa học</div>
+              </div>
+            </div>
+
+            <!-- Order 1 -->
+            <div class="order-item-card">
+              <div class="order-meta">
+                <div class="order-icon"><i class="fa-solid fa-receipt"></i></div>
+                <div>
+                  <div class="order-code">#HD-2026-0891 • Cổng VNPay QR</div>
+                  <div class="order-title">Tiếng Anh IELTS Foundation (Band 3.5 – 4.5)</div>
+                  <div class="order-date"><i class="fa-regular fa-calendar"></i> 20/09/2026 14:32</div>
+                </div>
+              </div>
+              <div class="order-price-wrap">
+                <div class="order-price">1.850.000đ</div>
+                <span class="order-badge-success"><i class="fa-solid fa-check"></i> Thành công</span>
+              </div>
+            </div>
+
+            <!-- Order 2 -->
+            <div class="order-item-card">
+              <div class="order-meta">
+                <div class="order-icon" style="background: rgba(168, 85, 247, 0.1); color: #9333ea;"><i
+                    class="fa-solid fa-receipt"></i></div>
+                <div>
+                  <div class="order-code">#HD-2026-0642 • Thẻ ATM Nội Địa</div>
+                  <div class="order-title">Tiếng Nhật Căn Bản Vỡ Lòng & JLPT N5</div>
+                  <div class="order-date"><i class="fa-regular fa-calendar"></i> 15/08/2026 09:15</div>
+                </div>
+              </div>
+              <div class="order-price-wrap">
+                <div class="order-price">1.450.000đ</div>
+                <span class="order-badge-success"><i class="fa-solid fa-check"></i> Thành công</span>
+              </div>
+            </div>
+
+            <!-- Order 3 -->
+            <div class="order-item-card">
+              <div class="order-meta">
+                <div class="order-icon" style="background: rgba(236, 72, 153, 0.1); color: #db2777;"><i
+                    class="fa-solid fa-receipt"></i></div>
+                <div>
+                  <div class="order-code">#HD-2026-0410 • Ví VNPay</div>
+                  <div class="order-title">Tiếng Anh Giao Tiếp Phản Xạ Cùng Người Bản Xứ</div>
+                  <div class="order-date"><i class="fa-regular fa-calendar"></i> 02/07/2026 19:40</div>
+                </div>
+              </div>
+              <div class="order-price-wrap">
+                <div class="order-price">1.290.000đ</div>
+                <span class="order-badge-success"><i class="fa-solid fa-check"></i> Thành công</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 4: Notifications -->
+        <div class="tab-content-panel" id="tab-notifs">
+          <div class="content-box">
+            <div class="box-header">
+              <div>
+                <h2 class="box-title"><i class="fa-solid fa-bell"></i> Thông Báo Học Viên</h2>
+                <div class="box-subtitle">Nhắc nhở lịch học Live, tiến độ bài tập và tin tức ưu đãi</div>
+              </div>
+            </div>
+
+            <div class="notif-item">
+              <div class="notif-icon"><i class="fa-solid fa-video"></i></div>
+              <div>
+                <div class="notif-title">🇬🇧 Lớp học Live tương tác sắp diễn ra</div>
+                <div class="notif-desc">Buổi luyện phản xạ Speaking Unit 4 cùng Cô Emily Watson sẽ mở phòng lúc 20:00 tối nay. Hãy chuẩn bị tai nghe và micro nhé!</div>
+                <div class="notif-time">15 phút trước</div>
+              </div>
+            </div>
+
+            <div class="notif-item">
+              <div class="notif-icon" style="background: rgba(34, 197, 94, 0.12); color: #16a34a;"><i
+                  class="fa-solid fa-award"></i></div>
+              <div>
+                <div class="notif-title">🇯🇵 Kết quả bài kiểm tra từ vựng JLPT N5</div>
+                <div class="notif-desc">Chúc mừng Huỳnh Tấn Lộc đã đạt 95/100 điểm bài Test Kanji Chặng 1. Bạn đã đủ điều kiện nhận huy hiệu Chăm chỉ.</div>
+                <div class="notif-time">2 giờ trước</div>
+              </div>
+            </div>
+
+            <div class="notif-item">
+              <div class="notif-icon" style="background: rgba(14, 165, 233, 0.12); color: #0284c7;"><i
+                  class="fa-solid fa-gift"></i></div>
+              <div>
+                <div class="notif-title">🎉 Ưu đãi độc quyền học viên LHD</div>
+                <div class="notif-desc">Mã giảm giá 20% cho khóa học Tiếng Nhật JLPT N4 đã được thêm vào giỏ hàng của bạn. Hạn sử dụng đến hết tuần này.</div>
+                <div class="notif-time">1 ngày trước</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ====== AVATAR EDIT MODAL ====== -->
+  <div class="avatar-modal-backdrop" id="avatarModal">
+    <div class="avatar-modal-card">
+      <!-- Header -->
+      <div class="avatar-modal-header">
+        <div>
+          <h3><i class="fa-solid fa-camera" style="margin-right:8px;"></i>Đổi Ảnh Đại Diện</h3>
+          <p>Tải ảnh lên hoặc chọn ảnh có sẵn cho hồ sơ của bạn</p>
+        </div>
+        <button type="button" class="avatar-modal-close" id="avatarModalClose" title="Đóng">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Body -->
+      <div class="avatar-modal-body">
+        <!-- Preview + Upload -->
+        <div class="avatar-preview-section">
+          <div class="avatar-preview-wrap">
+            <img src="" class="avatar-preview-img" id="avatarPreviewImg" alt="Xem trước">
+            <span class="avatar-preview-badge"><i class="fa-solid fa-pen"></i></span>
+          </div>
+          <div class="avatar-upload-actions">
+            <label for="avatarFileInput" class="btn-upload-file">
+              <i class="fa-solid fa-upload"></i>
+              <span>Tải ảnh từ máy tính</span>
+            </label>
+            <input type="file" id="avatarFileInput" accept="image/*" style="display:none;">
+            <p class="upload-hint">Định dạng: JPG, PNG, WEBP – Tối đa 5MB</p>
+            <button type="button" class="btn-reset-avatar" id="btnResetAvatar">
+              <i class="fa-solid fa-rotate-left"></i> Đặt lại ảnh mặc định
+            </button>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="avatar-divider"><span>HOẶC CHỌN ẢNH CÓ SẴN</span></div>
+
+        <!-- Preset Grid -->
+        <div class="avatar-presets-grid" id="avatarPresetsGrid">
+          <div class="preset-card" data-preset="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&auto=format&fit=crop&q=80" onclick="selectPreset(this)">
+            <span class="preset-check-icon"><i class="fa-solid fa-check"></i></span>
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&auto=format&fit=crop&q=80" class="preset-avatar-img" alt="Preset 1">
+            <span class="preset-card-name">Nam trẻ 1</span>
+          </div>
+          <div class="preset-card" data-preset="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=200&auto=format&fit=crop&q=80" onclick="selectPreset(this)">
+            <span class="preset-check-icon"><i class="fa-solid fa-check"></i></span>
+            <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=200&auto=format&fit=crop&q=80" class="preset-avatar-img" alt="Preset 2">
+            <span class="preset-card-name">Nam trẻ 2</span>
+          </div>
+          <div class="preset-card" data-preset="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=200&auto=format&fit=crop&q=80" onclick="selectPreset(this)">
+            <span class="preset-check-icon"><i class="fa-solid fa-check"></i></span>
+            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=200&auto=format&fit=crop&q=80" class="preset-avatar-img" alt="Preset 3">
+            <span class="preset-card-name">Nam trưởng thành</span>
+          </div>
+          <div class="preset-card" data-preset="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80" onclick="selectPreset(this)">
+            <span class="preset-check-icon"><i class="fa-solid fa-check"></i></span>
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80" class="preset-avatar-img" alt="Preset 4">
+            <span class="preset-card-name">Nữ trẻ 1</span>
+          </div>
+          <div class="preset-card" data-preset="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&auto=format&fit=crop&q=80" onclick="selectPreset(this)">
+            <span class="preset-check-icon"><i class="fa-solid fa-check"></i></span>
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&auto=format&fit=crop&q=80" class="preset-avatar-img" alt="Preset 5">
+            <span class="preset-card-name">Nữ trẻ 2</span>
+          </div>
+          <div class="preset-card" data-preset="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format&fit=crop&q=80" onclick="selectPreset(this)">
+            <span class="preset-check-icon"><i class="fa-solid fa-check"></i></span>
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format&fit=crop&q=80" class="preset-avatar-img" alt="Preset 6">
+            <span class="preset-card-name">Nữ chuyên nghiệp</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="avatar-modal-footer">
+        <button type="button" class="btn-avatar-cancel" id="avatarModalCancel">Hủy bỏ</button>
+        <button type="button" class="btn-avatar-save" id="avatarModalSave">
+          <i class="fa-solid fa-floppy-disk"></i>
+          <span>Lưu ảnh đại diện</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-toast" id="profileToast">
+    <i class="fa-solid fa-circle-check" style="color: #4ade80;"></i>
+    <span id="toastMsgText">Đã lưu thông tin thành công!</span>
+  </div>
+
+  <script>
+    const AUTH_STORAGE_KEY = 'lhd_learning_logged_in';
+    const AVATAR_STORAGE_KEY = 'lhd_user_avatar';
+
+    // ====================================================================
+    // AVATAR MODAL LOGIC
+    // ====================================================================
+    const avatarModal      = document.getElementById('avatarModal');
+    const avatarPreviewImg = document.getElementById('avatarPreviewImg');
+    const avatarFileInput  = document.getElementById('avatarFileInput');
+    const heroAvatarImg    = document.getElementById('heroAvatarImg');
+    const navbarPillAvatar = document.getElementById('navbarPillAvatar');
+
+    // Pending src while modal is open (not yet saved)
+    let pendingAvatarSrc = null;
+
+    // Sync all avatar images on the page to the given src
+    function syncAllAvatars(src) {
+      if (heroAvatarImg)    heroAvatarImg.src    = src;
+      if (navbarPillAvatar) navbarPillAvatar.src = src;
+    }
+
+    // Open modal: pre-fill preview with current avatar
+    function openAvatarModal() {
+      const currentSrc = heroAvatarImg ? heroAvatarImg.src : '';
+      pendingAvatarSrc = currentSrc;
+      avatarPreviewImg.src = currentSrc;
+      // Reset preset selection
+      document.querySelectorAll('.preset-card').forEach(c => c.classList.remove('selected'));
+      avatarModal.classList.add('show');
+    }
+
+    function closeAvatarModal() {
+      avatarModal.classList.remove('show');
+      pendingAvatarSrc = null;
+      avatarFileInput.value = '';
+    }
+
+    // Clicking hero avatar wrap or the camera badge opens modal
+    document.getElementById('heroAvatarWrap').addEventListener('click', openAvatarModal);
+
+    // Close buttons
+    document.getElementById('avatarModalClose').addEventListener('click', closeAvatarModal);
+    document.getElementById('avatarModalCancel').addEventListener('click', closeAvatarModal);
+    avatarModal.addEventListener('click', (e) => {
+      if (e.target === avatarModal) closeAvatarModal();
+    });
+
+    // File upload → show preview
+    avatarFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      if (file.size > 5 * 1024 * 1024) {
+        showToast('Ảnh vượt quá 5MB. Vui lòng chọn ảnh nhỏ hơn.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        pendingAvatarSrc = ev.target.result;
+        avatarPreviewImg.src = pendingAvatarSrc;
+        // Deselect presets
+        document.querySelectorAll('.preset-card').forEach(c => c.classList.remove('selected'));
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Select preset avatar
+    function selectPreset(card) {
+      document.querySelectorAll('.preset-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      pendingAvatarSrc = card.getAttribute('data-preset');
+      avatarPreviewImg.src = pendingAvatarSrc;
+    }
+
+    // Reset to default (SVG pixel art)
+    const DEFAULT_AVATAR_SRC = heroAvatarImg ? heroAvatarImg.src : '';
+    document.getElementById('btnResetAvatar').addEventListener('click', () => {
+      pendingAvatarSrc = DEFAULT_AVATAR_SRC;
+      avatarPreviewImg.src = DEFAULT_AVATAR_SRC;
+      document.querySelectorAll('.preset-card').forEach(c => c.classList.remove('selected'));
+      avatarFileInput.value = '';
+    });
+
+    // Save: apply pending src to all avatars + persist to localStorage
+    document.getElementById('avatarModalSave').addEventListener('click', () => {
+      if (!pendingAvatarSrc) { closeAvatarModal(); return; }
+      syncAllAvatars(pendingAvatarSrc);
+      try { localStorage.setItem(AVATAR_STORAGE_KEY, pendingAvatarSrc); } catch(e) {}
+      closeAvatarModal();
+      showToast('✅ Ảnh đại diện đã được cập nhật thành công!');
+    });
+
+    // On page load: restore saved avatar
+    function restoreAvatar() {
+      const saved = localStorage.getItem(AVATAR_STORAGE_KEY);
+      if (saved) syncAllAvatars(saved);
+    }
+
+    // ====================================================================
+    // TABS SWITCHER
+    // ====================================================================
+    const navBtns   = document.querySelectorAll('.sidebar-nav-btn[data-tab]');
+    const tabPanels = document.querySelectorAll('.tab-content-panel');
+
+    function switchTab(tabId) {
+      navBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-tab') === tabId);
+      });
+      tabPanels.forEach(panel => {
+        panel.classList.toggle('active', panel.id === tabId);
+      });
+    }
+
+    navBtns.forEach(btn => {
+      btn.addEventListener('click', () => switchTab(btn.getAttribute('data-tab')));
+    });
+
+    // ====================================================================
+    // INIT
+    // ====================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      const isLogged = localStorage.getItem(AUTH_STORAGE_KEY) === 'true';
+      if (!isLogged) {
+        window.location.href = '../auth/login.html?redirect=student/profile.html';
+        return;
+      }
+
+      restoreAvatar();
+
+      const hash = window.location.hash;
+      if (hash === '#security') switchTab('tab-security');
+      else if (hash === '#orders' || hash === '#history') switchTab('tab-orders');
+      else if (hash === '#notifications' || hash === '#notifs') switchTab('tab-notifs');
+    });
+
+    // ====================================================================
+    // TOAST
+    // ====================================================================
+    function showToast(msg) {
+      const toast = document.getElementById('profileToast');
+      const text  = document.getElementById('toastMsgText');
+      text.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3200);
+    }
+
+    // ====================================================================
+    // FORM SUBMITS
+    // ====================================================================
+    document.getElementById('profileForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      showToast('Đã lưu thông tin hồ sơ học viên thành công!');
+    });
+
+    document.getElementById('securityForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      showToast('Đã cập nhật mật khẩu mới thành công!');
+    });
+
+    // ====================================================================
+    // LOGOUT
+    // ====================================================================
+    function handleLogout() {
+      localStorage.removeItem(AUTH_STORAGE_KEY);
+      showToast('Đang đăng xuất khỏi hệ thống...');
+      setTimeout(() => { window.location.href = '../auth/login.html'; }, 500);
+    }
+
+    document.getElementById('btnPageLogout').addEventListener('click', handleLogout);
+    document.getElementById('btnSideLogout').addEventListener('click', handleLogout);
+  </script>
+</body>
+
+</html>

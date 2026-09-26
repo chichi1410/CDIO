@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trình Tạo Khóa Học | Kênh Giảng Viên</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root { var-primary: #9333ea; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: #f8fafc; color: #0f172a; min-height: 100vh; }
+
+    header {
+      background: white; border-bottom: 1.5px solid #f1f5f9; padding: 1rem 5%;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .container { max-width: 1000px; margin: 2.5rem auto; padding: 0 5%; }
+
+    .wizard-card { background: white; border-radius: 32px; padding: 2.5rem; border: 1.5px solid #f1f5f9; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+
+    .form-group { margin-bottom: 1.5rem; }
+    .form-label { display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .form-input {
+      width: 100%; padding: 0.85rem 1.2rem; border-radius: 16px; border: 1.5px solid #cbd5e1;
+      outline: none; font-size: 0.92rem; font-weight: 600;
+    }
+
+    .btn-save {
+      padding: 0.9rem 2.2rem; border-radius: 9999px; border: none;
+      background: linear-gradient(135deg, #9333ea, #ec4899); color: white;
+      font-weight: 800; font-size: 1rem; cursor: pointer; box-shadow: 0 10px 25px rgba(147, 51, 234, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="dashboard.html" style="font-weight: 800; text-decoration: none; color: #9333ea;"> Quay lại Dashboard Giảng Viên</a>
+    <span style="font-weight: 800;">Soạn Thảo Khóa Học Mới</span>
+  </header>
+
+  <div class="container">
+    <div class="wizard-card">
+      <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem;">Bước 1: Thông Tin Cơ Bản Khóa Học</h2>
+      
+      <div class="form-group">
+        <label class="form-label">Tiêu đề khóa học</label>
+        <input type="text" placeholder="Ví dụ: Tiếng Anh Giao Tiếp Siêu Phản Xạ" class="form-input">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Ngôn ngữ đào tạo</label>
+        <select class="form-input">
+          <option>🇬🇧 Tiếng Anh</option>
+          <option>🇯🇵 Tiếng Nhật</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Giá bán (VNĐ)</label>
+        <input type="number" placeholder="1290000" class="form-input">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Tải lên Video Bài Học (Multipart Streaming Upload)</label>
+        <input type="file" accept="video/*" class="form-input">
+      </div>
+
+      <button class="btn-save">GỬI ADMIN PHÊ DUYỆT KHÓA HỌC</button>
+    </div>
+  </div>
+
+</body>
+</html>
