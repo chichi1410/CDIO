@@ -674,10 +674,22 @@
       passwordIcon.className = type === 'password' ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash';
     });
 
-    // Form Submit Feedback
+    // Form Submit Feedback & Redirect to Home
     document.getElementById('loginForm').addEventListener('submit', (e) => {
       e.preventDefault();
+      const email = document.getElementById('loginEmail').value || 'nguyenvana@gmail.com';
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('user', JSON.stringify({
+        name: 'Nguyen Van A',
+        email: email,
+        role: 'ROLE_USER',
+        avatar: 'NV'
+      }));
+
       showToast('Đăng nhập thành công! Đang chuyển hướng...');
+      setTimeout(() => {
+        window.location.href = '../index.html';
+      }, 1200);
     });
 
     function showToast(msg) {

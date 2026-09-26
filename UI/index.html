@@ -159,6 +159,101 @@
       gap: 1rem;
     }
 
+    /* User Profile Menu & Dropdown */
+    .user-profile-menu {
+      position: relative;
+    }
+
+    .user-profile-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      padding: 6px 14px 6px 8px;
+      border-radius: 9999px;
+      border: 1.5px solid rgba(226, 232, 240, 0.9);
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(147, 51, 234, 0.1);
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.25s ease;
+      color: var(--text-main);
+    }
+
+    .user-profile-badge:hover {
+      border-color: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    .user-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent-pink));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .profile-dropdown-content {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 10px);
+      width: 220px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 8px;
+      box-shadow: 0 15px 35px rgba(147, 51, 234, 0.18);
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 200;
+    }
+
+    .profile-dropdown-content.show {
+      display: flex;
+    }
+
+    .profile-dropdown-content a, .profile-dropdown-content button {
+      padding: 10px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.2s ease;
+      background: transparent;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .profile-dropdown-content a:hover, .profile-dropdown-content button:hover {
+      background: rgba(147, 51, 234, 0.08);
+      color: var(--primary);
+    }
+
+    .btn-logout:hover {
+      color: #ef4444 !important;
+      background: #fef2f2 !important;
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background: #e2e8f0;
+      margin: 4px 0;
+    }
+
     .btn-glass {
       padding: 0.65rem 1.4rem;
       border-radius: 9999px;
@@ -628,7 +723,7 @@
       <li><a href="admin/dashboard.html">Quản trị</a></li>
     </ul>
 
-    <div class="nav-actions">
+    <div class="nav-actions" id="navActions">
       <a href="auth/login.html" class="btn-glass btn-login">Đăng nhập</a>
       <a href="auth/register.html" class="btn-glass btn-register">Đăng ký ngay</a>
     </div>
@@ -821,5 +916,51 @@
     </div>
   </footer>
 
+  <script>
+    function checkLoginState() {
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      const navActions = document.getElementById('navActions');
+      if (isLoggedIn && navActions) {
+        const user = JSON.parse(localStorage.getItem('user')) || { name: 'Nguyen Van A', avatar: 'NV' };
+        navActions.innerHTML = `
+          <div class="user-profile-menu">
+            <div class="user-profile-badge" onclick="toggleDropdown()">
+              <div class="user-avatar">${user.avatar || 'NV'}</div>
+              <span>${user.name || 'Học viên'}</span>
+              <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: #94a3b8;"></i>
+            </div>
+            <div class="profile-dropdown-content" id="profileDropdown">
+              <a href="student/dashboard.html"><i class="fa-solid fa-graduation-cap"></i> Bảng điều khiển</a>
+              <a href="student/certificates.html"><i class="fa-solid fa-award"></i> Chứng chỉ của tôi</a>
+              <a href="student/cart.html"><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng</a>
+              <div class="dropdown-divider"></div>
+              <button onclick="handleLogout()" class="btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</button>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function toggleDropdown() {
+      const dropdown = document.getElementById('profileDropdown');
+      if (dropdown) dropdown.classList.toggle('show');
+    }
+
+    function handleLogout() {
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('user');
+      window.location.reload();
+    }
+
+    window.addEventListener('click', (e) => {
+      if (!e.target.closest('.user-profile-menu')) {
+        const dropdown = document.getElementById('profileDropdown');
+        if (dropdown) dropdown.classList.remove('show');
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', checkLoginState);
+    checkLoginState();
+  </script>
 </body>
 </html>
