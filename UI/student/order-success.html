@@ -1,48 +1,325 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thanh Toán Thành Công | Language Learning Platform</title>
+  <title>Thanh Toán Thành Công | LHD – Learning</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
-    :root { var-primary: #9333ea; }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-    body { background-color: #f8fafc; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; }
+    :root {
+      --primary-grad: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
+      --primary-color: #0b63e5;
+      --purple-color: #8b5cf6;
+      --pink-color: #ec4899;
+      --bg-page: #f8fafc;
+      --text-main: #0f172a;
+      --text-sub: #475569;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --border-subtle: rgba(226, 232, 240, 0.85);
+    }
 
-    .success-card {
-      background: white; border-radius: 36px; padding: 3rem; text-align: center; max-width: 550px;
-      box-shadow: 0 25px 60px rgba(147, 51, 234, 0.15); border: 1.5px solid #f1f5f9;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background glows */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    .bg-orb-1 {
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, #38bdf8 0%, #818cf8 100%);
+      top: -100px;
+      right: -80px;
+    }
+
+    .bg-orb-2 {
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, #f472b6 0%, #c084fc 100%);
+      bottom: -100px;
+      left: -80px;
+    }
+
+    .success-container {
+      max-width: 600px;
+      width: 100%;
+      background: var(--card-bg);
+      border-radius: 36px;
+      padding: 3.2rem 2.8rem;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(11, 99, 229, 0.12);
+      border: 1.5px solid var(--border-subtle);
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(20px);
+    }
+
+    .brand-pill-header {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 18px;
+      background: #eff6ff;
+      border-radius: 9999px;
+      margin-bottom: 2rem;
+      text-decoration: none;
+    }
+
+    .brand-icon-sm {
+      width: 28px;
+      height: 28px;
+      background: var(--primary-grad);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    .brand-title-sm {
+      font-size: 1rem;
+      font-weight: 800;
+      background: var(--primary-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .check-icon-wrap {
-      width: 80px; height: 80px; border-radius: 50%; background: #dcfce7; color: #16a34a;
-      font-size: 2.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+      color: #16a34a;
+      font-size: 2.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.8rem;
+      box-shadow: 0 10px 30px rgba(22, 163, 74, 0.25);
+      border: 4px solid #ffffff;
+      animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .title { font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; }
-    .subtitle { color: #64748b; font-size: 0.95rem; margin-bottom: 2rem; line-height: 1.6; }
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0.3);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      70% {
+        transform: scale(0.9);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      color: var(--text-sub);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    /* Receipt Summary Box */
+    .receipt-box {
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 1.4rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      padding: 8px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .receipt-row:last-child {
+      border-bottom: none;
+      padding-top: 12px;
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+
+    .receipt-label {
+      color: var(--text-sub);
+    }
+
+    .receipt-val {
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .action-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
     .btn-go-learn {
-      display: inline-block; padding: 1rem 2.2rem; border-radius: 9999px; border: none;
-      background: linear-gradient(135deg, #9333ea, #ec4899); color: white;
-      font-weight: 800; text-decoration: none; font-size: 1rem;
-      box-shadow: 0 10px 25px rgba(147, 51, 234, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 1.1rem 2rem;
+      border-radius: 9999px;
+      border: none;
+      background: var(--primary-grad);
+      color: white;
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 1.05rem;
+      box-shadow: 0 10px 25px rgba(11, 99, 229, 0.3);
+      transition: all 0.25s ease;
+    }
+
+    .btn-go-learn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(139, 92, 246, 0.45);
+    }
+
+    .btn-secondary-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0.85rem;
+      border-radius: 9999px;
+      border: 1.5px solid #cbd5e1;
+      background: #ffffff;
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary-link:hover {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+      background: #f8fafc;
+    }
+
+    @media (max-width: 550px) {
+      .success-container {
+        padding: 2.2rem 1.6rem;
+      }
+      .title {
+        font-size: 1.6rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <div class="success-card">
-    <div class="check-icon-wrap"><i class="fa-solid fa-check"></i></div>
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+
+  <div class="success-container">
+
+    <a href="../index.html" class="brand-pill-header">
+      <div class="brand-icon-sm">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </div>
+      <span class="brand-title-sm">LHD – Learning</span>
+    </a>
+
+    <div class="check-icon-wrap">
+      <i class="fa-solid fa-check"></i>
+    </div>
+
     <h1 class="title">Thanh Toán Thành Công!</h1>
-    <p class="subtitle">Cảm ơn bạn đã đăng ký khóa học tại <strong>Language Learning</strong>. Hóa đơn điện tử đã được gửi tới email của bạn. Khóa học đã được tự động kích hoạt!</p>
-    <a href="dashboard.html" class="btn-go-learn"><i class="fa-solid fa-graduation-cap"></i> Vào Học Ngay Trực Tiếp</a>
+    <p class="subtitle">
+      Cảm ơn học viên <strong>Huỳnh Tấn Lộc</strong>! Giao dịch đơn hàng <strong>#HD-2026-89410</strong> đã hoàn tất thành công qua cổng VNPay. Khóa học đã được tự động kích hoạt vào bảng điều khiển của bạn.
+    </p>
+
+    <div class="receipt-box">
+      <div class="receipt-row">
+        <span class="receipt-label">Mã giao dịch</span>
+        <span class="receipt-val">#HD-2026-89410</span>
+      </div>
+      <div class="receipt-row">
+        <span class="receipt-label">Học viên nhận</span>
+        <span class="receipt-val">Huỳnh Tấn Lộc (tanloc@lhd.edu.vn)</span>
+      </div>
+      <div class="receipt-row">
+        <span class="receipt-label">Phương thức</span>
+        <span class="receipt-val">VNPay QR / Mobile Banking</span>
+      </div>
+      <div class="receipt-row">
+        <span class="receipt-label">Trạng thái</span>
+        <span class="receipt-val" style="color: #16a34a;"><i class="fa-solid fa-circle-check"></i> Đã kích hoạt</span>
+      </div>
+      <div class="receipt-row">
+        <span class="receipt-label">Tổng thanh toán</span>
+        <span class="receipt-val" style="color: var(--primary-color);">2.540.000đ</span>
+      </div>
+    </div>
+
+    <div class="action-group">
+      <a href="dashboard.html" class="btn-go-learn">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span>Vào Bảng Điều Khiển Học Ngay</span>
+      </a>
+
+      <a href="profile.html" class="btn-secondary-link">
+        <i class="fa-solid fa-file-invoice"></i>
+        <span>Xem Hóa Đơn & Lịch Sử Giao Dịch</span>
+      </a>
+    </div>
+
   </div>
 
 </body>
+
 </html>

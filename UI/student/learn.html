@@ -1,194 +1,621 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đang Học Bài | Language Learning Workspace</title>
+  <title>Không Gian Học Tập | LHD – Learning</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
     :root {
-      --primary: #9333ea; --accent-pink: #ec4899;
-      --bg-dark: #0f172a; --card-bg: #1e293b; --text-light: #f8fafc;
+      --primary-grad: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
+      --primary-color: #0b63e5;
+      --purple-color: #8b5cf6;
+      --pink-color: #ec4899;
+      --bg-dark: #090d16;
+      --card-bg: #141b2d;
+      --card-sub-bg: #1a2238;
+      --border-dark: #242f4d;
+      --text-light: #f8fafc;
+      --text-sub: #94a3b8;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-    body { background-color: var(--bg-dark); color: var(--text-light); min-height: 100vh; overflow-x: hidden; }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Sticky Header */
     header {
-      background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px);
-      border-bottom: 1px solid #334155; padding: 0.9rem 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: white; }
-    .brand-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--primary), var(--accent-pink)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
-    .course-title-header { font-size: 1rem; font-weight: 700; color: #94a3b8; border-left: 2px solid #334155; padding-left: 1rem; }
-
-    .btn-back { padding: 0.5rem 1rem; border-radius: 9999px; background: #334155; color: white; text-decoration: none; font-weight: 700; font-size: 0.85rem; }
-
-    /* Learn Grid Layout */
-    .learn-layout { display: grid; grid-template-columns: 1fr 380px; height: calc(100vh - 65px); }
-
-    .main-workspace { display: flex; flex-direction: column; overflow-y: auto; background: #090d16; }
-
-    .video-container {
-      width: 100%; aspect-ratio: 16/9; background: #000; position: relative;
-      display: flex; align-items: center; justify-content: center;
+      background: rgba(14, 21, 37, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-dark);
+      padding: 0.8rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    video { width: 100%; height: 100%; object-fit: contain; }
+    .header-left-box {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
 
-    /* Interactive Tabs Section Below Video */
-    .interactive-section { padding: 2rem; background: var(--bg-dark); flex: 1; }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
 
-    .tabs-header { display: flex; gap: 1rem; border-bottom: 1px solid #334155; padding-bottom: 1rem; margin-bottom: 1.5rem; }
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--primary-grad);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      background: var(--primary-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .course-title-header {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      border-left: 1.5px solid var(--border-dark);
+      padding-left: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-right-box {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .user-capsule-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 14px 4px 4px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-dark);
+      border-radius: 9999px;
+      text-decoration: none;
+      color: #f1f5f9;
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .user-capsule-dark:hover {
+      border-color: var(--purple-color);
+    }
+
+    .user-avatar-sm {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid var(--primary-color);
+    }
+
+    .btn-exit-workspace {
+      padding: 0.55rem 1.2rem;
+      border-radius: 9999px;
+      background: #1e293b;
+      border: 1px solid var(--border-dark);
+      color: #f1f5f9;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-exit-workspace:hover {
+      background: #334155;
+      color: #ffffff;
+    }
+
+    /* Grid Layout */
+    .learn-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      height: calc(100vh - 61px);
+    }
+
+    /* Left Workspace */
+    .main-workspace {
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      background: #060910;
+    }
+
+    .video-viewport {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Interactive Section */
+    .interactive-section {
+      padding: 2rem;
+      background: var(--bg-dark);
+      flex: 1;
+    }
+
+    .tabs-header-bar {
+      display: flex;
+      gap: 10px;
+      border-bottom: 1.5px solid var(--border-dark);
+      padding-bottom: 1rem;
+      margin-bottom: 1.8rem;
+    }
+
     .tab-btn {
-      padding: 0.65rem 1.2rem; border-radius: 9999px; border: none; background: transparent;
-      color: #94a3b8; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.2s;
-    }
-    .tab-btn.active { background: var(--primary); color: white; }
-
-    .tab-pane { display: none; }
-    .tab-pane.active { display: block; }
-
-    /* Timestamp Notes */
-    .note-input-wrap { display: flex; gap: 10px; margin-bottom: 1.5rem; }
-    .note-input {
-      flex: 1; padding: 0.8rem 1.2rem; border-radius: 9999px; border: 1px solid #334155;
-      background: var(--card-bg); color: white; outline: none; font-size: 0.9rem;
-    }
-    .btn-add-note {
-      padding: 0.8rem 1.5rem; border-radius: 9999px; border: none;
-      background: linear-gradient(135deg, var(--primary), var(--accent-pink));
-      color: white; font-weight: 700; cursor: pointer;
+      padding: 0.65rem 1.3rem;
+      border-radius: 9999px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-sub);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .note-item {
-      background: var(--card-bg); border-radius: 16px; padding: 1rem 1.25rem; margin-bottom: 0.75rem;
-      display: flex; justify-content: space-between; align-items: center;
+    .tab-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
     }
-    .timestamp-badge {
-      background: rgba(147, 51, 234, 0.2); color: #c084fc; padding: 4px 10px;
-      border-radius: 9999px; font-weight: 700; font-size: 0.82rem; cursor: pointer;
+
+    .tab-btn.active {
+      background: var(--primary-grad);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(11, 99, 229, 0.3);
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    /* Notes */
+    .note-input-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+
+    .note-input-field {
+      flex: 1;
+      padding: 0.85rem 1.4rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border-dark);
+      background: var(--card-bg);
+      color: #ffffff;
+      outline: none;
+      font-size: 0.92rem;
+      transition: border-color 0.2s;
+    }
+
+    .note-input-field:focus {
+      border-color: var(--primary-color);
+    }
+
+    .btn-add-note-action {
+      padding: 0.85rem 1.6rem;
+      border-radius: 9999px;
+      border: none;
+      background: var(--primary-grad);
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(11, 99, 229, 0.25);
+    }
+
+    .note-item-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-dark);
+      border-radius: 16px;
+      padding: 1.1rem 1.3rem;
+      margin-bottom: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .timestamp-badge-pill {
+      background: rgba(139, 92, 246, 0.18);
+      color: #c084fc;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-weight: 800;
+      font-size: 0.82rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     /* Sidebar Curriculum */
-    .sidebar-curriculum { background: var(--card-bg); border-left: 1px solid #334155; overflow-y: auto; }
-    .sidebar-title { padding: 1.25rem; font-weight: 800; font-size: 1.05rem; border-bottom: 1px solid #334155; }
-
-    .chapter-group { border-bottom: 1px solid #334155; }
-    .chapter-name { padding: 1rem 1.25rem; background: rgba(15, 23, 42, 0.5); font-weight: 700; font-size: 0.9rem; color: #cbd5e1; }
-
-    .sidebar-lesson-item {
-      padding: 1rem 1.25rem; display: flex; align-items: center; gap: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.88rem;
-      cursor: pointer; transition: background 0.2s; color: #94a3b8;
+    .sidebar-curriculum {
+      background: var(--card-bg);
+      border-left: 1px solid var(--border-dark);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
     }
-    .sidebar-lesson-item:hover, .sidebar-lesson-item.active { background: rgba(147, 51, 234, 0.15); color: white; }
-    .sidebar-lesson-item.completed .check-icon { color: #10b981; }
 
-    @media (max-width: 900px) {
-      .learn-layout { grid-template-columns: 1fr; height: auto; }
+    .curriculum-header {
+      padding: 1.3rem;
+      border-bottom: 1px solid var(--border-dark);
+      background: rgba(14, 21, 37, 0.8);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .curriculum-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .curriculum-progress-txt {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      margin-top: 6px;
+    }
+
+    .chapter-section {
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .chapter-header {
+      padding: 0.9rem 1.3rem;
+      background: rgba(9, 13, 22, 0.6);
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lesson-item-row {
+      padding: 0.95rem 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: var(--text-sub);
+    }
+
+    .lesson-item-row:hover {
+      background: rgba(139, 92, 246, 0.12);
+      color: #ffffff;
+    }
+
+    .lesson-item-row.active {
+      background: rgba(11, 99, 229, 0.18);
+      border-left: 3px solid var(--primary-color);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .lesson-check-icon {
+      color: #10b981;
+      font-size: 0.95rem;
+    }
+
+    .lesson-play-icon {
+      color: var(--primary-color);
+      font-size: 0.95rem;
+    }
+
+    .lesson-lock-icon {
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 960px) {
+      .learn-layout {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
     }
   </style>
 </head>
+
 <body>
 
+  <!-- Header -->
   <header>
-    <div style="display: flex; align-items: center; gap: 1.5rem;">
+    <div class="header-left-box">
       <a href="dashboard.html" class="brand-logo">
-        <div class="brand-icon"><i class="fa-solid fa-language"></i></div>
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <span class="brand-title">LHD – Learning</span>
       </a>
-      <span class="course-title-header">Tiếng Anh Giao Tiếp Siêu Phản Xạ • Bài 2: Kỹ thuật nối âm và nuốt âm</span>
+
+      <div class="course-title-header">
+        <i class="fa-solid fa-book-open" style="color: var(--primary-color);"></i>
+        <span>Tiếng Anh Giao Tiếp Siêu Phản Xạ • <strong>Bài 2: Kỹ thuật nối âm và nuốt âm chuẩn bản xứ</strong></span>
+      </div>
     </div>
-    <a href="dashboard.html" class="btn-back"><i class="fa-solid fa-xmark"></i> Thoát</a>
+
+    <div class="header-right-box">
+      <a href="profile.html" class="user-capsule-dark" title="Học viên Huỳnh Tấn Lộc">
+        <img
+          src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64' shape-rendering='crispEdges'><rect width='64' height='64' fill='%23a4c68d'/><rect x='0' y='0' width='64' height='28' fill='%237ba36a'/><rect x='6' y='8' width='12' height='14' fill='%23507c43'/><rect x='46' y='10' width='14' height='12' fill='%23507c43'/><rect x='22' y='4' width='20' height='8' fill='%23669152'/><rect x='0' y='32' width='64' height='32' fill='%23c4936d'/><rect x='0' y='42' width='64' height='22' fill='%23b17c54'/><rect x='20' y='12' width='24' height='16' fill='%231e1e24'/><rect x='22' y='16' width='20' height='20' fill='%23fddbc3'/><rect x='24' y='34' width='16' height='4' fill='%23fbc5a3'/><rect x='18' y='10' width='28' height='8' fill='%2322242a'/><rect x='18' y='18' width='6' height='8' fill='%2322242a'/><rect x='40' y='18' width='6' height='8' fill='%2322242a'/><rect x='24' y='14' width='8' height='6' fill='%2330323a'/><rect x='34' y='14' width='8' height='5' fill='%2322242a'/><rect x='18' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='42' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='25' y='25' width='4' height='4' fill='%231e1e24'/><rect x='35' y='25' width='4' height='4' fill='%231e1e24'/><rect x='23' y='28' width='4' height='2' fill='%23f7a799'/><rect x='37' y='28' width='4' height='2' fill='%23f7a799'/><rect x='29' y='31' width='6' height='2' fill='%23d97d64'/><rect x='22' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='32' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='31' y='24' width='2' height='2' fill='%23111'/><rect x='24' y='22' width='2' height='2' fill='%23ffffff'/><rect x='34' y='22' width='2' height='2' fill='%23ffffff'/><rect x='16' y='38' width='32' height='26' fill='%232b2d35'/><rect x='28' y='38' width='8' height='8' fill='%23b91c1c'/><rect x='22' y='38' width='6' height='26' fill='%233a3d47'/><rect x='36' y='38' width='6' height='26' fill='%233a3d47'/><rect x='29' y='44' width='6' height='20' fill='%23dc2626'/><rect x='31' y='42' width='2' height='22' fill='%23991b1b'/></svg>"
+          class="user-avatar-sm" alt="Avatar">
+        <span>Huỳnh Tấn Lộc</span>
+      </a>
+
+      <a href="dashboard.html" class="btn-exit-workspace">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        <span>Về Bảng điều khiển</span>
+      </a>
+    </div>
   </header>
 
   <div class="learn-layout">
+
     <!-- Main Workspace Video Player & Interactive Tabs -->
-    <div class="main-workspace">
-      <div class="video-container">
-        <!-- Sample HTML5 Video Demo -->
-        <video controls poster="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=1000">
-          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+    <main class="main-workspace">
+      <div class="video-viewport">
+        <video controls poster="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=1200">
+          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            type="video/mp4">
         </video>
       </div>
 
       <div class="interactive-section">
-        <div class="tabs-header">
-          <button class="tab-btn active" onclick="switchTab('notesTab', this)">📝 Ghi Chú Timestamp</button>
-          <button class="tab-btn" onclick="switchTab('qaTab', this)">💬 Thảo Luận Q&A</button>
-          <button class="tab-btn" onclick="switchTab('quizTab', this)">✍️ Bài Tập & Quiz</button>
+        <div class="tabs-header-bar">
+          <button class="tab-btn active" onclick="switchLearnTab('notesTab', this)">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span>Ghi Chú Thời Gian</span>
+          </button>
+          <button class="tab-btn" onclick="switchLearnTab('qaTab', this)">
+            <i class="fa-solid fa-comments"></i>
+            <span>Hỏi Đáp Q&A Giảng Viên</span>
+          </button>
+          <button class="tab-btn" onclick="switchLearnTab('quizTab', this)">
+            <i class="fa-solid fa-circle-question"></i>
+            <span>Bài Tập Thực Hành & Quiz</span>
+          </button>
         </div>
 
         <!-- Tab 1: Timestamp Notes -->
         <div id="notesTab" class="tab-pane active">
-          <div class="note-input-wrap">
-            <input type="text" placeholder="Nhập ghi chú tại thời điểm hiện tại..." class="note-input">
-            <button class="btn-add-note"><i class="fa-solid fa-plus"></i> Thêm Ghi Chú (02:45)</button>
+          <div class="note-input-container">
+            <input type="text" id="noteInput" placeholder="Nhập ghi chú quan trọng tại mốc thời gian này..."
+              class="note-input-field">
+            <button class="btn-add-note-action" onclick="addNote()">
+              <i class="fa-solid fa-plus"></i>
+              <span>Thêm ghi chú (02:45)</span>
+            </button>
           </div>
-          <div class="note-item">
-            <div>
-              <span class="timestamp-badge"><i class="fa-solid fa-clock"></i> 01:20</span>
-              <span style="margin-left: 10px;">Quy tắc nối âm giữa Phụ âm cuối và Nguyên âm đầu.</span>
+
+          <div id="notesList">
+            <div class="note-item-box">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="timestamp-badge-pill"><i class="fa-regular fa-clock"></i> 01:20</span>
+                <span>Quy tắc nối âm: Phụ âm cuối từ trước nối liền với nguyên âm đầu từ sau (Linking Consonant to Vowel).</span>
+              </div>
+              <i class="fa-regular fa-trash-can" style="color: #64748b; cursor: pointer;" title="Xóa ghi chú"
+                onclick="this.closest('.note-item-box').remove()"></i>
             </div>
-            <i class="fa-solid fa-trash" style="color: #64748b; cursor: pointer;"></i>
+
+            <div class="note-item-box">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="timestamp-badge-pill"><i class="fa-regular fa-clock"></i> 04:15</span>
+                <span>Âm /t/ và /d/ khi đứng giữa hai nguyên âm trong tiếng Anh - Mỹ chuyển thành Flap T (ví dụ: water, better).</span>
+              </div>
+              <i class="fa-regular fa-trash-can" style="color: #64748b; cursor: pointer;" title="Xóa ghi chú"
+                onclick="this.closest('.note-item-box').remove()"></i>
+            </div>
           </div>
         </div>
 
         <!-- Tab 2: Q&A -->
         <div id="qaTab" class="tab-pane">
-          <div style="margin-bottom: 1rem;">
-            <input type="text" placeholder="Đặt câu hỏi cho giảng viên..." class="note-input" style="width: 100%;">
+          <div style="margin-bottom: 1.5rem; display: flex; gap: 10px;">
+            <input type="text" placeholder="Đặt câu hỏi thắc mắc cho cô Emily Watson..." class="note-input-field">
+            <button class="btn-add-note-action">Gửi câu hỏi</button>
           </div>
-          <p style="color: #64748b; font-size: 0.9rem;">Chưa có câu hỏi nào dưới bài học này.</p>
+          <div style="padding: 1.5rem; background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-dark);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+              <span style="font-weight: 700; color: #cbd5e1;">Học viên: Trần Minh Đức</span>
+              <span style="font-size: 0.8rem; color: #64748b;">Hôm qua lúc 15:30</span>
+            </div>
+            <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.5;">Cho em hỏi khi nói nhanh thì từ "and" thường được lược âm như thế nào ạ?</p>
+            <div style="margin-top: 1rem; padding: 1rem; background: var(--card-sub-bg); border-radius: 12px; border-left: 3px solid var(--primary-color);">
+              <div style="font-weight: 700; color: #38bdf8; font-size: 0.85rem; margin-bottom: 4px;">Cô Emily Watson (Giảng viên) trả lời:</div>
+              <p style="font-size: 0.88rem; color: #e2e8f0;">Chào bạn, trong văn nói tự nhiên, từ "and" thường bị nuốt âm 'd' chỉ còn âm /ən/ hoặc /n/, ví dụ: "rock 'n' roll" hay "fish and chips".</p>
+            </div>
+          </div>
         </div>
 
         <!-- Tab 3: Quiz -->
         <div id="quizTab" class="tab-pane">
-          <div style="background: var(--card-bg); padding: 1.5rem; border-radius: 20px;">
-            <h4 style="margin-bottom: 1rem;">Bài Quiz Kiểm Tra Cuối Bài (3 câu)</h4>
-            <a href="#" style="display: inline-block; padding: 0.7rem 1.5rem; background: var(--primary); color: white; border-radius: 9999px; text-decoration: none; font-weight: 700;">Làm bài kiểm tra ngay</a>
+          <div style="background: var(--card-bg); padding: 1.8rem; border-radius: 20px; border: 1px solid var(--border-dark);">
+            <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.8rem; color: #ffffff;">
+              <i class="fa-solid fa-graduation-cap" style="color: var(--primary-color);"></i>
+              Bài Quiz Đánh Giá Nhanh Sau Bài Học
+            </h4>
+            <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 1.5rem;">
+              Hoàn thành 3 câu hỏi trắc nghiệm phát âm phản xạ để ghi nhận 100% tiến độ bài học này.
+            </p>
+            <button class="btn-add-note-action" style="padding: 0.8rem 1.8rem;">
+              <i class="fa-solid fa-play"></i>
+              <span>Bắt Đầu Làm Quiz</span>
+            </button>
           </div>
         </div>
+
       </div>
-    </div>
+    </main>
 
     <!-- Sidebar Curriculum -->
     <aside class="sidebar-curriculum">
-      <div class="sidebar-title">Nội Dung Khóa Học (12 Bài)</div>
-      
-      <div class="chapter-group">
-        <div class="chapter-name">Chương 1: Phát âm IPA Chuẩn</div>
-        <div class="sidebar-lesson-item completed">
-          <i class="fa-solid fa-circle-check check-icon"></i>
-          <span>Bài 1: Nguyên âm đơn & đôi</span>
+      <div class="curriculum-header">
+        <div class="curriculum-title">
+          <span>Nội Dung Khóa Học</span>
+          <span style="font-size: 0.82rem; color: #38bdf8; font-weight: 700;">8/12 Bài</span>
         </div>
-        <div class="sidebar-lesson-item active">
-          <i class="fa-regular fa-circle-play"></i>
+        <div class="curriculum-progress-txt">Tiến độ khóa học hiện tại: <strong>65%</strong></div>
+      </div>
+
+      <!-- Chapter 1 -->
+      <div class="chapter-section">
+        <div class="chapter-header">
+          <i class="fa-solid fa-folder-open" style="color: var(--primary-color);"></i>
+          <span>Chương 1: Nền tảng Ngữ âm & Phát âm Chuẩn</span>
+        </div>
+        <div class="lesson-item-row" onclick="selectLesson(this, 'Bài 1: Hệ thống nguyên âm đơn & đôi')">
+          <i class="fa-solid fa-circle-check lesson-check-icon"></i>
+          <span>Bài 1: Hệ thống nguyên âm đơn & đôi</span>
+        </div>
+        <div class="lesson-item-row active" onclick="selectLesson(this, 'Bài 2: Kỹ thuật nối âm & nuốt âm')">
+          <i class="fa-solid fa-circle-play lesson-play-icon"></i>
           <span>Bài 2: Kỹ thuật nối âm & nuốt âm</span>
+        </div>
+        <div class="lesson-item-row" onclick="selectLesson(this, 'Bài 3: Trọng âm từ và nhịp điệu câu')">
+          <i class="fa-solid fa-circle-check lesson-check-icon"></i>
+          <span>Bài 3: Trọng âm từ và nhịp điệu câu</span>
         </div>
       </div>
 
-      <div class="chapter-group">
-        <div class="chapter-name">Chương 2: Giao Tiếp Cơ Bản</div>
-        <div class="sidebar-lesson-item">
-          <i class="fa-solid fa-lock"></i>
-          <span>Bài 3: Mẫu câu phá băng cuộc trò chuyện</span>
+      <!-- Chapter 2 -->
+      <div class="chapter-section">
+        <div class="chapter-header">
+          <i class="fa-solid fa-folder-open" style="color: var(--purple-color);"></i>
+          <span>Chương 2: Giao Tiếp Phản Xạ Hàng Ngày</span>
+        </div>
+        <div class="lesson-item-row" onclick="selectLesson(this, 'Bài 4: Mẫu câu mở đầu cuộc trò chuyện tự nhiên')">
+          <i class="fa-solid fa-circle-check lesson-check-icon"></i>
+          <span>Bài 4: Mẫu câu mở đầu trò chuyện</span>
+        </div>
+        <div class="lesson-item-row" onclick="selectLesson(this, 'Bài 5: Bày tỏ quan điểm & đồng tình/phản biện')">
+          <i class="fa-solid fa-circle-check lesson-check-icon"></i>
+          <span>Bài 5: Bày tỏ quan điểm & phản biện</span>
+        </div>
+        <div class="lesson-item-row" onclick="selectLesson(this, 'Bài 6: Xử lý tình huống khi không nghe kịp')">
+          <i class="fa-solid fa-lock lesson-lock-icon"></i>
+          <span>Bài 6: Xử lý khi không nghe kịp</span>
         </div>
       </div>
     </aside>
+
   </div>
 
   <script>
-    function switchTab(tabId, btn) {
+    const AUTH_STORAGE_KEY = 'lhd_learning_logged_in';
+
+    // Verify session
+    const isLogged = localStorage.getItem(AUTH_STORAGE_KEY) === 'true';
+    if (!isLogged) {
+      window.location.href = '../auth/login.html?redirect=student/learn.html';
+    }
+
+    function switchLearnTab(tabId, btn) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById(tabId).classList.add('active');
     }
+
+    function addNote() {
+      const input = document.getElementById('noteInput');
+      const val = input.value.trim();
+      if (!val) return;
+
+      const container = document.getElementById('notesList');
+      const item = document.createElement('div');
+      item.className = 'note-item-box';
+      item.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span class="timestamp-badge-pill"><i class="fa-regular fa-clock"></i> 02:45</span>
+          <span>${val}</span>
+        </div>
+        <i class="fa-regular fa-trash-can" style="color: #64748b; cursor: pointer;" title="Xóa ghi chú"
+          onclick="this.closest('.note-item-box').remove()"></i>
+      `;
+      container.prepend(item);
+      input.value = '';
+    }
+
+    function selectLesson(el, title) {
+      document.querySelectorAll('.lesson-item-row').forEach(r => r.classList.remove('active'));
+      el.classList.add('active');
+    }
   </script>
+
 </body>
+
 </html>

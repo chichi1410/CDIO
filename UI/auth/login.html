@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,11 @@
   <!-- Google Fonts & FontAwesome Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
+
   <style>
     :root {
       --primary-gradient: linear-gradient(120deg, #a855f7 0%, #ec4899 50%, #38bdf8 100%);
@@ -87,20 +90,49 @@
     }
 
     @keyframes morphBlob1 {
-      0% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; transform: translate(0, 0) scale(1); }
-      50% { border-radius: 68% 32% 42% 58% / 58% 64% 36% 42%; transform: translate(40px, 30px) scale(1.08); }
-      100% { border-radius: 35% 65% 55% 45% / 62% 35% 65% 38%; transform: translate(-20px, 50px) scale(0.95); }
+      0% {
+        border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        border-radius: 68% 32% 42% 58% / 58% 64% 36% 42%;
+        transform: translate(40px, 30px) scale(1.08);
+      }
+
+      100% {
+        border-radius: 35% 65% 55% 45% / 62% 35% 65% 38%;
+        transform: translate(-20px, 50px) scale(0.95);
+      }
     }
 
     @keyframes morphBlob2 {
-      0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: translate(0, 0) scale(1); }
-      50% { border-radius: 35% 65% 65% 35% / 40% 55% 45% 60%; transform: translate(-45px, -35px) scale(1.06); }
-      100% { border-radius: 52% 48% 43% 57% / 66% 42% 58% 34%; transform: translate(25px, -15px) scale(0.96); }
+      0% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        border-radius: 35% 65% 65% 35% / 40% 55% 45% 60%;
+        transform: translate(-45px, -35px) scale(1.06);
+      }
+
+      100% {
+        border-radius: 52% 48% 43% 57% / 66% 42% 58% 34%;
+        transform: translate(25px, -15px) scale(0.96);
+      }
     }
 
     @keyframes morphBlob3 {
-      0% { border-radius: 50% 50% 35% 65% / 55% 40% 60% 45%; transform: translate(0, 0) scale(1); }
-      100% { border-radius: 65% 35% 62% 38% / 42% 62% 38% 58%; transform: translate(-50px, 35px) scale(1.12); }
+      0% {
+        border-radius: 50% 50% 35% 65% / 55% 40% 60% 45%;
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        border-radius: 65% 35% 62% 38% / 42% 62% 38% 58%;
+        transform: translate(-50px, 35px) scale(1.12);
+      }
     }
 
     /* Top Language Bar */
@@ -176,8 +208,13 @@
     }
 
     @keyframes floatBadgeNear {
-      0% { transform: translateY(0px) rotate(0deg); }
-      100% { transform: translateY(-10px) rotate(2deg); }
+      0% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      100% {
+        transform: translateY(-10px) rotate(2deg);
+      }
     }
 
     /* Aura Organic Glass Vessel (No sharp boxy corners) */
@@ -198,9 +235,17 @@
     }
 
     @keyframes vesselMorph {
-      0% { border-radius: 46px 54px 44px 50px / 52px 46px 54px 46px; }
-      50% { border-radius: 54px 44px 52px 42px / 44px 54px 46px 52px; }
-      100% { border-radius: 42px 52px 48px 56px / 54px 46px 50px 42px; }
+      0% {
+        border-radius: 46px 54px 44px 50px / 52px 46px 54px 46px;
+      }
+
+      50% {
+        border-radius: 54px 44px 52px 42px / 44px 54px 46px 52px;
+      }
+
+      100% {
+        border-radius: 42px 52px 48px 56px / 54px 46px 50px 42px;
+      }
     }
 
     .brand-header {
@@ -283,8 +328,8 @@
       transform-origin: left center;
     }
 
-    .pill-input:focus ~ .pill-label,
-    .pill-input:not(:placeholder-shown) ~ .pill-label {
+    .pill-input:focus~.pill-label,
+    .pill-input:not(:placeholder-shown)~.pill-label {
       opacity: 0;
       visibility: hidden;
       transform: translateY(-50%) scale(0.95);
@@ -390,9 +435,17 @@
     }
 
     @keyframes gradientFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
     }
 
     /* Social Login Orbs */
@@ -438,13 +491,16 @@
       letter-spacing: 0.08em;
     }
 
-    .divider::before, .divider::after {
+    .divider::before,
+    .divider::after {
       content: '';
       flex: 1;
       border-bottom: 1px solid rgba(226, 232, 240, 0.8);
     }
 
-    .divider span { padding: 0 0.75rem; }
+    .divider span {
+      padding: 0 0.75rem;
+    }
 
     .auth-footer {
       text-align: center;
@@ -460,7 +516,9 @@
       text-decoration: none;
     }
 
-    .auth-footer a:hover { text-decoration: underline; }
+    .auth-footer a:hover {
+      text-decoration: underline;
+    }
 
     /* Toast Notification */
     .toast-demo {
@@ -491,12 +549,22 @@
     }
 
     @media (max-width: 992px) {
-      .floating-badge { display: none; }
-      .aura-vessel { padding: 2rem 1.5rem; }
-      .badge-near-1, .badge-near-2 { display: none; }
+      .floating-badge {
+        display: none;
+      }
+
+      .aura-vessel {
+        padding: 2rem 1.5rem;
+      }
+
+      .badge-near-1,
+      .badge-near-2 {
+        display: none;
+      }
     }
   </style>
 </head>
+
 <body>
   <!-- 1. Morphing Liquid Pastel Blobs -->
   <div class="liquid-blob blob-rose"></div>
@@ -677,7 +745,17 @@
     // Form Submit Feedback
     document.getElementById('loginForm').addEventListener('submit', (e) => {
       e.preventDefault();
+      localStorage.setItem('lhd_learning_logged_in', 'true');
       showToast('Đăng nhập thành công! Đang chuyển hướng...');
+      setTimeout(() => {
+        const params = new URLSearchParams(window.location.search);
+        const redirect = params.get('redirect');
+        if (redirect) {
+          window.location.href = redirect;
+        } else {
+          window.location.href = '../index.html';
+        }
+      }, 900);
     });
 
     function showToast(msg) {
@@ -688,6 +766,5 @@
     }
   </script>
 </body>
+
 </html>
-
-

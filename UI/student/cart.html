@@ -1,79 +1,405 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Giỏ Hàng | Language Learning Platform</title>
+  <title>Giỏ Hàng | LHD – Learning</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
     :root {
-      --primary: #9333ea; --accent-pink: #ec4899;
-      --bg-light: #f8fafc; --text-main: #0f172a; --text-sub: #475569;
+      --primary-grad: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
+      --primary-color: #0b63e5;
+      --purple-color: #8b5cf6;
+      --pink-color: #ec4899;
+      --bg-page: #f8fafc;
+      --text-main: #0f172a;
+      --text-sub: #475569;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --border-subtle: rgba(226, 232, 240, 0.85);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-    body { background-color: var(--bg-light); color: var(--text-main); min-height: 100vh; }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient background glows */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.35;
+    }
+
+    .bg-orb-1 {
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, #38bdf8 0%, #818cf8 100%);
+      top: -120px;
+      right: -100px;
+    }
+
+    .bg-orb-2 {
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, #f472b6 0%, #c084fc 100%);
+      bottom: -100px;
+      left: -100px;
+    }
+
+    /* Sticky Navbar */
     header {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px);
-      border-bottom: 1.5px solid rgba(255, 255, 255, 0.9);
-      padding: 1rem 5%; display: flex; align-items: center; justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1.5px solid #eef2f6;
+      padding: 0.85rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .brand-icon { width: 42px; height: 42px; background: linear-gradient(135deg, var(--primary), var(--accent-pink)); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.25rem; }
-    .brand-title { font-size: 1.35rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-    .container { max-width: 1200px; margin: 3rem auto; padding: 0 5%; }
-    .page-h1 { font-size: 2rem; font-weight: 800; margin-bottom: 2rem; }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
 
-    .cart-grid { display: grid; grid-template-columns: 1fr 380px; gap: 2rem; }
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--primary-grad);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.35);
+    }
+
+    .brand-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      background: var(--primary-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-nav-outline {
+      padding: 0.55rem 1.25rem;
+      border-radius: 9999px;
+      border: 1.5px solid #cbd5e1;
+      background: white;
+      color: #334155;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-nav-outline:hover {
+      background: #f8fafc;
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+
+    .user-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 16px 4px 5px;
+      background: white;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .user-capsule:hover {
+      border-color: var(--primary-color);
+      box-shadow: 0 4px 12px rgba(11, 99, 229, 0.12);
+    }
+
+    .user-capsule-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--primary-color);
+      background: #e2e8f0;
+    }
+
+    .user-capsule-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #0f172a;
+      white-space: nowrap;
+    }
+
+    .btn-logout {
+      background: #fef2f2;
+      border: 1.5px solid #fecaca;
+      color: #dc2626;
+      border-radius: 9999px;
+      padding: 7px 16px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-logout:hover {
+      background: #fee2e2;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 2.5rem auto;
+      padding: 0 5%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cart-badge-count {
+      font-size: 0.95rem;
+      background: rgba(11, 99, 229, 0.1);
+      color: var(--primary-color);
+      padding: 4px 14px;
+      border-radius: 9999px;
+      font-weight: 700;
+    }
+
+    .cart-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 2rem;
+    }
 
     .cart-item {
-      background: white; border-radius: 24px; padding: 1.5rem; margin-bottom: 1rem;
-      display: flex; gap: 1.5rem; align-items: center; border: 1.5px solid #f1f5f9;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+      background: white;
+      border-radius: 24px;
+      padding: 1.5rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      border: 1.5px solid #f1f5f9;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.03);
+      transition: all 0.25s ease;
     }
-    .cart-thumb { width: 120px; height: 80px; border-radius: 16px; background-size: cover; background-position: center; flex-shrink: 0; }
-    .cart-info { flex: 1; }
-    .cart-title { font-weight: 800; font-size: 1.05rem; margin-bottom: 0.25rem; }
-    .cart-price { font-weight: 800; font-size: 1.2rem; color: var(--primary); }
+
+    .cart-item:hover {
+      border-color: rgba(139, 92, 246, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .cart-thumb {
+      width: 120px;
+      height: 80px;
+      border-radius: 16px;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+    }
+
+    .cart-info {
+      flex: 1;
+    }
+
+    .cart-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+      color: var(--text-main);
+    }
+
+    .cart-price {
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--primary-color);
+    }
 
     .summary-card {
-      background: white; border-radius: 28px; padding: 2rem; border: 1.5px solid #f1f5f9;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.04); height: fit-content;
+      background: white;
+      border-radius: 28px;
+      padding: 2rem;
+      border: 1.5px solid #f1f5f9;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      height: fit-content;
     }
 
-    .summary-h2 { font-size: 1.2rem; font-weight: 800; margin-bottom: 1.5rem; }
-    .summary-row { display: flex; justify-content: space-between; margin-bottom: 1rem; font-weight: 600; color: var(--text-sub); }
-    .summary-total { font-size: 1.3rem; font-weight: 800; color: var(--text-main); border-top: 1px solid #e2e8f0; padding-top: 1rem; margin-top: 1rem; }
+    .summary-h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--text-main);
+    }
 
-    .voucher-wrap { display: flex; gap: 8px; margin: 1.5rem 0; }
-    .voucher-input { flex: 1; padding: 0.75rem 1rem; border-radius: 9999px; border: 1.5px solid #cbd5e1; outline: none; font-weight: 600; }
-    .btn-apply { padding: 0.75rem 1.25rem; border-radius: 9999px; border: none; background: #334155; color: white; font-weight: 700; cursor: pointer; }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      color: var(--text-sub);
+    }
+
+    .summary-total {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main);
+      border-top: 1.5px solid #e2e8f0;
+      padding-top: 1.2rem;
+      margin-top: 1.2rem;
+    }
+
+    .voucher-wrap {
+      display: flex;
+      gap: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .voucher-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border-radius: 9999px;
+      border: 1.5px solid #cbd5e1;
+      outline: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .btn-apply {
+      padding: 0.75rem 1.3rem;
+      border-radius: 9999px;
+      border: none;
+      background: #1e293b;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-apply:hover {
+      background: #0f172a;
+    }
 
     .btn-checkout {
-      display: block; width: 100%; padding: 1rem; border-radius: 9999px; border: none;
-      background: linear-gradient(135deg, var(--primary), var(--accent-pink));
-      color: white; font-weight: 800; text-align: center; text-decoration: none;
-      box-shadow: 0 10px 25px rgba(147, 51, 234, 0.3); font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 1.05rem;
+      border-radius: 9999px;
+      border: none;
+      background: var(--primary-grad);
+      color: white;
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(11, 99, 229, 0.3);
+      font-size: 1.02rem;
+      transition: all 0.25s ease;
+    }
+
+    .btn-checkout:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(139, 92, 246, 0.45);
+    }
+
+    @media (max-width: 900px) {
+      .cart-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
+
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
 
   <header>
     <a href="../index.html" class="brand-logo">
-      <div class="brand-icon"><i class="fa-solid fa-language"></i></div>
-      <span class="brand-title">Language Learning</span>
+      <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+      <span class="brand-title">LHD – Learning</span>
     </a>
+
+    <div class="header-right">
+      <a href="../courses.html" class="btn-nav-outline">
+        <i class="fa-solid fa-compass"></i>
+        <span>Tiếp tục chọn khóa học</span>
+      </a>
+
+      <a href="profile.html" class="user-capsule" title="Xem trang thông tin cá nhân học viên">
+        <img
+          src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64' shape-rendering='crispEdges'><rect width='64' height='64' fill='%23a4c68d'/><rect x='0' y='0' width='64' height='28' fill='%237ba36a'/><rect x='6' y='8' width='12' height='14' fill='%23507c43'/><rect x='46' y='10' width='14' height='12' fill='%23507c43'/><rect x='22' y='4' width='20' height='8' fill='%23669152'/><rect x='0' y='32' width='64' height='32' fill='%23c4936d'/><rect x='0' y='42' width='64' height='22' fill='%23b17c54'/><rect x='20' y='12' width='24' height='16' fill='%231e1e24'/><rect x='22' y='16' width='20' height='20' fill='%23fddbc3'/><rect x='24' y='34' width='16' height='4' fill='%23fbc5a3'/><rect x='18' y='10' width='28' height='8' fill='%2322242a'/><rect x='18' y='18' width='6' height='8' fill='%2322242a'/><rect x='40' y='18' width='6' height='8' fill='%2322242a'/><rect x='24' y='14' width='8' height='6' fill='%2330323a'/><rect x='34' y='14' width='8' height='5' fill='%2322242a'/><rect x='18' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='42' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='25' y='25' width='4' height='4' fill='%231e1e24'/><rect x='35' y='25' width='4' height='4' fill='%231e1e24'/><rect x='23' y='28' width='4' height='2' fill='%23f7a799'/><rect x='37' y='28' width='4' height='2' fill='%23f7a799'/><rect x='29' y='31' width='6' height='2' fill='%23d97d64'/><rect x='22' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='32' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='31' y='24' width='2' height='2' fill='%23111'/><rect x='24' y='22' width='2' height='2' fill='%23ffffff'/><rect x='34' y='22' width='2' height='2' fill='%23ffffff'/><rect x='16' y='38' width='32' height='26' fill='%232b2d35'/><rect x='28' y='38' width='8' height='8' fill='%23b91c1c'/><rect x='22' y='38' width='6' height='26' fill='%233a3d47'/><rect x='36' y='38' width='6' height='26' fill='%233a3d47'/><rect x='29' y='44' width='6' height='20' fill='%23dc2626'/><rect x='31' y='42' width='2' height='22' fill='%23991b1b'/></svg>"
+          class="user-capsule-avatar" alt="Huỳnh Tấn Lộc">
+        <span class="user-capsule-name">Huỳnh Tấn Lộc</span>
+      </a>
+
+      <button type="button" class="btn-logout" id="btnLogoutUser">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Đăng xuất</span>
+      </button>
+    </div>
   </header>
 
-  <div class="container">
-    <h1 class="page-h1">Giỏ Hàng Của Bạn (2 Khóa học)</h1>
+  <main class="container">
+    <h1 class="page-h1">
+      <i class="fa-solid fa-cart-shopping" style="color: var(--primary-color);"></i>
+      Giỏ Hàng Của Bạn
+      <span class="cart-badge-count">2 Khóa học</span>
+    </h1>
 
     <div class="cart-grid">
       <div>
@@ -81,27 +407,27 @@
           <div class="cart-thumb" style="background-image: url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=300');"></div>
           <div class="cart-info">
             <div class="cart-title">Tiếng Anh Giao Tiếp Siêu Phản Xạ Cùng Người Bản Xứ</div>
-            <div style="font-size: 0.85rem; color: #64748b;">Giảng viên: Cô Emily Watson</div>
+            <div style="font-size: 0.85rem; color: #64748b;"><i class="fa-solid fa-chalkboard-user"></i> Giảng viên: Cô Emily Watson</div>
           </div>
-          <div class="cart-price">1,290,000đ</div>
-          <i class="fa-solid fa-trash-can" style="color: #94a3b8; cursor: pointer; margin-left: 1rem;"></i>
+          <div class="cart-price">1.290.000đ</div>
+          <i class="fa-solid fa-trash-can" style="color: #94a3b8; cursor: pointer; margin-left: 1rem;" title="Xóa khóa học" onclick="this.closest('.cart-item').remove()"></i>
         </div>
 
         <div class="cart-item">
           <div class="cart-thumb" style="background-image: url('https://images.unsplash.com/photo-1528164344705-47542687990d?w=300');"></div>
           <div class="cart-info">
             <div class="cart-title">Chinh Phục N5 - N4 Tiếng Nhật Cấp Tốc</div>
-            <div style="font-size: 0.85rem; color: #64748b;">Giảng viên: Thầy Kenji Tanaka</div>
+            <div style="font-size: 0.85rem; color: #64748b;"><i class="fa-solid fa-chalkboard-user"></i> Giảng viên: Thầy Kenji Tanaka</div>
           </div>
-          <div class="cart-price">1,450,000đ</div>
-          <i class="fa-solid fa-trash-can" style="color: #94a3b8; cursor: pointer; margin-left: 1rem;"></i>
+          <div class="cart-price">1.450.000đ</div>
+          <i class="fa-solid fa-trash-can" style="color: #94a3b8; cursor: pointer; margin-left: 1rem;" title="Xóa khóa học" onclick="this.closest('.cart-item').remove()"></i>
         </div>
       </div>
 
       <div class="summary-card">
         <h2 class="summary-h2">Tóm Tắt Đơn Hàng</h2>
-        <div class="summary-row"><span>Tạm tính</span> <span>2,740,000đ</span></div>
-        <div class="summary-row"><span>Giảm giá Voucher (CHAOMUNG2026)</span> <span style="color: #059669;">-200,000đ</span></div>
+        <div class="summary-row"><span>Tạm tính</span> <span>2.740.000đ</span></div>
+        <div class="summary-row"><span>Giảm giá Voucher (CHAOMUNG2026)</span> <span style="color: #059669; font-weight: 700;">-200.000đ</span></div>
 
         <div class="voucher-wrap">
           <input type="text" value="CHAOMUNG2026" class="voucher-input">
@@ -110,13 +436,34 @@
 
         <div class="summary-row summary-total">
           <span>Tổng thanh toán</span>
-          <span style="color: var(--primary);">2,540,000đ</span>
+          <span style="color: var(--primary-color); font-size: 1.4rem;">2.540.000đ</span>
         </div>
 
-        <a href="checkout.html" class="btn-checkout">TIẾN HÀNH THANH TOÁN</a>
+        <a href="checkout.html" class="btn-checkout" style="margin-top: 1.5rem;">
+          <i class="fa-solid fa-shield-check"></i>
+          <span>TIẾN HÀNH THANH TOÁN VNPAY</span>
+        </a>
       </div>
     </div>
-  </div>
+  </main>
 
+  <script>
+    const AUTH_STORAGE_KEY = 'lhd_learning_logged_in';
+
+    // Verify session
+    const isLogged = localStorage.getItem(AUTH_STORAGE_KEY) === 'true';
+    if (!isLogged) {
+      window.location.href = '../auth/login.html?redirect=student/cart.html';
+    }
+
+    const btnLogoutUser = document.getElementById('btnLogoutUser');
+    if (btnLogoutUser) {
+      btnLogoutUser.addEventListener('click', () => {
+        localStorage.removeItem(AUTH_STORAGE_KEY);
+        window.location.href = '../auth/login.html';
+      });
+    }
+  </script>
 </body>
+
 </html>

@@ -18,17 +18,783 @@
     body { background-color: var(--bg-light); color: var(--text-main); min-height: 100vh; }
 
     header {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px);
-      border-bottom: 1.5px solid rgba(255, 255, 255, 0.9);
-      padding: 1rem 5%; display: flex; align-items: center; justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #ffffff;
+      border-bottom: 1.5px solid #eef2f6;
+      padding: 0.85rem 4%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
     }
-    .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .brand-icon { width: 42px; height: 42px; background: linear-gradient(135deg, var(--primary), var(--accent-pink)); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.25rem; }
-    .brand-title { font-size: 1.35rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--text-sub); font-weight: 600; }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 3.5rem;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.35);
+      flex-shrink: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .brand-logo:hover .brand-icon {
+      transform: rotate(-6deg) scale(1.06);
+      box-shadow: 0 6px 22px rgba(236, 72, 153, 0.45);
+    }
+
+    .brand-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #0b63e5 0%, #7c3aed 55%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.3px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #374151;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 8px 20px;
+      border-radius: 9999px;
+      transition: background-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, transform 0.12s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-links a:hover {
+      color: #7c3aed;
+      background: linear-gradient(135deg, rgba(11, 99, 229, 0.05), rgba(236, 72, 153, 0.08));
+    }
+
+    .nav-links a:active {
+      transform: scale(0.95);
+    }
+
+    @keyframes navPillPop {
+      0% {
+        transform: scale(0.92);
+        box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7);
+      }
+
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 4px 22px rgba(236, 72, 153, 0.55);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 4px 16px rgba(139, 92, 246, 0.38);
+      }
+    }
+
+    /* Active pill for Khoa hoc - Gradient Xanh - Hồng Tím */
+    .nav-links a.nav-item-active {
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%) !important;
+      color: #ffffff !important;
+      padding: 8px 20px;
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.38);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: navPillPop 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-links a.nav-item-active:hover {
+      box-shadow: 0 6px 20px rgba(236, 72, 153, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .nav-links a.nav-item-active:active {
+      transform: scale(0.95);
+    }
+
+    .nav-click-ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      transform: scale(0);
+      animation: navRippleAnim 0.55s ease-out;
+      pointer-events: none;
+    }
+
+    @keyframes navRippleAnim {
+      to {
+        transform: scale(3.5);
+        opacity: 0;
+      }
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-actions-guest {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .btn-guest-login {
+      padding: 0.62rem 1.45rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #7c3aed;
+      background: #ffffff;
+      border: 1.5px solid rgba(139, 92, 246, 0.4);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-guest-login:hover {
+      background: rgba(139, 92, 246, 0.08);
+      border-color: #8b5cf6;
+      transform: translateY(-1px);
+    }
+
+    .btn-guest-register {
+      padding: 0.62rem 1.45rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #ffffff;
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
+      border: none;
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.35);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-guest-register:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(236, 72, 153, 0.45);
+      filter: brightness(1.05);
+    }
+
+    .nav-actions-user {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+    }
+
+    .nav-user-left-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-user-divider {
+      width: 1px;
+      height: 24px;
+      background: #e2e8f0;
+      margin: 0 4px;
+    }
+
+    .nav-user-right-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-circle-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid #dce4ec;
+      background: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #273746;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+      flex-shrink: 0;
+    }
+
+    .nav-circle-btn:hover {
+      border-color: #0b63e5;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav-circle-btn.btn-cart-nav {
+      font-size: 15px;
+      color: #273746;
+    }
+
+    .nav-circle-btn.btn-cart-nav:hover {
+      color: #0b63e5;
+    }
+
+    .user-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1.5px solid #dce4ec;
+      border-radius: 9999px;
+      padding: 4px 18px 4px 5px;
+      background: #ffffff;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+      position: relative;
+      user-select: none;
+    }
+
+    .user-capsule:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .user-capsule-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid #0b63e5;
+      object-fit: cover;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .user-capsule-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #24292f;
+      letter-spacing: -0.2px;
+      white-space: nowrap;
+    }
+
+    .nav-circle-btn.btn-menu {
+      font-size: 16px;
+      color: #0b63e5;
+    }
+
+    .nav-circle-btn.btn-menu:hover {
+      background: rgba(11, 99, 229, 0.06);
+    }
+
+    .nav-circle-btn.btn-bell {
+      font-size: 17px;
+      color: #273746;
+    }
+
+    .bell-badge {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      background: #ea4335;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #ffffff;
+      box-shadow: 0 2px 5px rgba(234, 67, 53, 0.4);
+    }
+
+    .nav-dropdown {
+      position: absolute;
+      top: calc(100% + 12px);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      border: 1.5px solid #e2e8f0;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      padding: 0.75rem;
+      min-width: 260px;
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 1500;
+      animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-dropdown.show {
+      display: flex;
+    }
+
+    @keyframes dropdownFadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .dropdown-header {
+      padding: 0.5rem 0.85rem 0.75rem;
+      border-bottom: 1px solid #f1f5f9;
+      margin-bottom: 4px;
+    }
+
+    .dropdown-header-title {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: #0f172a;
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background: #f1f5f9;
+      margin: 4px 0;
+    }
+
+    .student-mega-dropdown {
+      min-width: 290px;
+      max-width: 320px;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+      padding: 0.85rem;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+      border: 1.5px solid rgba(226, 232, 240, 0.95);
+    }
+
+    .menu-user-banner {
+      background: linear-gradient(135deg, #091e42 0%, #1e1b4b 60%, #31104b 100%);
+      border-radius: 18px;
+      padding: 1.1rem;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 4px 15px rgba(15, 23, 42, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-user-banner-glow {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #8b5cf6;
+      filter: blur(25px);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .menu-banner-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .menu-banner-meta {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .menu-banner-name {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .menu-banner-sub {
+      font-size: 0.78rem;
+      color: #cbd5e1;
+      margin: 2px 0 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .menu-banner-verified {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(34, 197, 94, 0.2);
+      border: 1px solid rgba(34, 197, 94, 0.45);
+      color: #4ade80;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .menu-group-heading {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 0.5rem 0.6rem 0.2rem;
+    }
+
+    .student-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.65rem 0.85rem;
+      border-radius: 14px;
+      text-decoration: none;
+      color: #0f172a;
+      transition: all 0.18s ease;
+    }
+
+    .student-menu-item:hover {
+      background: #f1f5f9;
+      transform: translateX(4px);
+    }
+
+    .menu-item-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(11, 99, 229, 0.08);
+      color: #0b63e5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .student-menu-item:hover .menu-item-icon {
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
+      color: #ffffff;
+    }
+
+    .student-menu-item .menu-item-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #1e293b;
+      transition: color 0.18s ease;
+    }
+
+    .student-menu-item:hover .menu-item-title {
+      color: #0b63e5;
+    }
+
+    .btn-menu-logout {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0.75rem 1rem;
+      border-radius: 14px;
+      background: rgba(239, 68, 68, 0.08);
+      border: 1.5px solid rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-menu-logout:hover {
+      background: #ef4444;
+      color: #ffffff;
+    }
+
+    /* Admin Support Live Chat Modal */
+    .chat-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 2500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .chat-modal-overlay.show {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .chat-modal-window {
+      background: #ffffff;
+      border-radius: 28px;
+      width: 100%;
+      max-width: 480px;
+      height: 580px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+      border: 1.5px solid #e2e8f0;
+      overflow: hidden;
+      animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .chat-modal-header {
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
+      color: #ffffff;
+      padding: 1.1rem 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .chat-admin-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chat-admin-avatar-wrap {
+      position: relative;
+    }
+
+    .chat-admin-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      object-fit: cover;
+      background: #ffffff;
+    }
+
+    .chat-online-badge {
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 2px solid #ffffff;
+    }
+
+    .chat-admin-name {
+      font-size: 0.98rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .chat-admin-status {
+      font-size: 0.76rem;
+      opacity: 0.92;
+      margin-top: 2px;
+    }
+
+    .btn-close-chat {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: #ffffff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .btn-close-chat:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .chat-modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.2rem;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chat-timestamp-divider {
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #94a3b8;
+      margin-bottom: 4px;
+    }
+
+    .chat-msg-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .chat-msg-row.admin-row {
+      justify-content: flex-start;
+    }
+
+    .chat-msg-row.user-row {
+      justify-content: flex-end;
+    }
+
+    .chat-bubble-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .chat-bubble {
+      max-width: 78%;
+      padding: 0.85rem 1.1rem;
+      border-radius: 18px;
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .admin-bubble {
+      background: #ffffff;
+      color: #0f172a;
+      border: 1.5px solid #e2e8f0;
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .user-bubble {
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 100%);
+      color: #ffffff;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 4px 14px rgba(11, 99, 229, 0.25);
+    }
+
+    .chat-quick-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 4px;
+      margin-left: 40px;
+    }
+
+    .quick-chip {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      color: #0b63e5;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quick-chip:hover {
+      background: #eff6ff;
+      border-color: #0b63e5;
+      transform: translateY(-1px);
+    }
+
+    .chat-modal-footer {
+      padding: 0.85rem 1.2rem;
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .chat-input-field {
+      flex: 1;
+      padding: 0.75rem 1.2rem;
+      border-radius: 9999px;
+      border: 1.5px solid #cbd5e1;
+      outline: none;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    .chat-input-field:focus {
+      border-color: #0b63e5;
+    }
+
+    .btn-chat-send {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 100%);
+      color: #ffffff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .btn-chat-send:hover {
+      transform: scale(1.08);
+    }
 
     .hero-banner {
       background: linear-gradient(135deg, #1e1b4b 0%, #31104b 100%);
@@ -107,16 +873,157 @@
 <body>
 
   <header>
-    <a href="index.html" class="brand-logo">
-      <div class="brand-icon"><i class="fa-solid fa-language"></i></div>
-      <span class="brand-title">Language Learning</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html">Trang chủ</a></li>
-      <li><a href="courses.html">Khóa học</a></li>
-      <li><a href="student/dashboard.html">Học viên</a></li>
-    </ul>
-    <a href="auth/login.html" class="btn-buy" style="padding: 0.6rem 1.4rem; width: auto; margin: 0;">Đăng nhập</a>
+    <div class="header-left">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span class="brand-title">LHD – Learning</span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <ul class="nav-links">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="courses.html" class="nav-item-active">Khóa học</a></li>
+        <li><a href="index.html#about">Giới thiệu</a></li>
+        <li><a href="index.html#footer">Liên hệ</a></li>
+      </ul>
+    </div>
+
+    <div class="header-right">
+      <!-- State 1: Guest (When NOT logged in) -->
+      <div class="nav-actions-guest" id="navActionsGuest">
+        <a href="auth/login.html" class="btn-guest-login" id="btnHeaderLogin">
+          <i class="fa-regular fa-user"></i>
+          <span>Đăng nhập</span>
+        </a>
+        <a href="auth/register.html" class="btn-guest-register">
+          <span>Đăng ký</span>
+        </a>
+      </div>
+
+      <!-- State 2: Logged in (Thứ tự: Thông báo -> Giỏ hàng | Đẩy sang phải: Tài khoản -> Menu ☰) -->
+      <div class="nav-actions-user" id="navActionsUser">
+        <!-- Nhóm 1: Thông báo đặt trước Giỏ hàng -->
+        <div class="nav-user-left-group">
+          <!-- 1. Bell Button (with Red Badge 2) - Nằm trước Giỏ hàng -->
+          <div style="position: relative;">
+            <button type="button" class="nav-circle-btn btn-bell" id="headerBellBtn" title="Thông báo hệ thống">
+              <i class="fa-regular fa-bell"></i>
+              <span class="bell-badge" id="headerBellBadge">2</span>
+            </button>
+
+            <!-- Bell Dropdown Popover (rủ xuống bên trái, dưới chuông) -->
+            <div class="nav-dropdown" id="bellDropdown" style="min-width: 320px; left: 0; right: auto;">
+              <div class="dropdown-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="dropdown-header-title">Thông báo mới</div>
+                <button type="button" id="btnMarkAllRead"
+                  style="background: none; border: none; color: #0b63e5; font-size: 0.78rem; font-weight: 700; cursor: pointer;">Đã
+                  đọc tất cả</button>
+              </div>
+              <div style="padding: 0.65rem 0.85rem; border-radius: 12px; background: #f8fafc; margin-bottom: 6px;">
+                <div style="font-weight: 700; font-size: 0.85rem; color: #0f172a; margin-bottom: 3px;">🇬🇧 Lớp học Live sắp bắt đầu</div>
+                <div style="font-size: 0.8rem; color: #475569; line-height: 1.4;">Buổi tương tác phản xạ Tiếng Anh cùng Cô Emily Watson sẽ mở lúc 20:00.</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 4px;">15 phút trước</div>
+              </div>
+              <div style="padding: 0.65rem 0.85rem; border-radius: 12px; background: #f8fafc;">
+                <div style="font-weight: 700; font-size: 0.85rem; color: #0f172a; margin-bottom: 3px;">🇯🇵 Kết quả bài test từ vựng N5</div>
+                <div style="font-size: 0.8rem; color: #475569; line-height: 1.4;">Điểm số của bạn: 95/100. Đủ điều kiện chuyển sang giai đoạn N4.</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 4px;">2 giờ trước</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Shopping Cart Button -->
+          <a href="student/cart.html" class="nav-circle-btn btn-cart-nav" title="Giỏ hàng khóa học">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </a>
+        </div>
+
+        <!-- Vạch phân cách & đẩy các mục còn lại sang bên phải -->
+        <div class="nav-user-divider"></div>
+
+        <!-- Nhóm 2: Các mục còn lại được đẩy sang bên phải (Tài khoản học viên & Menu ☰) -->
+        <div class="nav-user-right-group">
+          <!-- 3. User Capsule (Avatar with blue ring + Huỳnh Tấn Lộc) -> Bấm vào chuyển sang trang cá nhân học viên -->
+          <a href="student/profile.html" class="user-capsule" id="userCapsuleBtn" title="Xem trang thông tin cá nhân học viên">
+            <img
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64' shape-rendering='crispEdges'><rect width='64' height='64' fill='%23a4c68d'/><rect x='0' y='0' width='64' height='28' fill='%237ba36a'/><rect x='6' y='8' width='12' height='14' fill='%23507c43'/><rect x='46' y='10' width='14' height='12' fill='%23507c43'/><rect x='22' y='4' width='20' height='8' fill='%23669152'/><rect x='0' y='32' width='64' height='32' fill='%23c4936d'/><rect x='0' y='42' width='64' height='22' fill='%23b17c54'/><rect x='20' y='12' width='24' height='16' fill='%231e1e24'/><rect x='22' y='16' width='20' height='20' fill='%23fddbc3'/><rect x='24' y='34' width='16' height='4' fill='%23fbc5a3'/><rect x='18' y='10' width='28' height='8' fill='%2322242a'/><rect x='18' y='18' width='6' height='8' fill='%2322242a'/><rect x='40' y='18' width='6' height='8' fill='%2322242a'/><rect x='24' y='14' width='8' height='6' fill='%2330323a'/><rect x='34' y='14' width='8' height='5' fill='%2322242a'/><rect x='18' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='42' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='25' y='25' width='4' height='4' fill='%231e1e24'/><rect x='35' y='25' width='4' height='4' fill='%231e1e24'/><rect x='23' y='28' width='4' height='2' fill='%23f7a799'/><rect x='37' y='28' width='4' height='2' fill='%23f7a799'/><rect x='29' y='31' width='6' height='2' fill='%23d97d64'/><rect x='22' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='32' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='31' y='24' width='2' height='2' fill='%23111'/><rect x='24' y='22' width='2' height='2' fill='%23ffffff'/><rect x='34' y='22' width='2' height='2' fill='%23ffffff'/><rect x='16' y='38' width='32' height='26' fill='%232b2d35'/><rect x='28' y='38' width='8' height='8' fill='%23b91c1c'/><rect x='22' y='38' width='6' height='26' fill='%233a3d47'/><rect x='36' y='38' width='6' height='26' fill='%233a3d47'/><rect x='29' y='44' width='6' height='20' fill='%23dc2626'/><rect x='31' y='42' width='2' height='22' fill='%23991b1b'/></svg>"
+              class="user-capsule-avatar" id="headerUserAvatar" alt="Huỳnh Tấn Lộc">
+            <span class="user-capsule-name">Huỳnh Tấn Lộc</span>
+          </a>
+
+          <!-- 4. Nút tròn (3 gạch ngang ☰) -->
+          <div style="position: relative;">
+            <button type="button" class="nav-circle-btn btn-menu" id="headerMenuBtn" title="Menu quản lý học viên (☰)">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- Dropdown Menu 4 Khu Vực (Mở khi bấm nút 3 gạch ngang ☰) -->
+            <div class="nav-dropdown student-mega-dropdown" id="menuDropdown" style="right: 0; left: auto;">
+            <!-- 1. Khu vực Thông tin cá nhân -->
+            <div class="menu-user-banner">
+              <div class="menu-user-banner-glow"></div>
+              <img
+                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64' shape-rendering='crispEdges'><rect width='64' height='64' fill='%23a4c68d'/><rect x='0' y='0' width='64' height='28' fill='%237ba36a'/><rect x='6' y='8' width='12' height='14' fill='%23507c43'/><rect x='46' y='10' width='14' height='12' fill='%23507c43'/><rect x='22' y='4' width='20' height='8' fill='%23669152'/><rect x='0' y='32' width='64' height='32' fill='%23c4936d'/><rect x='0' y='42' width='64' height='22' fill='%23b17c54'/><rect x='20' y='12' width='24' height='16' fill='%231e1e24'/><rect x='22' y='16' width='20' height='20' fill='%23fddbc3'/><rect x='24' y='34' width='16' height='4' fill='%23fbc5a3'/><rect x='18' y='10' width='28' height='8' fill='%2322242a'/><rect x='18' y='18' width='6' height='8' fill='%2322242a'/><rect x='40' y='18' width='6' height='8' fill='%2322242a'/><rect x='24' y='14' width='8' height='6' fill='%2330323a'/><rect x='34' y='14' width='8' height='5' fill='%2322242a'/><rect x='18' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='42' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='25' y='25' width='4' height='4' fill='%231e1e24'/><rect x='35' y='25' width='4' height='4' fill='%231e1e24'/><rect x='23' y='28' width='4' height='2' fill='%23f7a799'/><rect x='37' y='28' width='4' height='2' fill='%23f7a799'/><rect x='29' y='31' width='6' height='2' fill='%23d97d64'/><rect x='22' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='32' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='31' y='24' width='2' height='2' fill='%23111'/><rect x='24' y='22' width='2' height='2' fill='%23ffffff'/><rect x='34' y='22' width='2' height='2' fill='%23ffffff'/><rect x='16' y='38' width='32' height='26' fill='%232b2d35'/><rect x='28' y='38' width='8' height='8' fill='%23b91c1c'/><rect x='22' y='38' width='6' height='26' fill='%233a3d47'/><rect x='36' y='38' width='6' height='26' fill='%233a3d47'/><rect x='29' y='44' width='6' height='20' fill='%23dc2626'/><rect x='31' y='42' width='2' height='22' fill='%23991b1b'/></svg>"
+                class="menu-banner-avatar" alt="Avatar">
+              <div class="menu-banner-meta">
+                <div class="menu-banner-name">Huỳnh Tấn Lộc</div>
+                <div class="menu-banner-sub">tanloc@lhd.edu.vn</div>
+                <div class="menu-banner-verified">
+                  <i class="fa-solid fa-circle-check"></i>
+                  <span>Thành viên / Đã xác thực</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Quản lý Học tập -->
+            <div class="menu-group-heading">Quản lý Học tập</div>
+            <a href="student/dashboard.html" class="student-menu-item">
+              <div class="menu-item-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+              <span class="menu-item-title">Khóa học của tôi</span>
+            </a>
+
+            <a href="courses.html" class="student-menu-item">
+              <div class="menu-item-icon"><i class="fa-solid fa-compass"></i></div>
+              <span class="menu-item-title">Khám phá khóa học</span>
+            </a>
+
+            <a href="student/profile.html#orders" class="student-menu-item">
+              <div class="menu-item-icon"><i class="fa-solid fa-receipt"></i></div>
+              <span class="menu-item-title">Lịch sử giao dịch</span>
+            </a>
+
+            <div class="dropdown-divider"></div>
+
+            <!-- 3. Cài đặt & Hỗ trợ -->
+            <div class="menu-group-heading">Cài đặt & Hỗ trợ</div>
+            <a href="student/profile.html" class="student-menu-item">
+              <div class="menu-item-icon"><i class="fa-solid fa-user-gear"></i></div>
+              <span class="menu-item-title">Thông tin cá nhân</span>
+            </a>
+
+            <a href="student/profile.html#security" class="student-menu-item">
+              <div class="menu-item-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <span class="menu-item-title">Đổi mật khẩu / Bảo mật</span>
+            </a>
+
+            <a href="javascript:void(0)" class="student-menu-item" id="btnMenuSupportLink">
+              <div class="menu-item-icon"><i class="fa-solid fa-headset"></i></div>
+              <span class="menu-item-title">Hỗ trợ & Phản hồi</span>
+            </a>
+
+            <div class="dropdown-divider"></div>
+
+            <!-- 4. Đăng xuất -->
+            <div style="padding-top: 4px;">
+              <button type="button" class="btn-menu-logout" id="btnLogoutUser">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Đăng xuất</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </header>
 
   <section class="hero-banner">
@@ -141,8 +1048,8 @@
           <span class="current-price">1,290,000đ</span>
           <span class="old-price">2,500,000đ</span>
         </div>
-        <a href="student/cart.html" class="btn-buy"><i class="fa-solid fa-cart-shopping"></i> MUA NGAY KHIẾN HỌC BẠI</a>
-        <a href="student/cart.html" class="btn-cart">Thêm vào giỏ hàng</a>
+        <a href="auth/login.html" class="btn-buy dynamic-buy-btn"><i class="fa-solid fa-bolt"></i> ĐĂNG KÝ HỌC NGAY</a>
+        <a href="auth/login.html" class="btn-cart dynamic-cart-btn"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</a>
       </div>
     </div>
   </section>
@@ -177,5 +1084,264 @@
     </div>
   </main>
 
+  <!-- Admin Live Support Chat Modal -->
+  <div class="chat-modal-overlay" id="adminChatModal">
+    <div class="chat-modal-window">
+      <!-- Header -->
+      <div class="chat-modal-header">
+        <div class="chat-admin-info">
+          <div class="chat-admin-avatar-wrap">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120" alt="Admin LHD" class="chat-admin-avatar">
+            <span class="chat-online-badge"></span>
+          </div>
+          <div>
+            <div class="chat-admin-name">Hỗ Trợ Học Viên – LHD Admin</div>
+            <div class="chat-admin-status">Trực tuyến 24/7 • Phản hồi ngay</div>
+          </div>
+        </div>
+        <button type="button" class="btn-close-chat" id="btnCloseChatModal" title="Đóng hộp thoại">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Messages Body -->
+      <div class="chat-modal-body" id="chatMessagesContainer">
+        <div class="chat-timestamp-divider">Hôm nay, 22:20</div>
+
+        <!-- Admin Initial Message -->
+        <div class="chat-msg-row admin-row">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120" class="chat-bubble-avatar" alt="Admin">
+          <div class="chat-bubble admin-bubble">
+            <p>Xin chào học viên <strong>Huỳnh Tấn Lộc</strong>! 👋</p>
+            <p style="margin-top: 6px;">Tôi là Chuyên viên tư vấn & hỗ trợ kỹ thuật của LHD – Learning. Bạn đang cần hỗ trợ vấn đề gì về khóa học hay tài khoản?</p>
+          </div>
+        </div>
+
+        <!-- Quick Options -->
+        <div class="chat-quick-options" id="chatQuickOptions">
+          <button type="button" class="quick-chip" onclick="sendQuickMessage('Cách tham gia phòng học Live Google Meet?')">
+            🎥 Vào phòng học Live
+          </button>
+          <button type="button" class="quick-chip" onclick="sendQuickMessage('Kiểm tra trạng thái thanh toán VNPay')">
+            💳 Kiểm tra đơn hàng VNPay
+          </button>
+          <button type="button" class="quick-chip" onclick="sendQuickMessage('Hướng dẫn tải chứng chỉ PDF có chữ ký số')">
+            📜 Cấp chứng chỉ khóa học
+          </button>
+          <button type="button" class="quick-chip" onclick="sendQuickMessage('Tôi muốn phản hồi về nội dung bài giảng')">
+            💡 Góp ý / Phản hồi
+          </button>
+        </div>
+      </div>
+
+      <!-- Input Footer -->
+      <div class="chat-modal-footer">
+        <form id="chatForm" onsubmit="handleSendChatMessage(event)" style="display: flex; gap: 8px; width: 100%;">
+          <input type="text" id="chatInputMessage" placeholder="Nhập câu hỏi hoặc phản hồi của bạn..." class="chat-input-field" autocomplete="off" required>
+          <button type="submit" class="btn-chat-send" title="Gửi tin nhắn">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const AUTH_STORAGE_KEY = 'lhd_learning_logged_in';
+
+    const navActionsGuest = document.getElementById('navActionsGuest');
+    const navActionsUser = document.getElementById('navActionsUser');
+    const dynamicBuyBtn = document.querySelector('.dynamic-buy-btn');
+    const dynamicCartBtn = document.querySelector('.dynamic-cart-btn');
+    const btnLogoutUser = document.getElementById('btnLogoutUser');
+    const headerMenuBtn = document.getElementById('headerMenuBtn');
+    const menuDropdown = document.getElementById('menuDropdown');
+    const headerBellBtn = document.getElementById('headerBellBtn');
+    const bellDropdown = document.getElementById('bellDropdown');
+    const headerBellBadge = document.getElementById('headerBellBadge');
+    const btnMarkAllRead = document.getElementById('btnMarkAllRead');
+
+    function isUserLoggedIn() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('login') === '1' || params.get('login') === 'true') {
+        return true;
+      }
+      return localStorage.getItem(AUTH_STORAGE_KEY) === 'true';
+    }
+
+    function closeAllDropdowns() {
+      if (menuDropdown) menuDropdown.classList.remove('show');
+      if (bellDropdown) bellDropdown.classList.remove('show');
+    }
+
+    function renderAuthState(loggedIn) {
+      if (loggedIn) {
+        if (navActionsGuest) navActionsGuest.style.display = 'none';
+        if (navActionsUser) navActionsUser.style.display = 'inline-flex';
+        if (dynamicBuyBtn) dynamicBuyBtn.href = 'student/cart.html';
+        if (dynamicCartBtn) dynamicCartBtn.href = 'student/cart.html';
+      } else {
+        if (navActionsGuest) navActionsGuest.style.display = 'inline-flex';
+        if (navActionsUser) navActionsUser.style.display = 'none';
+        if (dynamicBuyBtn) dynamicBuyBtn.href = 'auth/login.html';
+        if (dynamicCartBtn) dynamicCartBtn.href = 'auth/login.html';
+        closeAllDropdowns();
+      }
+    }
+
+    if (btnLogoutUser) {
+      btnLogoutUser.addEventListener('click', () => {
+        localStorage.removeItem(AUTH_STORAGE_KEY);
+        window.location.href = 'auth/login.html';
+      });
+    }
+
+    if (headerMenuBtn) {
+      headerMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = menuDropdown.classList.contains('show');
+        closeAllDropdowns();
+        if (!isOpen) menuDropdown.classList.add('show');
+      });
+    }
+
+    if (headerBellBtn) {
+      headerBellBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = bellDropdown.classList.contains('show');
+        closeAllDropdowns();
+        if (!isOpen) bellDropdown.classList.add('show');
+      });
+    }
+
+    if (btnMarkAllRead) {
+      btnMarkAllRead.addEventListener('click', () => {
+        if (headerBellBadge) headerBellBadge.style.display = 'none';
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav-dropdown') && !e.target.closest('.nav-circle-btn')) {
+        closeAllDropdowns();
+      }
+    });
+
+    // ==========================================================================
+    // ADMIN SUPPORT LIVE CHAT MODAL LOGIC
+    // ==========================================================================
+    const adminChatModal = document.getElementById('adminChatModal');
+    const btnCloseChatModal = document.getElementById('btnCloseChatModal');
+    const btnMenuSupportLink = document.getElementById('btnMenuSupportLink');
+    const chatMessagesContainer = document.getElementById('chatMessagesContainer');
+    const chatInputMessage = document.getElementById('chatInputMessage');
+    const chatQuickOptions = document.getElementById('chatQuickOptions');
+
+    function openChatModal() {
+      closeAllDropdowns();
+      if (adminChatModal) {
+        adminChatModal.classList.add('show');
+        if (chatInputMessage) setTimeout(() => chatInputMessage.focus(), 200);
+      }
+    }
+
+    function closeChatModal() {
+      if (adminChatModal) adminChatModal.classList.remove('show');
+    }
+
+    if (btnMenuSupportLink) {
+      btnMenuSupportLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        openChatModal();
+      });
+    }
+
+    if (btnCloseChatModal) {
+      btnCloseChatModal.addEventListener('click', closeChatModal);
+    }
+
+    if (adminChatModal) {
+      adminChatModal.addEventListener('click', (e) => {
+        if (e.target === adminChatModal) closeChatModal();
+      });
+    }
+
+    function appendUserMessage(text) {
+      const row = document.createElement('div');
+      row.className = 'chat-msg-row user-row';
+      row.innerHTML = `<div class="chat-bubble user-bubble">${text}</div>`;
+      chatMessagesContainer.appendChild(row);
+      chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+    }
+
+    function appendAdminMessage(text) {
+      const row = document.createElement('div');
+      row.className = 'chat-msg-row admin-row';
+      row.innerHTML = `
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120" class="chat-bubble-avatar" alt="Admin">
+        <div class="chat-bubble admin-bubble">${text}</div>
+      `;
+      chatMessagesContainer.appendChild(row);
+      chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+    }
+
+    function sendQuickMessage(text) {
+      appendUserMessage(text);
+      if (chatQuickOptions) chatQuickOptions.style.display = 'none';
+      setTimeout(() => {
+        let reply = 'Cảm ơn bạn đã liên hệ! Admin LHD – Learning đã ghi nhận yêu cầu: <strong>"' + text + '"</strong>. Chúng tôi đang kiểm tra thông tin và sẽ hỗ trợ giải quyết ngay!';
+        if (text.includes('Live')) {
+          reply = 'Để vào phòng học Live, bạn vào mục <strong>"Khóa học của tôi"</strong> -> Chọn khóa học có lịch học trực tuyến -> Bấm <strong>"Tham gia lớp học trực tuyến"</strong> (liên kết bảo mật Google Meet). Giảng viên sẽ mở phòng trước 10 phút!';
+        } else if (text.includes('VNPay')) {
+          reply = 'Hệ thống kết nối cổng thanh toán VNPay hoàn toàn tự động. Sau khi giao dịch thành công, khóa học sẽ được kích hoạt ngay trong 30 giây. Bạn có thể kiểm tra hóa đơn tại mục <strong>"Lịch sử giao dịch"</strong>.';
+        } else if (text.includes('chứng chỉ')) {
+          reply = 'Chứng chỉ hoàn thành được cấp tự động sau khi bạn đạt trên 80% điểm bài test cuối khóa. Bạn có thể tải file PDF sắc nét có chữ ký số và mã QR xác thực tại trang <strong>"Chứng chỉ hoàn thành"</strong>!';
+        }
+        appendAdminMessage(reply);
+      }, 700);
+    }
+
+    function handleSendChatMessage(e) {
+      e.preventDefault();
+      const val = chatInputMessage.value.trim();
+      if (!val) return;
+      appendUserMessage(val);
+      chatInputMessage.value = '';
+      if (chatQuickOptions) chatQuickOptions.style.display = 'none';
+
+      setTimeout(() => {
+        appendAdminMessage('Cảm ơn câu hỏi của Huỳnh Tấn Lộc: <em>"' + val + '"</em>. Đội ngũ kỹ thuật viên và giảng viên của LHD đã tiếp nhận yêu cầu và sẽ hỗ trợ trực tiếp cho bạn ngay sau giây lát!');
+      }, 800);
+    }
+
+    // Avatar Synchronization
+    function syncUserAvatar() {
+      const savedAvatar = localStorage.getItem('lhd_user_avatar');
+      if (savedAvatar) {
+        document.querySelectorAll('.user-capsule-avatar, .menu-banner-avatar, #headerUserAvatar').forEach(img => {
+          img.src = savedAvatar;
+        });
+      }
+    }
+
+    // Nav-links interactive click ripple effect
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', function (e) {
+        const rect = this.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        ripple.className = 'nav-click-ripple';
+        const diameter = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = diameter + 'px';
+        ripple.style.left = (e.clientX - rect.left - diameter / 2) + 'px';
+        ripple.style.top = (e.clientY - rect.top - diameter / 2) + 'px';
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderAuthState(isUserLoggedIn());
+      syncUserAvatar();
+    });
+  </script>
 </body>
 </html>

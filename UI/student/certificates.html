@@ -1,68 +1,654 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chứng Chỉ Của Tôi | Language Learning Platform</title>
+  <title>Chứng Chỉ Của Tôi | LHD – Learning</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
-    :root { --primary: #9333ea; --accent-pink: #ec4899; --bg-light: #f8fafc; }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-    body { background-color: var(--bg-light); color: #0f172a; min-height: 100vh; }
+    :root {
+      --primary-grad: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
+      --primary-color: #0b63e5;
+      --purple-color: #8b5cf6;
+      --pink-color: #ec4899;
+      --bg-page: #f8fafc;
+      --text-main: #0f172a;
+      --text-sub: #475569;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --border-subtle: rgba(226, 232, 240, 0.85);
+    }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient background glows */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    .bg-orb-1 {
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, #38bdf8 0%, #818cf8 100%);
+      top: -120px;
+      right: -100px;
+    }
+
+    .bg-orb-2 {
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, #f472b6 0%, #c084fc 100%);
+      bottom: -100px;
+      left: -100px;
+    }
+
+    /* Sticky Navbar */
     header {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px);
-      border-bottom: 1.5px solid rgba(255, 255, 255, 0.9);
-      padding: 1rem 5%; display: flex; align-items: center; justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.85rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .brand-icon { width: 42px; height: 42px; background: linear-gradient(135deg, var(--primary), var(--accent-pink)); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.25rem; }
-    .brand-title { font-size: 1.35rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-    .container { max-width: 1100px; margin: 3rem auto; padding: 0 5%; }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
 
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary-grad);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
+    }
+
+    .brand-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      background: var(--primary-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-sub);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      transition: all 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary-color);
+      background: rgba(11, 99, 229, 0.08);
+      font-weight: 700;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-circle-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid #e2e8f0;
+      background: #ffffff;
+      color: #334155;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 1rem;
+      position: relative;
+    }
+
+    .nav-circle-btn:hover {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(11, 99, 229, 0.15);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #ef4444;
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 800;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #ffffff;
+    }
+
+    .user-pill-active {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 16px 4px 5px;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .user-pill-active:hover {
+      border-color: var(--primary-color);
+      box-shadow: 0 4px 14px rgba(11, 99, 229, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .user-pill-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--primary-color);
+    }
+
+    .user-pill-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+    }
+
+    .btn-logout-header {
+      background: #fef2f2;
+      border: 1.5px solid #fecaca;
+      color: #dc2626;
+      border-radius: 9999px;
+      padding: 7px 16px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-logout-header:hover {
+      background: #fee2e2;
+      border-color: #f87171;
+    }
+
+    /* Container */
+    .cert-container {
+      max-width: 1100px;
+      margin: 2.5rem auto;
+      padding: 0 5%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cert-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .cert-h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cert-counter-badge {
+      font-size: 0.95rem;
+      background: rgba(11, 99, 229, 0.1);
+      color: var(--primary-color);
+      padding: 4px 14px;
+      border-radius: 9999px;
+      font-weight: 700;
+    }
+
+    /* Certificate Card */
     .cert-card {
-      background: white; border-radius: 28px; padding: 2rem; border: 1.5px solid #f1f5f9;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 1.5rem;
+      background: var(--card-bg);
+      border-radius: 28px;
+      padding: 2.2rem;
+      border: 1.5px solid var(--border-subtle);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .cert-info-h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.25rem; }
-    .cert-code { font-size: 0.85rem; color: #64748b; font-weight: 600; }
+    .cert-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(139, 92, 246, 0.4);
+      box-shadow: 0 18px 45px rgba(11, 99, 229, 0.1);
+    }
 
-    .btn-download {
-      padding: 0.75rem 1.5rem; border-radius: 9999px; border: none;
-      background: linear-gradient(135deg, var(--primary), var(--accent-pink));
-      color: white; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    .cert-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: var(--primary-grad);
+      border-top-left-radius: 28px;
+      border-bottom-left-radius: 28px;
+    }
+
+    .cert-left-wrap {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .cert-medal-box {
+      width: 68px;
+      height: 68px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      color: #d97706;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 8px 20px rgba(217, 119, 6, 0.2);
+      flex-shrink: 0;
+    }
+
+    .cert-medal-box.blue {
+      background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+      color: #0284c7;
+      box-shadow: 0 8px 20px rgba(2, 132, 199, 0.2);
+    }
+
+    .cert-info-h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+      line-height: 1.35;
+    }
+
+    .cert-recipient {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cert-recipient strong {
+      color: var(--text-main);
+    }
+
+    .cert-meta-info {
+      font-size: 0.85rem;
+      color: #64748b;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .cert-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 180px;
+    }
+
+    .btn-download-cert {
+      padding: 0.75rem 1.4rem;
+      border-radius: 9999px;
+      background: var(--primary-grad);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 6px 18px rgba(11, 99, 229, 0.25);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-download-cert:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+    }
+
+    .btn-view-cert {
+      padding: 0.65rem 1.4rem;
+      border-radius: 9999px;
+      background: #ffffff;
+      color: #334155;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1.5px solid #cbd5e1;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-view-cert:hover {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+      background: #f8fafc;
+    }
+
+    /* Toast */
+    .cert-toast {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 1rem 1.6rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cert-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 820px) {
+      .cert-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+
+      .cert-left-wrap {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cert-actions {
+        width: 100%;
+        flex-direction: row;
+      }
+
+      .btn-download-cert,
+      .btn-view-cert {
+        flex: 1;
+      }
     }
   </style>
 </head>
+
 <body>
 
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+
+  <!-- Header -->
   <header>
-    <a href="../index.html" class="brand-logo">
-      <div class="brand-icon"><i class="fa-solid fa-language"></i></div>
-      <span class="brand-title">Language Learning</span>
-    </a>
-    <a href="dashboard.html" style="text-decoration: none; font-weight: 700; color: var(--primary);"> Quay lại Dashboard</a>
+    <div class="header-left">
+      <a href="../index.html" class="brand-logo">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <span class="brand-title">LHD – Learning</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="../index.html">Trang chủ</a></li>
+        <li><a href="../courses.html">Khóa học</a></li>
+        <li><a href="dashboard.html">Khóa học của tôi</a></li>
+        <li><a href="certificates.html" class="active">Chứng chỉ</a></li>
+      </ul>
+    </div>
+
+    <div class="header-right">
+      <a href="cart.html" class="nav-circle-btn" title="Giỏ hàng học viên">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-badge">2</span>
+      </a>
+
+      <a href="profile.html" class="user-pill-active" title="Trang thông tin cá nhân học viên">
+        <img
+          src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64' shape-rendering='crispEdges'><rect width='64' height='64' fill='%23a4c68d'/><rect x='0' y='0' width='64' height='28' fill='%237ba36a'/><rect x='6' y='8' width='12' height='14' fill='%23507c43'/><rect x='46' y='10' width='14' height='12' fill='%23507c43'/><rect x='22' y='4' width='20' height='8' fill='%23669152'/><rect x='0' y='32' width='64' height='32' fill='%23c4936d'/><rect x='0' y='42' width='64' height='22' fill='%23b17c54'/><rect x='20' y='12' width='24' height='16' fill='%231e1e24'/><rect x='22' y='16' width='20' height='20' fill='%23fddbc3'/><rect x='24' y='34' width='16' height='4' fill='%23fbc5a3'/><rect x='18' y='10' width='28' height='8' fill='%2322242a'/><rect x='18' y='18' width='6' height='8' fill='%2322242a'/><rect x='40' y='18' width='6' height='8' fill='%2322242a'/><rect x='24' y='14' width='8' height='6' fill='%2330323a'/><rect x='34' y='14' width='8' height='5' fill='%2322242a'/><rect x='18' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='42' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='25' y='25' width='4' height='4' fill='%231e1e24'/><rect x='35' y='25' width='4' height='4' fill='%231e1e24'/><rect x='23' y='28' width='4' height='2' fill='%23f7a799'/><rect x='37' y='28' width='4' height='2' fill='%23f7a799'/><rect x='29' y='31' width='6' height='2' fill='%23d97d64'/><rect x='22' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='32' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='31' y='24' width='2' height='2' fill='%23111'/><rect x='24' y='22' width='2' height='2' fill='%23ffffff'/><rect x='34' y='22' width='2' height='2' fill='%23ffffff'/><rect x='16' y='38' width='32' height='26' fill='%232b2d35'/><rect x='28' y='38' width='8' height='8' fill='%23b91c1c'/><rect x='22' y='38' width='6' height='26' fill='%233a3d47'/><rect x='36' y='38' width='6' height='26' fill='%233a3d47'/><rect x='29' y='44' width='6' height='20' fill='%23dc2626'/><rect x='31' y='42' width='2' height='22' fill='%23991b1b'/></svg>"
+          class="user-pill-avatar" alt="Avatar">
+        <span class="user-pill-name">Huỳnh Tấn Lộc</span>
+      </a>
+
+      <button type="button" class="btn-logout-header" id="btnLogout">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Đăng xuất</span>
+      </button>
+    </div>
   </header>
 
-  <div class="container">
-    <h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 2rem;">Chứng Chỉ Đã Nhận (1)</h1>
+  <main class="cert-container">
 
-    <div class="cert-card">
+    <div class="cert-header">
       <div>
-        <h3 class="cert-info-h3">🇬🇧 Chứng Chỉ Tiếng Anh Giao Tiếp Siêu Phản Xạ</h3>
-        <p class="cert-code">Mã chứng chỉ: CERT-2026-ENG-89410 • Ngày cấp: 15/09/2026</p>
+        <h1 class="cert-h1">
+          <i class="fa-solid fa-award" style="color: #eab308;"></i>
+          Chứng Chỉ Của Tôi
+          <span class="cert-counter-badge">2 Chứng chỉ</span>
+        </h1>
+        <p style="color: var(--text-sub); margin-top: 6px; font-size: 0.95rem;">
+          Các văn bằng, chứng chỉ chứng nhận đã hoàn thành khóa học tại hệ thống đào tạo ngoại ngữ LHD.
+        </p>
       </div>
-      <a href="#" class="btn-download"><i class="fa-solid fa-file-pdf"></i> Tải File PDF</a>
+
+      <a href="dashboard.html" class="btn-view-cert">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Về Bảng điều khiển</span>
+      </a>
     </div>
+
+    <!-- Certificate 1 -->
+    <div class="cert-card">
+      <div class="cert-left-wrap">
+        <div class="cert-medal-box">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div>
+          <h3 class="cert-info-h3">🇬🇧 Chứng Chỉ Tiếng Anh Giao Tiếp Siêu Phản Xạ</h3>
+          <div class="cert-recipient">
+            <i class="fa-solid fa-user-check" style="color: #10b981;"></i>
+            <span>Cấp cho học viên: <strong>Huỳnh Tấn Lộc</strong></span>
+          </div>
+          <div class="cert-meta-info">
+            <span><i class="fa-regular fa-calendar-check"></i> Ngày cấp: 15/09/2026</span>
+            <span>•</span>
+            <span><i class="fa-solid fa-certificate"></i> Xếp loại: Xuất sắc (Honors)</span>
+            <span>•</span>
+            <span><i class="fa-solid fa-shield-halved"></i> Đã ký số xác thực</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-actions">
+        <button type="button" class="btn-download-cert" onclick="downloadCertificate('Tiếng Anh Giao Tiếp')">
+          <i class="fa-solid fa-file-pdf"></i>
+          <span>Tải file PDF</span>
+        </button>
+        <button type="button" class="btn-view-cert" onclick="viewCertificate('Tiếng Anh Giao Tiếp')">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <span>Xem trực tuyến</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Certificate 2 -->
+    <div class="cert-card">
+      <div class="cert-left-wrap">
+        <div class="cert-medal-box blue">
+          <i class="fa-solid fa-award"></i>
+        </div>
+        <div>
+          <h3 class="cert-info-h3">🇯🇵 Chứng Chỉ Tiếng Nhật Căn Bản Vỡ Lòng & Kanji</h3>
+          <div class="cert-recipient">
+            <i class="fa-solid fa-user-check" style="color: #10b981;"></i>
+            <span>Cấp cho học viên: <strong>Huỳnh Tấn Lộc</strong></span>
+          </div>
+          <div class="cert-meta-info">
+            <span><i class="fa-regular fa-calendar-check"></i> Ngày cấp: 20/08/2026</span>
+            <span>•</span>
+            <span><i class="fa-solid fa-certificate"></i> Xếp loại: Giỏi</span>
+            <span>•</span>
+            <span><i class="fa-solid fa-shield-halved"></i> Đã ký số xác thực</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-actions">
+        <button type="button" class="btn-download-cert" onclick="downloadCertificate('Tiếng Nhật Căn Bản')">
+          <i class="fa-solid fa-file-pdf"></i>
+          <span>Tải file PDF</span>
+        </button>
+        <button type="button" class="btn-view-cert" onclick="viewCertificate('Tiếng Nhật Căn Bản')">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <span>Xem trực tuyến</span>
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <div class="cert-toast" id="certToast">
+    <i class="fa-solid fa-circle-check" style="color: #4ade80;"></i>
+    <span id="toastCertText">Đang chuẩn bị file chứng chỉ...</span>
   </div>
 
+  <script>
+    const AUTH_STORAGE_KEY = 'lhd_learning_logged_in';
+
+    // Verify session
+    const isLogged = localStorage.getItem(AUTH_STORAGE_KEY) === 'true';
+    if (!isLogged) {
+      window.location.href = '../auth/login.html?redirect=student/certificates.html';
+    }
+
+    // Logout
+    const btnLogout = document.getElementById('btnLogout');
+    if (btnLogout) {
+      btnLogout.addEventListener('click', () => {
+        localStorage.removeItem(AUTH_STORAGE_KEY);
+        window.location.href = '../auth/login.html';
+      });
+    }
+
+    // Toast action
+    const certToast = document.getElementById('certToast');
+    const toastCertText = document.getElementById('toastCertText');
+
+    function showToast(msg) {
+      toastCertText.textContent = msg;
+      certToast.classList.add('show');
+      setTimeout(() => {
+        certToast.classList.remove('show');
+      }, 3000);
+    }
+
+    function downloadCertificate(name) {
+      showToast(`Đang tải file PDF chứng chỉ "${name}" của học viên Huỳnh Tấn Lộc...`);
+    }
+
+    function viewCertificate(name) {
+      showToast(`Đang mở xem chứng chỉ "${name}" số hóa có chữ ký điện tử...`);
+    }
+  </script>
+
 </body>
+
 </html>

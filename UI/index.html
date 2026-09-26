@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Language Learning | Nền tảng Học Ngoại Ngữ Trực Tuyến Thế Hệ Mới</title>
+  <title>LHD – Learning | Nền tảng Học Ngoại Ngữ Trực Tuyến Thế Hệ Mới</title>
   <!-- Google Fonts & Font Awesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
-      --primary: #9333ea;
-      --primary-light: #a855f7;
-      --primary-dark: #7e22ce;
+      --primary: #0b63e5;
+      --primary-light: #2563eb;
+      --primary-dark: #1d4ed8;
       --accent-pink: #ec4899;
       --accent-blue: #0ea5e9;
       --accent-mint: #14b8a6;
@@ -78,32 +81,53 @@
     }
 
     @keyframes floatBlob1 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(60px, 40px) scale(1.1); }
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(60px, 40px) scale(1.1);
+      }
     }
 
     @keyframes floatBlob2 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(-50px, -60px) scale(1.05); }
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(-50px, -60px) scale(1.05);
+      }
     }
 
     @keyframes floatBlob3 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(40px, -30px) scale(0.95); }
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(40px, -30px) scale(0.95);
+      }
     }
 
-    /* Header / Navbar */
+    /* Header / Navbar - Match Image 1 & Image 2 */
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(20px);
-      border-bottom: 1.5px solid rgba(255, 255, 255, 0.8);
-      padding: 1rem 5%;
+      z-index: 1000;
+      background: #ffffff;
+      border-bottom: 1.5px solid #eef2f6;
+      padding: 0.85rem 4%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 3.5rem;
     }
 
     .brand-logo {
@@ -116,79 +140,1307 @@
     .brand-icon {
       width: 42px;
       height: 42px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent-pink) 100%);
-      border-radius: 14px;
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       font-size: 1.25rem;
-      box-shadow: 0 8px 20px rgba(147, 51, 234, 0.3);
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.35);
+      flex-shrink: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .brand-logo:hover .brand-icon {
+      transform: rotate(-6deg) scale(1.06);
+      box-shadow: 0 6px 22px rgba(236, 72, 153, 0.45);
     }
 
     .brand-title {
       font-size: 1.35rem;
       font-weight: 800;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent-pink) 100%);
+      background: linear-gradient(135deg, #0b63e5 0%, #7c3aed 55%, #ec4899 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      letter-spacing: -0.3px;
+      white-space: nowrap;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      gap: 1.25rem;
       list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li {
+      display: inline-flex;
+      align-items: center;
     }
 
     .nav-links a {
       text-decoration: none;
-      color: var(--text-sub);
+      color: #374151;
       font-weight: 600;
       font-size: 0.95rem;
-      transition: color 0.2s ease;
+      padding: 8px 20px;
+      border-radius: 9999px;
+      transition: background-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, transform 0.12s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
     }
 
-    .nav-links a:hover, .nav-links a.active {
-      color: var(--primary);
+    .nav-links a:hover {
+      color: #7c3aed;
+      background: linear-gradient(135deg, rgba(11, 99, 229, 0.05), rgba(236, 72, 153, 0.08));
     }
 
-    .nav-actions {
+    .nav-links a:active {
+      transform: scale(0.95);
+    }
+
+    @keyframes navPillPop {
+      0% {
+        transform: scale(0.92);
+        box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7);
+      }
+
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 4px 22px rgba(236, 72, 153, 0.55);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 4px 16px rgba(139, 92, 246, 0.38);
+      }
+    }
+
+    /* Active pill state - Gradient Xanh - Hồng Tím */
+    .nav-links a.nav-item-active {
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%) !important;
+      color: #ffffff !important;
+      padding: 8px 20px;
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.38);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: navPillPop 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-links a.nav-item-active:hover {
+      box-shadow: 0 6px 20px rgba(236, 72, 153, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .nav-links a.nav-item-active:active {
+      transform: scale(0.95);
+    }
+
+    .nav-click-ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      transform: scale(0);
+      animation: navRippleAnim 0.55s ease-out;
+      pointer-events: none;
+    }
+
+    @keyframes navRippleAnim {
+      to {
+        transform: scale(3.5);
+        opacity: 0;
+      }
+    }
+
+    .header-right {
       display: flex;
       align-items: center;
-      gap: 1rem;
     }
 
-    .btn-glass {
-      padding: 0.65rem 1.4rem;
+    /* Guest Actions (When NOT logged in) */
+    .nav-actions-guest {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .btn-guest-login {
+      padding: 0.62rem 1.45rem;
       border-radius: 9999px;
       text-decoration: none;
       font-weight: 700;
       font-size: 0.9rem;
-      transition: all 0.25s ease;
+      color: #7c3aed;
+      background: #ffffff;
+      border: 1.5px solid rgba(139, 92, 246, 0.4);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .btn-login {
-      color: var(--primary);
-      background: rgba(255, 255, 255, 0.9);
-      border: 1.5px solid rgba(147, 51, 234, 0.25);
+    .btn-guest-login:hover {
+      background: rgba(139, 92, 246, 0.08);
+      border-color: #8b5cf6;
+      transform: translateY(-1px);
     }
 
-    .btn-login:hover {
-      background: rgba(147, 51, 234, 0.1);
-      transform: translateY(-2px);
-    }
-
-    .btn-register {
-      color: white;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent-pink) 100%);
-      box-shadow: 0 8px 20px rgba(147, 51, 234, 0.3);
+    .btn-guest-register {
+      padding: 0.62rem 1.45rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #ffffff;
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
       border: none;
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.35);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .btn-register:hover {
+    .btn-guest-register:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 25px rgba(147, 51, 234, 0.45);
+      box-shadow: 0 8px 24px rgba(236, 72, 153, 0.45);
+      filter: brightness(1.05);
+    }
+
+    /* User Actions (When LOGGED IN - Match Image 2) */
+    .nav-actions-user {
+      display: none;
+      /* Managed by JavaScript based on login state */
+      align-items: center;
+      gap: 12px;
+      position: relative;
+    }
+
+    .nav-user-left-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-user-divider {
+      width: 1px;
+      height: 24px;
+      background: #e2e8f0;
+      margin: 0 4px;
+    }
+
+    .nav-user-right-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-circle-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid #dce4ec;
+      background: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #273746;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+      flex-shrink: 0;
+    }
+
+    .nav-circle-btn:hover {
+      border-color: #0b63e5;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav-circle-btn.btn-cart {
+      font-size: 15px;
+      color: #273746;
+    }
+
+    .nav-circle-btn.btn-cart:hover {
+      color: #0b63e5;
+    }
+
+    /* User Capsule - Match Image 2 */
+    .user-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1.5px solid #dce4ec;
+      border-radius: 9999px;
+      padding: 4px 18px 4px 5px;
+      background: #ffffff;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+      position: relative;
+      user-select: none;
+    }
+
+    .user-capsule:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .user-capsule-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid #0b63e5;
+      object-fit: cover;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .user-capsule-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #24292f;
+      letter-spacing: -0.2px;
+      white-space: nowrap;
+    }
+
+    /* Menu Circle Button (Blue 3 Bars) - Match Image 2 */
+    .nav-circle-btn.btn-menu {
+      font-size: 16px;
+      color: #0b63e5;
+    }
+
+    .nav-circle-btn.btn-menu:hover {
+      background: rgba(11, 99, 229, 0.06);
+    }
+
+    /* Bell Circle Button (with Red Badge 2) - Match Image 2 */
+    .nav-circle-btn.btn-bell {
+      font-size: 17px;
+      color: #273746;
+    }
+
+    .bell-badge {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      background: #ea4335;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #ffffff;
+      box-shadow: 0 2px 5px rgba(234, 67, 53, 0.4);
+    }
+
+    /* Dropdown Menus for User, Menu, Bell */
+    .nav-dropdown {
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      border: 1.5px solid #e2e8f0;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      padding: 0.75rem;
+      min-width: 260px;
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 1500;
+      animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-dropdown.show {
+      display: flex;
+    }
+
+    @keyframes dropdownFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .dropdown-header {
+      padding: 0.5rem 0.85rem 0.75rem;
+      border-bottom: 1px solid #f1f5f9;
+      margin-bottom: 4px;
+    }
+
+    .dropdown-header-title {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: #0f172a;
+    }
+
+    .dropdown-header-sub {
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    .dropdown-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.65rem 0.85rem;
+      border-radius: 12px;
+      color: #334155;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: all 0.15s ease;
+    }
+
+    .dropdown-link:hover {
+      background: #f1f5f9;
+      color: #0b63e5;
+    }
+
+    .dropdown-link i {
+      width: 18px;
+      text-align: center;
+      color: #64748b;
+    }
+
+    .dropdown-link:hover i {
+      color: #0b63e5;
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background: #f1f5f9;
+      margin: 4px 0;
+    }
+
+    .dropdown-link.logout-link {
+      color: #dc2626;
+      cursor: pointer;
+    }
+
+    .dropdown-link.logout-link:hover {
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+
+    .dropdown-link.logout-link i {
+      color: #dc2626;
+    }
+
+    /* Student Mega Dropdown Styles */
+    .student-mega-dropdown {
+      min-width: 290px;
+      max-width: 320px;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+      padding: 0.85rem;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+      border: 1.5px solid rgba(226, 232, 240, 0.95);
+      scrollbar-width: thin;
+      scrollbar-color: #cbd5e1 transparent;
+    }
+
+    .student-mega-dropdown::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .student-mega-dropdown::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+
+    .menu-user-banner {
+      background: linear-gradient(135deg, #091e42 0%, #1e1b4b 60%, #31104b 100%);
+      border-radius: 18px;
+      padding: 1.1rem;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 4px 15px rgba(15, 23, 42, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-user-banner-glow {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #8b5cf6;
+      filter: blur(25px);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .menu-banner-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .menu-banner-meta {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .menu-banner-name {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .menu-banner-sub {
+      font-size: 0.78rem;
+      color: #cbd5e1;
+      margin: 2px 0 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .menu-banner-verified {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(34, 197, 94, 0.2);
+      border: 1px solid rgba(34, 197, 94, 0.45);
+      color: #4ade80;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .menu-group-heading {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 0.5rem 0.6rem 0.2rem;
+    }
+
+    .student-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.65rem 0.85rem;
+      border-radius: 14px;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: all 0.18s ease;
+    }
+
+    .student-menu-item:hover {
+      background: #f1f5f9;
+      transform: translateX(4px);
+    }
+
+    .menu-item-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(11, 99, 229, 0.08);
+      color: #0b63e5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .student-menu-item:hover .menu-item-icon {
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
+      color: #ffffff;
+    }
+
+    .student-menu-item .menu-item-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #1e293b;
+      transition: color 0.18s ease;
+    }
+
+    .student-menu-item:hover .menu-item-title {
+      color: #0b63e5;
+    }
+
+    .btn-menu-logout {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0.75rem 1rem;
+      border-radius: 14px;
+      background: rgba(239, 68, 68, 0.08);
+      border: 1.5px solid rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 0.35rem;
+    }
+
+    .btn-menu-logout:hover {
+      background: #ef4444;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(239, 68, 68, 0.3);
+    }
+
+    /* Modal and Toast CSS */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .login-modal-box {
+      background: #ffffff;
+      border-radius: 28px;
+      width: 100%;
+      max-width: 440px;
+      padding: 2rem;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+      position: relative;
+      animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes scaleUp {
+      from {
+        transform: scale(0.92);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-close-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    .quick-user-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 1rem;
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 18px;
+      margin-bottom: 1.25rem;
+    }
+
+    .btn-quick-login {
+      margin-left: auto;
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
+      color: white;
+      border: none;
+      border-radius: 9999px;
+      padding: 0.55rem 1.1rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
+    }
+
+    .btn-quick-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(236, 72, 153, 0.45);
+      filter: brightness(1.05);
+    }
+
+    .toast-custom {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 0.85rem 1.5rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 3000;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast-custom.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Admin Support Live Chat Modal */
+    .chat-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 2500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .chat-modal-overlay.show {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .chat-modal-window {
+      background: #ffffff;
+      border-radius: 28px;
+      width: 100%;
+      max-width: 480px;
+      height: 580px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+      border: 1.5px solid #e2e8f0;
+      overflow: hidden;
+      animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .chat-modal-header {
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
+      color: #ffffff;
+      padding: 1.1rem 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .chat-admin-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chat-admin-avatar-wrap {
+      position: relative;
+    }
+
+    .chat-admin-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      object-fit: cover;
+      background: #ffffff;
+    }
+
+    .chat-online-badge {
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 2px solid #ffffff;
+    }
+
+    .chat-admin-name {
+      font-size: 0.98rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .chat-admin-status {
+      font-size: 0.76rem;
+      opacity: 0.92;
+      margin-top: 2px;
+    }
+
+    .btn-close-chat {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: #ffffff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .btn-close-chat:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .chat-modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.2rem;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chat-timestamp-divider {
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #94a3b8;
+      margin-bottom: 4px;
+    }
+
+    .chat-msg-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .chat-msg-row.admin-row {
+      justify-content: flex-start;
+    }
+
+    .chat-msg-row.user-row {
+      justify-content: flex-end;
+    }
+
+    .chat-bubble-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .chat-bubble {
+      max-width: 78%;
+      padding: 0.85rem 1.1rem;
+      border-radius: 18px;
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .admin-bubble {
+      background: #ffffff;
+      color: #0f172a;
+      border: 1.5px solid #e2e8f0;
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .user-bubble {
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 100%);
+      color: #ffffff;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 4px 14px rgba(11, 99, 229, 0.25);
+    }
+
+    .chat-quick-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 4px;
+      margin-left: 40px;
+    }
+
+    .quick-chip {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      color: #0b63e5;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quick-chip:hover {
+      background: #eff6ff;
+      border-color: #0b63e5;
+      transform: translateY(-1px);
+    }
+
+    .chat-modal-footer {
+      padding: 0.85rem 1.2rem;
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .chat-input-field {
+      flex: 1;
+      padding: 0.75rem 1.2rem;
+      border-radius: 9999px;
+      border: 1.5px solid #cbd5e1;
+      outline: none;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    .chat-input-field:focus {
+      border-color: #0b63e5;
+    }
+
+    .btn-chat-send {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 100%);
+      color: #ffffff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .btn-chat-send:hover {
+      transform: scale(1.08);
+    }
+
+    /* Floating Status Switcher Helper (Demo Testing) */
+    .floating-status-pill {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 999;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid #dce4ec;
+      border-radius: 9999px;
+      padding: 6px 14px 6px 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .status-dot.logged-in {
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    .status-dot.logged-out {
+      background: #f59e0b;
+      box-shadow: 0 0 8px #f59e0b;
+    }
+
+    .btn-toggle-demo {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 9999px;
+      padding: 3px 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #0b63e5;
+      cursor: pointer;
+      margin-left: 4px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-toggle-demo:hover {
+      background: #e2e8f0;
+    }
+
+    /* Enhanced About Section Styling */
+    .about-section {
+      padding: 5rem 5% 4rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .about-hero-box {
+      background: #ffffff;
+      border: 1.5px solid #edf2f7;
+      border-radius: 32px;
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      box-shadow: 0 15px 40px rgba(11, 99, 229, 0.05);
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-hero-box::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(11, 99, 229, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .about-quote-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(11, 99, 229, 0.08);
+      color: #0b63e5;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+    }
+
+    .about-headline {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.35;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-headline span {
+      color: #0b63e5;
+    }
+
+    .about-lead-text {
+      color: #475569;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+
+    .about-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .about-check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .about-check-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #e0f2fe;
+      color: #0b63e5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Stats 2x2 Grid inside About Hero */
+    .about-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .about-stat-card {
+      background: #f8fafc;
+      border: 1.5px solid #edf2f7;
+      border-radius: 24px;
+      padding: 1.6rem 1.4rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .about-stat-card:hover {
+      transform: translateY(-4px);
+      border-color: #0b63e5;
+      box-shadow: 0 10px 25px rgba(11, 99, 229, 0.08);
+      background: #ffffff;
+    }
+
+    .about-stat-num {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #0b63e5;
+      margin-bottom: 0.3rem;
+      line-height: 1;
+    }
+
+    .about-stat-desc {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    /* 4 Pillars Grid */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .pillar-card {
+      background: #ffffff;
+      border: 1.5px solid #edf2f7;
+      border-radius: 28px;
+      padding: 2.2rem 1.8rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 45px rgba(11, 99, 229, 0.1);
+      border-color: #0b63e5;
+    }
+
+    .pillar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .pillar-icon-box {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.45rem;
+    }
+
+    .pillar-icon-blue {
+      background: rgba(11, 99, 229, 0.1);
+      color: #0b63e5;
+    }
+
+    .pillar-icon-green {
+      background: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+    }
+
+    .pillar-icon-purple {
+      background: rgba(168, 85, 247, 0.1);
+      color: #9333ea;
+    }
+
+    .pillar-icon-amber {
+      background: rgba(245, 158, 11, 0.1);
+      color: #f59e0b;
+    }
+
+    .pillar-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .pillar-title {
+      font-size: 1.18rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+
+    .pillar-desc {
+      font-size: 0.9rem;
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .pillar-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+    }
+
+    .pillar-badge-item {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #0b63e5;
+      background: rgba(11, 99, 229, 0.06);
+      padding: 4px 10px;
+      border-radius: 9999px;
+    }
+
+    /* About Bottom CTA Banner */
+    .about-cta-banner {
+      background: linear-gradient(135deg, #0b63e5 0%, #1d4ed8 100%);
+      border-radius: 32px;
+      padding: 3rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      box-shadow: 0 20px 45px rgba(11, 99, 229, 0.22);
+    }
+
+    .about-cta-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .about-cta-desc {
+      opacity: 0.92;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .btn-about-cta {
+      padding: 0.9rem 2.2rem;
+      border-radius: 9999px;
+      background: #ffffff;
+      color: #0b63e5;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn-about-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
     }
 
     /* Hero Section */
@@ -413,7 +1665,7 @@
       font-size: 0.8rem;
       font-weight: 700;
       color: var(--text-main);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     }
 
     .course-content {
@@ -590,20 +1842,80 @@
     }
 
     @media (max-width: 992px) {
-      .hero-section { grid-template-columns: 1fr; text-align: center; }
-      .hero-btns { justify-content: center; }
-      .stats-bar { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .hero-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-btns {
+        justify-content: center;
+      }
+
+      .stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .header-left {
+        gap: 1.25rem;
+      }
     }
 
     @media (max-width: 640px) {
-      .hero-title { font-size: 2.3rem; }
-      .nav-links { display: none; }
-      .stats-bar { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
+      .hero-title {
+        font-size: 2.1rem;
+      }
+
+      .stats-bar {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .user-capsule-name {
+        display: none;
+      }
+
+      .user-capsule {
+        padding: 3px;
+        gap: 0;
+      }
+
+      .header-left {
+        gap: 0.75rem;
+      }
+
+      .brand-title {
+        font-size: 1.15rem;
+      }
+
+      .nav-circle-btn {
+        width: 38px;
+        height: 38px;
+      }
+
+      .nav-actions-user {
+        gap: 8px;
+      }
+
+      .floating-status-pill {
+        bottom: 0.75rem;
+        left: 0.75rem;
+        font-size: 0.75rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Liquid Pastel Background Blobs -->
@@ -611,26 +1923,163 @@
   <div class="liquid-blob blob-lavender"></div>
   <div class="liquid-blob blob-mint"></div>
 
-  <!-- Header Navbar -->
+  <!-- Header Navbar - Image 1 (Brand & Nav links) & Image 2 (Logged-in controls) -->
   <header>
-    <a href="index.html" class="brand-logo">
-      <div class="brand-icon">
-        <i class="fa-solid fa-language"></i>
+    <div class="header-left">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <span class="brand-title">LHD – Learning</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-item-active">Trang chủ</a></li>
+        <li><a href="courses.html">Khóa học</a></li>
+        <li><a href="#about">Giới thiệu</a></li>
+        <li><a href="#footer">Liên hệ</a></li>
+      </ul>
+    </div>
+
+    <div class="header-right">
+      <!-- State 1: Guest (When NOT logged in) -->
+      <div class="nav-actions-guest" id="navActionsGuest">
+        <button type="button" class="btn-guest-login" id="btnHeaderLogin">
+          <i class="fa-regular fa-user"></i>
+          <span>Đăng nhập</span>
+        </button>
+        <a href="auth/register.html" class="btn-guest-register">
+          <span>Đăng ký</span>
+        </a>
       </div>
-      <span class="brand-title">Language Learning</span>
-    </a>
 
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Trang chủ</a></li>
-      <li><a href="courses.html">Khóa học</a></li>
-      <li><a href="student/dashboard.html">Học viên</a></li>
-      <li><a href="instructor/dashboard.html">Giảng viên</a></li>
-      <li><a href="admin/dashboard.html">Quản trị</a></li>
-    </ul>
+      <!-- State 2: Logged in (Thứ tự: Thông báo -> Giỏ hàng | Đẩy sang phải: Tài khoản -> Menu ☰) -->
+      <div class="nav-actions-user" id="navActionsUser">
+        <!-- Nhóm 1: Thông báo đặt trước Giỏ hàng -->
+        <div class="nav-user-left-group">
+          <!-- 1. Bell Button (with Red Badge 2) - Đứng trước Giỏ hàng -->
+          <div style="position: relative;">
+            <button type="button" class="nav-circle-btn btn-bell" id="headerBellBtn" title="Thông báo hệ thống">
+              <i class="fa-regular fa-bell"></i>
+              <span class="bell-badge" id="headerBellBadge">2</span>
+            </button>
 
-    <div class="nav-actions">
-      <a href="auth/login.html" class="btn-glass btn-login">Đăng nhập</a>
-      <a href="auth/register.html" class="btn-glass btn-register">Đăng ký ngay</a>
+            <!-- Bell Dropdown Popover (rủ xuống bên trái, dưới chuông) -->
+            <div class="nav-dropdown" id="bellDropdown" style="min-width: 320px; left: 0; right: auto;">
+              <div class="dropdown-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="dropdown-header-title">Thông báo mới</div>
+                <button type="button" id="btnMarkAllRead"
+                  style="background: none; border: none; color: #0b63e5; font-size: 0.78rem; font-weight: 700; cursor: pointer;">Đã
+                  đọc tất cả</button>
+              </div>
+              <div style="padding: 0.65rem 0.85rem; border-radius: 12px; background: #f8fafc; margin-bottom: 6px;">
+                <div style="font-weight: 700; font-size: 0.85rem; color: #0f172a; margin-bottom: 3px;">🇬🇧 Lớp học Live sắp
+                  bắt đầu</div>
+                <div style="font-size: 0.8rem; color: #475569; line-height: 1.4;">Buổi tương tác phản xạ Tiếng Anh cùng Cô
+                  Emily Watson sẽ mở lúc 20:00.</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 4px;">15 phút trước</div>
+              </div>
+              <div style="padding: 0.65rem 0.85rem; border-radius: 12px; background: #f8fafc;">
+                <div style="font-weight: 700; font-size: 0.85rem; color: #0f172a; margin-bottom: 3px;">🇯🇵 Kết quả bài test
+                  từ vựng N5</div>
+                <div style="font-size: 0.8rem; color: #475569; line-height: 1.4;">Điểm số của bạn: 95/100. Đủ điều kiện
+                  chuyển sang giai đoạn N4.</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 4px;">2 giờ trước</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Shopping Cart Button -->
+          <a href="auth/login.html" class="nav-circle-btn btn-cart" title="Giỏ hàng khóa học">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </a>
+        </div>
+
+        <!-- Vạch phân cách & đẩy các mục còn lại sang bên phải -->
+        <div class="nav-user-divider"></div>
+
+        <!-- Nhóm 2: Các mục còn lại được đẩy sang bên phải (Tài khoản học viên & Menu ☰) -->
+        <div class="nav-user-right-group">
+          <!-- 3. User Capsule (Avatar with blue ring + Huỳnh Tấn Lộc) -> Bấm vào chuyển sang trang cá nhân học viên -->
+          <a href="student/profile.html" class="user-capsule" id="userCapsuleBtn" title="Xem trang thông tin cá nhân học viên">
+            <img
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64' shape-rendering='crispEdges'><rect width='64' height='64' fill='%23a4c68d'/><rect x='0' y='0' width='64' height='28' fill='%237ba36a'/><rect x='6' y='8' width='12' height='14' fill='%23507c43'/><rect x='46' y='10' width='14' height='12' fill='%23507c43'/><rect x='22' y='4' width='20' height='8' fill='%23669152'/><rect x='0' y='32' width='64' height='32' fill='%23c4936d'/><rect x='0' y='42' width='64' height='22' fill='%23b17c54'/><rect x='20' y='12' width='24' height='16' fill='%231e1e24'/><rect x='22' y='16' width='20' height='20' fill='%23fddbc3'/><rect x='24' y='34' width='16' height='4' fill='%23fbc5a3'/><rect x='18' y='10' width='28' height='8' fill='%2322242a'/><rect x='18' y='18' width='6' height='8' fill='%2322242a'/><rect x='40' y='18' width='6' height='8' fill='%2322242a'/><rect x='24' y='14' width='8' height='6' fill='%2330323a'/><rect x='34' y='14' width='8' height='5' fill='%2322242a'/><rect x='18' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='42' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='25' y='25' width='4' height='4' fill='%231e1e24'/><rect x='35' y='25' width='4' height='4' fill='%231e1e24'/><rect x='23' y='28' width='4' height='2' fill='%23f7a799'/><rect x='37' y='28' width='4' height='2' fill='%23f7a799'/><rect x='29' y='31' width='6' height='2' fill='%23d97d64'/><rect x='22' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='32' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='31' y='24' width='2' height='2' fill='%23111'/><rect x='24' y='22' width='2' height='2' fill='%23ffffff'/><rect x='34' y='22' width='2' height='2' fill='%23ffffff'/><rect x='16' y='38' width='32' height='26' fill='%232b2d35'/><rect x='28' y='38' width='8' height='8' fill='%23b91c1c'/><rect x='22' y='38' width='6' height='26' fill='%233a3d47'/><rect x='36' y='38' width='6' height='26' fill='%233a3d47'/><rect x='29' y='44' width='6' height='20' fill='%23dc2626'/><rect x='31' y='42' width='2' height='22' fill='%23991b1b'/></svg>"
+              class="user-capsule-avatar" id="headerUserAvatar" alt="Huỳnh Tấn Lộc">
+            <span class="user-capsule-name">Huỳnh Tấn Lộc</span>
+          </a>
+
+          <!-- 4. Nút tròn (3 gạch ngang ☰) -->
+          <div style="position: relative;">
+            <button type="button" class="nav-circle-btn btn-menu" id="headerMenuBtn" title="Menu quản lý học viên (☰)">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- Dropdown Menu 4 Khu Vực (Mở khi bấm nút 3 gạch ngang ☰) -->
+            <div class="nav-dropdown student-mega-dropdown" id="menuDropdown" style="right: 0; left: auto;">
+            <!-- 1. Khu vực Thông tin cá nhân -->
+            <div class="menu-user-banner">
+              <div class="menu-user-banner-glow"></div>
+              <img
+                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64' shape-rendering='crispEdges'><rect width='64' height='64' fill='%23a4c68d'/><rect x='0' y='0' width='64' height='28' fill='%237ba36a'/><rect x='6' y='8' width='12' height='14' fill='%23507c43'/><rect x='46' y='10' width='14' height='12' fill='%23507c43'/><rect x='22' y='4' width='20' height='8' fill='%23669152'/><rect x='0' y='32' width='64' height='32' fill='%23c4936d'/><rect x='0' y='42' width='64' height='22' fill='%23b17c54'/><rect x='20' y='12' width='24' height='16' fill='%231e1e24'/><rect x='22' y='16' width='20' height='20' fill='%23fddbc3'/><rect x='24' y='34' width='16' height='4' fill='%23fbc5a3'/><rect x='18' y='10' width='28' height='8' fill='%2322242a'/><rect x='18' y='18' width='6' height='8' fill='%2322242a'/><rect x='40' y='18' width='6' height='8' fill='%2322242a'/><rect x='24' y='14' width='8' height='6' fill='%2330323a'/><rect x='34' y='14' width='8' height='5' fill='%2322242a'/><rect x='18' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='42' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='25' y='25' width='4' height='4' fill='%231e1e24'/><rect x='35' y='25' width='4' height='4' fill='%231e1e24'/><rect x='23' y='28' width='4' height='2' fill='%23f7a799'/><rect x='37' y='28' width='4' height='2' fill='%23f7a799'/><rect x='29' y='31' width='6' height='2' fill='%23d97d64'/><rect x='22' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='32' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='31' y='24' width='2' height='2' fill='%23111'/><rect x='24' y='22' width='2' height='2' fill='%23ffffff'/><rect x='34' y='22' width='2' height='2' fill='%23ffffff'/><rect x='16' y='38' width='32' height='26' fill='%232b2d35'/><rect x='28' y='38' width='8' height='8' fill='%23b91c1c'/><rect x='22' y='38' width='6' height='26' fill='%233a3d47'/><rect x='36' y='38' width='6' height='26' fill='%233a3d47'/><rect x='29' y='44' width='6' height='20' fill='%23dc2626'/><rect x='31' y='42' width='2' height='22' fill='%23991b1b'/></svg>"
+                class="menu-banner-avatar" alt="Avatar">
+              <div class="menu-banner-meta">
+                <div class="menu-banner-name">Huỳnh Tấn Lộc</div>
+                <div class="menu-banner-sub">tanloc@lhd.edu.vn</div>
+                <div class="menu-banner-verified">
+                  <i class="fa-solid fa-circle-check"></i>
+                  <span>Thành viên / Đã xác thực</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Quản lý Học tập -->
+            <div class="menu-group-heading">Quản lý Học tập</div>
+            <a href="student/dashboard.html" class="student-menu-item">
+              <div class="menu-item-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+              <span class="menu-item-title">Khóa học của tôi</span>
+            </a>
+
+            <a href="courses.html" class="student-menu-item">
+              <div class="menu-item-icon"><i class="fa-solid fa-compass"></i></div>
+              <span class="menu-item-title">Khám phá khóa học</span>
+            </a>
+
+            <a href="student/profile.html#orders" class="student-menu-item">
+              <div class="menu-item-icon"><i class="fa-solid fa-receipt"></i></div>
+              <span class="menu-item-title">Lịch sử giao dịch</span>
+            </a>
+
+            <div class="dropdown-divider"></div>
+
+            <!-- 3. Cài đặt & Hỗ trợ -->
+            <div class="menu-group-heading">Cài đặt & Hỗ trợ</div>
+            <a href="student/profile.html" class="student-menu-item">
+              <div class="menu-item-icon"><i class="fa-solid fa-user-gear"></i></div>
+              <span class="menu-item-title">Thông tin cá nhân</span>
+            </a>
+
+            <a href="student/profile.html#security" class="student-menu-item">
+              <div class="menu-item-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <span class="menu-item-title">Đổi mật khẩu / Bảo mật</span>
+            </a>
+
+            <a href="javascript:void(0)" class="student-menu-item" id="btnMenuSupportLink">
+              <div class="menu-item-icon"><i class="fa-solid fa-headset"></i></div>
+              <span class="menu-item-title">Hỗ trợ & Phản hồi</span>
+            </a>
+
+            <div class="dropdown-divider"></div>
+
+            <!-- 4. Đăng xuất -->
+            <div style="padding-top: 4px;">
+              <button type="button" class="btn-menu-logout" id="btnLogoutUser">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Đăng xuất</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -639,11 +2088,12 @@
     <div>
       <div class="hero-badge">
         <i class="fa-solid fa-sparkles"></i>
-        <span>Nền tảng học ngôn ngữ Aura Morph</span>
+        <span>Nền tảng học trực tuyến LHD – Learning</span>
       </div>
       <h1 class="hero-title">Chinh phục <span>Tiếng Anh & Tiếng Nhật</span> Tự Nhiên</h1>
       <p class="hero-desc">
-        Phương pháp học tương tác trực quan với lộ trình cá nhân hóa, video giảng dạy chất lượng cao, bài tập trắc nghiệm và phòng học Live tương tác trực tiếp cùng giảng viên.
+        Phương pháp học tương tác trực quan với lộ trình cá nhân hóa, video giảng dạy chất lượng cao, bài tập trắc
+        nghiệm và phòng học Live tương tác trực tiếp cùng giảng viên.
       </p>
       <div class="hero-btns">
         <a href="courses.html" class="btn-hero-primary">
@@ -676,28 +2126,6 @@
     </div>
   </section>
 
-  <!-- Stats Bar -->
-  <div class="section-container" style="padding-top: 0;">
-    <div class="stats-bar">
-      <div>
-        <div class="stat-number">15,000+</div>
-        <div class="stat-label">Học viên tin tưởng</div>
-      </div>
-      <div>
-        <div class="stat-number">85+</div>
-        <div class="stat-label">Khóa học chất lượng</div>
-      </div>
-      <div>
-        <div class="stat-number">98%</div>
-        <div class="stat-label">Đạt chứng chỉ thành công</div>
-      </div>
-      <div>
-        <div class="stat-number">4.9/5★</div>
-        <div class="stat-label">Đánh giá trung bình</div>
-      </div>
-    </div>
-  </div>
-
   <!-- Featured Courses Section -->
   <section class="section-container">
     <div class="section-header">
@@ -708,7 +2136,8 @@
     <div class="courses-grid">
       <!-- Course 1 -->
       <div class="course-card">
-        <div class="course-thumb" style="background-image: url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600&auto=format&fit=crop&q=60');">
+        <div class="course-thumb"
+          style="background-image: url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600&auto=format&fit=crop&q=60');">
           <span class="course-badge-lang">🇬🇧 Tiếng Anh</span>
         </div>
         <div class="course-content">
@@ -718,19 +2147,21 @@
           </div>
           <h3 class="course-title">Tiếng Anh Giao Tiếp Siêu Phản Xạ Cùng Người Bản Xứ</h3>
           <div class="course-instructor">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=60" alt="Avatar">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=60"
+              alt="Avatar">
             <span>Cô Emily Watson (IELTS 8.5)</span>
           </div>
           <div class="course-footer">
             <div class="course-price">1,290,000đ</div>
-            <a href="course-detail.html" class="btn-add-cart">Xem chi tiết</a>
+            <a href="auth/login.html" class="btn-add-cart">Xem chi tiết</a>
           </div>
         </div>
       </div>
 
       <!-- Course 2 -->
       <div class="course-card">
-        <div class="course-thumb" style="background-image: url('https://images.unsplash.com/photo-1528164344705-47542687990d?w=600&auto=format&fit=crop&q=60');">
+        <div class="course-thumb"
+          style="background-image: url('https://images.unsplash.com/photo-1528164344705-47542687990d?w=600&auto=format&fit=crop&q=60');">
           <span class="course-badge-lang">🇯🇵 Tiếng Nhật</span>
         </div>
         <div class="course-content">
@@ -740,19 +2171,21 @@
           </div>
           <h3 class="course-title">Chinh Phục N5 - N4 Tiếng Nhật Cấp Tốc Cho Người Mới</h3>
           <div class="course-instructor">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=60" alt="Avatar">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=60"
+              alt="Avatar">
             <span>Thầy Kenji Tanaka</span>
           </div>
           <div class="course-footer">
             <div class="course-price">1,450,000đ</div>
-            <a href="course-detail.html" class="btn-add-cart">Xem chi tiết</a>
+            <a href="auth/login.html" class="btn-add-cart">Xem chi tiết</a>
           </div>
         </div>
       </div>
 
       <!-- Course 3 -->
       <div class="course-card">
-        <div class="course-thumb" style="background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60');">
+        <div class="course-thumb"
+          style="background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60');">
           <span class="course-badge-lang">🇬🇧 Tiếng Anh</span>
         </div>
         <div class="course-content">
@@ -762,28 +2195,188 @@
           </div>
           <h3 class="course-title">Bứt Phá IELTS Writing & Speaking Band 7.0+</h3>
           <div class="course-instructor">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=60" alt="Avatar">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=60"
+              alt="Avatar">
             <span>Thầy David Miller</span>
           </div>
           <div class="course-footer">
             <div class="course-price">1,890,000đ</div>
-            <a href="course-detail.html" class="btn-add-cart">Xem chi tiết</a>
+            <a href="auth/login.html" class="btn-add-cart">Xem chi tiết</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Giới Thiệu (Enhanced About Section) -->
+  <section id="about" class="about-section">
+    <div class="section-header">
+      <span class="about-quote-tag">
+        <i class="fa-solid fa-sparkles"></i>
+        <span>Về LHD – Learning</span>
+      </span>
+      <h2 class="section-title">Hành Trình Khơi Mở Tiềm Năng Ngôn Ngữ Vô Tận</h2>
+      <p style="color: var(--text-sub); max-width: 760px; margin: 1rem auto 0; font-size: 1.05rem; line-height: 1.7;">
+        Được sáng lập với sứ mệnh xóa bỏ rào cản ngoại ngữ, LHD – Learning mang đến giải pháp học trực tuyến toàn diện:
+        từ kiến thức học thuật chuẩn quốc tế đến kỹ năng phản xạ thực chiến tự nhiên nhất.
+      </p>
+    </div>
+
+    <!-- Hero Story & Highlight Box -->
+    <div class="about-hero-box">
+      <div>
+        <div class="about-quote-tag" style="background: rgba(11, 99, 229, 0.08); color: #0b63e5;">
+          <i class="fa-solid fa-compass"></i>
+          <span>Phương Pháp Đào Tạo Tiên Phong</span>
+        </div>
+        <h3 class="about-headline">
+          Học ngoại ngữ theo cách <span>bản năng của não bộ</span>, không ghi nhớ máy móc
+        </h3>
+        <p class="about-lead-text">
+          Tại LHD – Learning, mỗi buổi học là một trải nghiệm thực tế với mô hình tương tác đa giác quan. Người học được
+          đắm mình vào ngữ cảnh văn hóa, thảo luận cùng giảng viên bản xứ và nhận phản hồi chỉnh sửa ngữ điệu tức thời.
+        </p>
+        <ul class="about-checklist">
+          <li class="about-check-item">
+            <span class="about-check-icon"><i class="fa-solid fa-check"></i></span>
+            <span>Lộ trình cá nhân hóa đo lường chính xác theo chuẩn khung tham chiếu CEFR & JLPT.</span>
+          </li>
+          <li class="about-check-item">
+            <span class="about-check-icon"><i class="fa-solid fa-check"></i></span>
+            <span>Lớp học Live nhóm nhỏ tối đa 6 học viên, đảm bảo thời lượng thực hành phản xạ trên 70%.</span>
+          </li>
+          <li class="about-check-item">
+            <span class="about-check-icon"><i class="fa-solid fa-check"></i></span>
+            <span>Kho tài liệu số hóa không giới hạn cùng hệ thống bài tập luyện phát âm thông minh.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="about-stats-grid">
+        <div class="about-stat-card">
+          <div class="about-stat-num">98.8%</div>
+          <div class="about-stat-desc">Học viên đạt chứng chỉ mục tiêu ngay lần thi đầu</div>
+        </div>
+        <div class="about-stat-card">
+          <div class="about-stat-num">15,000+</div>
+          <div class="about-stat-desc">Học viên tin tưởng đồng hành và bứt phá thành công</div>
+        </div>
+        <div class="about-stat-card">
+          <div class="about-stat-num">50,000+</div>
+          <div class="about-stat-desc">Giờ học Live tương tác trực tiếp chất lượng cao</div>
+        </div>
+        <div class="about-stat-card">
+          <div class="about-stat-num">4.9/5.0★</div>
+          <div class="about-stat-desc">Điểm số hài lòng tuyệt đối từ cộng đồng học viên</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 Pillars Grid -->
+    <div class="pillars-grid">
+      <!-- Pillar 1 -->
+      <div class="pillar-card">
+        <div class="pillar-header">
+          <div class="pillar-icon-box pillar-icon-blue">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <span class="pillar-tag">Độc Quyền LHD</span>
+        </div>
+        <h4 class="pillar-title">Phương Pháp Aura Morph</h4>
+        <p class="pillar-desc">
+          Kích hoạt khả năng tiếp thu ngôn ngữ tự nhiên thông qua ngữ cảnh đa phương tiện, giúp não bộ hình thành liên
+          kết từ vựng sâu sắc và phản xạ nói không cần dịch nhẩm.
+        </p>
+        <div class="pillar-badges">
+          <span class="pillar-badge-item">Phản xạ tự nhiên</span>
+          <span class="pillar-badge-item">Ghi nhớ tiềm thức</span>
+        </div>
+      </div>
+
+      <!-- Pillar 2 -->
+      <div class="pillar-card">
+        <div class="pillar-header">
+          <div class="pillar-icon-box pillar-icon-green">
+            <i class="fa-solid fa-chalkboard-user"></i>
+          </div>
+          <span class="pillar-tag">Top 5% Tuyển Chọn</span>
+        </div>
+        <h4 class="pillar-title">Giảng Viên Chuyên Nghiệp</h4>
+        <p class="pillar-desc">
+          100% đội ngũ giảng viên và cố vấn sở hữu chứng chỉ quốc tế IELTS 8.0+ / JLPT N1, được đào tạo bài bản về kỹ
+          năng sư phạm hiện đại và truyền cảm hứng học tập mạnh mẽ.
+        </p>
+        <div class="pillar-badges">
+          <span class="pillar-badge-item">IELTS 8.0+ / JLPT N1</span>
+          <span class="pillar-badge-item">Sửa lỗi phát âm 1:1</span>
+        </div>
+      </div>
+
+      <!-- Pillar 3 -->
+      <div class="pillar-card">
+        <div class="pillar-header">
+          <div class="pillar-icon-box pillar-icon-purple">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <span class="pillar-tag">Thời Gian Thực</span>
+        </div>
+        <h4 class="pillar-title">Lớp Live Đa Chiều 24/7</h4>
+        <p class="pillar-desc">
+          Phòng học tương tác trực tuyến với công nghệ âm thanh chuẩn phòng thu, bảng viết số hóa và các bài tập trắc
+          nghiệm nhanh, mang lại cảm giác chân thực như tại lớp học offline.
+        </p>
+        <div class="pillar-badges">
+          <span class="pillar-badge-item">Tương tác trực tiếp</span>
+          <span class="pillar-badge-item">Lịch học linh hoạt</span>
+        </div>
+      </div>
+
+      <!-- Pillar 4 -->
+      <div class="pillar-card">
+        <div class="pillar-header">
+          <div class="pillar-icon-box pillar-icon-amber">
+            <i class="fa-solid fa-certificate"></i>
+          </div>
+          <span class="pillar-tag">Bảo Mật QR Code</span>
+        </div>
+        <h4 class="pillar-title">Chứng Chỉ Số Chuẩn Hóa</h4>
+        <p class="pillar-desc">
+          Cấp chứng chỉ điện tử có mã định danh QR chống giả mạo ngay sau khi hoàn thành khóa học, được đối tác học
+          thuật công nhận và dễ dàng thêm vào hồ sơ năng lực LinkedIn.
+        </p>
+        <div class="pillar-badges">
+          <span class="pillar-badge-item">Chuẩn CEFR & JLPT</span>
+          <span class="pillar-badge-item">Định danh điện tử</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom CTA Banner -->
+    <div class="about-cta-banner">
+      <div>
+        <h3 class="about-cta-title">Sẵn sàng bứt phá trình độ ngoại ngữ của bạn?</h3>
+        <p class="about-cta-desc">Tham gia cùng hơn 15,000 học viên tại LHD – Learning để mở ra cánh cửa học tập và sự
+          nghiệp toàn cầu.</p>
+      </div>
+      <a href="courses.html" class="btn-about-cta">
+        <span>Khám phá các khóa học</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+
   <!-- Footer -->
-  <footer>
+  <footer id="footer">
     <div class="footer-grid">
       <div>
         <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
-          <div class="brand-icon"><i class="fa-solid fa-language"></i></div>
-          <span class="brand-title">Language Learning</span>
+          <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <span class="brand-title">LHD – Learning</span>
         </a>
         <p class="footer-desc">
-          Nền tảng học ngoại ngữ trực tuyến hàng đầu áp dụng công nghệ E-Learning LMS SaaS hiện đại, mang đến trải nghiệm học tập tự nhiên và hiệu quả.
+          Hệ sinh thái đào tạo trực tuyến LHD – Learning áp dụng công nghệ E-Learning LMS hiện đại, mang đến trải nghiệm
+          học tập chuẩn quốc tế, tự nhiên và bứt phá.
         </p>
       </div>
 
@@ -793,6 +2386,7 @@
           <li><a href="courses.html?lang=en">Tiếng Anh Giao Tiếp</a></li>
           <li><a href="courses.html?lang=jp">Tiếng Nhật JLPT</a></li>
           <li><a href="courses.html">Tất cả khóa học</a></li>
+          <li><a href="#about">Về LHD – Learning</a></li>
         </ul>
       </div>
 
@@ -800,8 +2394,9 @@
         <h4 class="footer-title">Học Viên</h4>
         <ul class="footer-links">
           <li><a href="student/dashboard.html">Bảng điều khiển</a></li>
-          <li><a href="student/cart.html">Giỏ hàng</a></li>
-          <li><a href="student/certificates.html">Chứng chỉ</a></li>
+          <li><a href="auth/login.html" class="footer-cart-link">Giỏ hàng</a></li>
+          <li><a href="student/certificates.html">Chứng chỉ hoàn thành</a></li>
+          <li><a href="javascript:void(0)" onclick="openChatModal()">Hỗ trợ kỹ thuật</a></li>
         </ul>
       </div>
 
@@ -810,16 +2405,539 @@
         <ul class="footer-links">
           <li><a href="instructor/dashboard.html">Kênh Giảng Viên</a></li>
           <li><a href="admin/dashboard.html">Quản Trị Hệ Thống</a></li>
-          <li><a href="auth/login.html">Đăng Nhập</a></li>
+          <li><a href="auth/login.html">Đăng Nhập Tài Khoản</a></li>
+          <li><a href="auth/register.html">Đăng Ký Thành Viên</a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <span>© 2026 Language Learning Platform. All rights reserved.</span>
-      <span>Hỗ trợ: support@languagelearning.edu.vn</span>
+      <span>© 2026 LHD – Learning Platform. All rights reserved.</span>
+      <span>Liên hệ hỗ trợ: support@lhd.edu.vn</span>
     </div>
   </footer>
 
+  <!-- Quick Login Modal -->
+  <div class="modal-overlay" id="loginModalOverlay">
+    <div class="login-modal-box">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="brand-icon" style="width: 36px; height: 36px; font-size: 1rem;"><i
+              class="fa-solid fa-graduation-cap"></i></div>
+          <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a;">Đăng nhập LHD – Learning</h3>
+        </div>
+        <button type="button" class="modal-close-btn" id="modalCloseBtn" title="Đóng"><i
+            class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="quick-user-box" id="quickLoginCard">
+        <img
+          src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64' shape-rendering='crispEdges'><rect width='64' height='64' fill='%23a4c68d'/><rect x='0' y='0' width='64' height='28' fill='%237ba36a'/><rect x='6' y='8' width='12' height='14' fill='%23507c43'/><rect x='46' y='10' width='14' height='12' fill='%23507c43'/><rect x='22' y='4' width='20' height='8' fill='%23669152'/><rect x='0' y='32' width='64' height='32' fill='%23c4936d'/><rect x='0' y='42' width='64' height='22' fill='%23b17c54'/><rect x='20' y='12' width='24' height='16' fill='%231e1e24'/><rect x='22' y='16' width='20' height='20' fill='%23fddbc3'/><rect x='24' y='34' width='16' height='4' fill='%23fbc5a3'/><rect x='18' y='10' width='28' height='8' fill='%2322242a'/><rect x='18' y='18' width='6' height='8' fill='%2322242a'/><rect x='40' y='18' width='6' height='8' fill='%2322242a'/><rect x='24' y='14' width='8' height='6' fill='%2330323a'/><rect x='34' y='14' width='8' height='5' fill='%2322242a'/><rect x='18' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='42' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='25' y='25' width='4' height='4' fill='%231e1e24'/><rect x='35' y='25' width='4' height='4' fill='%231e1e24'/><rect x='23' y='28' width='4' height='2' fill='%23f7a799'/><rect x='37' y='28' width='4' height='2' fill='%23f7a799'/><rect x='29' y='31' width='6' height='2' fill='%23d97d64'/><rect x='22' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='32' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='31' y='24' width='2' height='2' fill='%23111'/><rect x='24' y='22' width='2' height='2' fill='%23ffffff'/><rect x='34' y='22' width='2' height='2' fill='%23ffffff'/><rect x='16' y='38' width='32' height='26' fill='%232b2d35'/><rect x='28' y='38' width='8' height='8' fill='%23b91c1c'/><rect x='22' y='38' width='6' height='26' fill='%233a3d47'/><rect x='36' y='38' width='6' height='26' fill='%233a3d47'/><rect x='29' y='44' width='6' height='20' fill='%23dc2626'/><rect x='31' y='42' width='2' height='22' fill='%23991b1b'/></svg>"
+          class="user-capsule-avatar" style="width: 44px; height: 44px;" alt="Huỳnh Tấn Lộc">
+        <div>
+          <div style="font-weight: 800; color: #0f172a; font-size: 0.95rem;">Huỳnh Tấn Lộc</div>
+          <div style="font-size: 0.8rem; color: #64748b;">tanloc@lhd.edu.vn • Học viên</div>
+        </div>
+        <button type="button" class="btn-quick-login" id="btnQuickLogin">Đăng nhập ngay</button>
+      </div>
+
+      <div style="display: flex; align-items: center; margin: 1.25rem 0; color: #94a3b8; font-size: 0.82rem;">
+        <div style="flex: 1; height: 1px; background: #e2e8f0;"></div>
+        <span style="padding: 0 10px;">Hoặc đăng nhập tài khoản khác</span>
+        <div style="flex: 1; height: 1px; background: #e2e8f0;"></div>
+      </div>
+
+      <form id="modalLoginForm">
+        <div style="margin-bottom: 0.9rem;">
+          <label
+            style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 5px;">Email</label>
+          <input type="email" id="modalInputEmail" value="tanloc@lhd.edu.vn" required
+            style="width: 100%; padding: 0.75rem 1rem; border-radius: 14px; border: 1.5px solid #cbd5e1; font-size: 0.9rem; outline: none;">
+        </div>
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 5px;">Mật
+            khẩu</label>
+          <input type="password" id="modalInputPassword" value="12345678" required
+            style="width: 100%; padding: 0.75rem 1rem; border-radius: 14px; border: 1.5px solid #cbd5e1; font-size: 0.9rem; outline: none;">
+        </div>
+        <button type="submit"
+          style="width: 100%; padding: 0.85rem; background: #0b63e5; color: white; border: none; border-radius: 14px; font-weight: 800; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 12px rgba(11, 99, 229, 0.3); transition: all 0.2s ease;">Đăng
+          Nhập Vào Hệ Thống</button>
+      </form>
+
+      <div style="text-align: center; margin-top: 1.25rem; font-size: 0.85rem; color: #64748b;">
+        Chưa có tài khoản? <a href="auth/register.html"
+          style="color: #0b63e5; font-weight: 700; text-decoration: none;">Đăng ký miễn phí</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Live Support Chat Modal -->
+  <div class="chat-modal-overlay" id="adminChatModal">
+    <div class="chat-modal-window">
+      <!-- Header -->
+      <div class="chat-modal-header">
+        <div class="chat-admin-info">
+          <div class="chat-admin-avatar-wrap">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120" alt="Admin LHD" class="chat-admin-avatar">
+            <span class="chat-online-badge"></span>
+          </div>
+          <div>
+            <div class="chat-admin-name">Hỗ Trợ Học Viên – LHD Admin</div>
+            <div class="chat-admin-status">Trực tuyến 24/7 • Phản hồi ngay</div>
+          </div>
+        </div>
+        <button type="button" class="btn-close-chat" id="btnCloseChatModal" title="Đóng hộp thoại">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Messages Body -->
+      <div class="chat-modal-body" id="chatMessagesContainer">
+        <div class="chat-timestamp-divider">Hôm nay, 22:20</div>
+
+        <!-- Admin Initial Message -->
+        <div class="chat-msg-row admin-row">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120" class="chat-bubble-avatar" alt="Admin">
+          <div class="chat-bubble admin-bubble">
+            <p>Xin chào học viên <strong>Huỳnh Tấn Lộc</strong>! 👋</p>
+            <p style="margin-top: 6px;">Tôi là Chuyên viên tư vấn & hỗ trợ kỹ thuật của LHD – Learning. Bạn đang cần hỗ trợ vấn đề gì về khóa học hay tài khoản?</p>
+          </div>
+        </div>
+
+        <!-- Quick Options -->
+        <div class="chat-quick-options" id="chatQuickOptions">
+          <button type="button" class="quick-chip" onclick="sendQuickMessage('Cách tham gia phòng học Live Google Meet?')">
+            🎥 Vào phòng học Live
+          </button>
+          <button type="button" class="quick-chip" onclick="sendQuickMessage('Kiểm tra trạng thái thanh toán VNPay')">
+            💳 Kiểm tra đơn hàng VNPay
+          </button>
+          <button type="button" class="quick-chip" onclick="sendQuickMessage('Hướng dẫn tải chứng chỉ PDF có chữ ký số')">
+            📜 Cấp chứng chỉ khóa học
+          </button>
+          <button type="button" class="quick-chip" onclick="sendQuickMessage('Tôi muốn phản hồi về nội dung bài giảng')">
+            💡 Góp ý / Phản hồi
+          </button>
+        </div>
+      </div>
+
+      <!-- Input Footer -->
+      <div class="chat-modal-footer">
+        <form id="chatForm" onsubmit="handleSendChatMessage(event)" style="display: flex; gap: 8px; width: 100%;">
+          <input type="text" id="chatInputMessage" placeholder="Nhập câu hỏi hoặc phản hồi của bạn..." class="chat-input-field" autocomplete="off" required>
+          <button type="submit" class="btn-chat-send" title="Gửi tin nhắn">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Status Toggle Helper for Testing (Bottom Left) -->
+  <div class="floating-status-pill" id="floatingStatusPill"
+    title="Nhấn để chuyển đổi nhanh giữa trạng thái Chưa đăng nhập (Ảnh 1) và Đã đăng nhập (Ảnh 2)">
+    <span class="status-dot logged-out" id="statusDot"></span>
+    <span id="statusText">Chưa đăng nhập (Ảnh 1)</span>
+    <button type="button" class="btn-toggle-demo" id="btnToggleDemo">Chuyển sang Ảnh 2</button>
+  </div>
+
+  <!-- Custom Toast Notification -->
+  <div class="toast-custom" id="toastCustom">
+    <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 1.1rem;"></i>
+    <span id="toastMessage">Thông báo</span>
+  </div>
+
+  <!-- Interactive JavaScript Logic -->
+  <script>
+    // State keys
+    const AUTH_STORAGE_KEY = 'lhd_learning_logged_in';
+
+    // DOM Elements
+    const navActionsGuest = document.getElementById('navActionsGuest');
+    const navActionsUser = document.getElementById('navActionsUser');
+    const btnHeaderLogin = document.getElementById('btnHeaderLogin');
+    const loginModalOverlay = document.getElementById('loginModalOverlay');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const btnQuickLogin = document.getElementById('btnQuickLogin');
+    const modalLoginForm = document.getElementById('modalLoginForm');
+
+    // User controls
+    const userCapsuleBtn = document.getElementById('userCapsuleBtn');
+    const userDropdown = document.getElementById('userDropdown');
+    const btnLogoutUser = document.getElementById('btnLogoutUser');
+
+    // Menu button & dropdown
+    const headerMenuBtn = document.getElementById('headerMenuBtn');
+    const menuDropdown = document.getElementById('menuDropdown');
+
+    // Bell button & dropdown
+    const headerBellBtn = document.getElementById('headerBellBtn');
+    const bellDropdown = document.getElementById('bellDropdown');
+    const headerBellBadge = document.getElementById('headerBellBadge');
+    const btnMarkAllRead = document.getElementById('btnMarkAllRead');
+
+    // Floating Demo Tester
+    const statusDot = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
+    const btnToggleDemo = document.getElementById('btnToggleDemo');
+
+    // Toast
+    const toastCustom = document.getElementById('toastCustom');
+    const toastMessage = document.getElementById('toastMessage');
+    let toastTimeout;
+
+    function showToast(msg) {
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastMessage.textContent = msg;
+      toastCustom.classList.add('show');
+      toastTimeout = setTimeout(() => {
+        toastCustom.classList.remove('show');
+      }, 3200);
+    }
+
+    // Check Initial Login State
+    function isUserLoggedIn() {
+      // Also support query param ?login=true or ?login=1 for convenient direct testing
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('login') === '1' || params.get('login') === 'true') {
+        return true;
+      }
+      return localStorage.getItem(AUTH_STORAGE_KEY) === 'true';
+    }
+
+    function renderAuthState(loggedIn) {
+      // Dynamic links for Cart
+      const cartLinks = document.querySelectorAll('.btn-cart, .menu-cart-link, .footer-cart-link');
+      cartLinks.forEach(link => {
+        link.href = loggedIn ? 'student/cart.html' : 'auth/login.html';
+      });
+
+      // Dynamic links for Detail buttons on featured courses
+      const detailButtons = document.querySelectorAll('.courses-grid .btn-add-cart, .course-card a.btn-add-cart');
+      detailButtons.forEach(btn => {
+        btn.href = loggedIn ? 'course-detail.html' : 'auth/login.html';
+      });
+
+      if (loggedIn) {
+        // Image 2 state: show Cart, User Capsule, Menu, Bell
+        navActionsGuest.style.display = 'none';
+        navActionsUser.style.display = 'inline-flex';
+
+        // Update floating switcher
+        statusDot.className = 'status-dot logged-in';
+        statusText.textContent = 'Đã đăng nhập (Ảnh 2)';
+        btnToggleDemo.textContent = 'Đăng xuất (Về Login)';
+      } else {
+        // Image 1 state: show standard guest navigation / login buttons
+        navActionsGuest.style.display = 'inline-flex';
+        navActionsUser.style.display = 'none';
+        closeAllDropdowns();
+
+        // Update floating switcher
+        statusDot.className = 'status-dot logged-out';
+        statusText.textContent = 'Chưa đăng nhập (Ảnh 1)';
+        btnToggleDemo.textContent = 'Đăng nhập (Ảnh 2)';
+      }
+    }
+
+    function login() {
+      localStorage.setItem(AUTH_STORAGE_KEY, 'true');
+      renderAuthState(true);
+      closeModal();
+      showToast('Đăng nhập thành công! Chào mừng Huỳnh Tấn Lộc.');
+    }
+
+    function logout() {
+      localStorage.removeItem(AUTH_STORAGE_KEY);
+      renderAuthState(false);
+      showToast('Đang đăng xuất...');
+      setTimeout(() => {
+        window.location.href = 'auth/login.html';
+      }, 350);
+    }
+
+    function openModal() {
+      loginModalOverlay.classList.add('show');
+    }
+
+    function closeModal() {
+      loginModalOverlay.classList.remove('show');
+    }
+
+    function closeAllDropdowns() {
+      if (menuDropdown) menuDropdown.classList.remove('show');
+      if (bellDropdown) bellDropdown.classList.remove('show');
+    }
+
+    // Modal Events
+    btnHeaderLogin.addEventListener('click', openModal);
+    modalCloseBtn.addEventListener('click', closeModal);
+    loginModalOverlay.addEventListener('click', (e) => {
+      if (e.target === loginModalOverlay) closeModal();
+    });
+
+    btnQuickLogin.addEventListener('click', login);
+    modalLoginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      login();
+    });
+
+    // Dropdown Toggles: Nút 3 gạch ngang (☰) mở menu 4 khu vực
+    headerMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = menuDropdown.classList.contains('show');
+      closeAllDropdowns();
+      if (!isOpen) menuDropdown.classList.add('show');
+    });
+
+    headerBellBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = bellDropdown.classList.contains('show');
+      closeAllDropdowns();
+      if (!isOpen) bellDropdown.classList.add('show');
+    });
+
+    btnLogoutUser.addEventListener('click', (e) => {
+      e.preventDefault();
+      logout();
+    });
+
+    btnMarkAllRead.addEventListener('click', () => {
+      if (headerBellBadge) headerBellBadge.style.display = 'none';
+      showToast('Đã đánh dấu tất cả thông báo là đã đọc.');
+    });
+
+    // Close dropdowns on outside click
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav-dropdown') && !e.target.closest('.nav-circle-btn')) {
+        closeAllDropdowns();
+      }
+    });
+
+    // ==========================================================================
+    // ADMIN SUPPORT LIVE CHAT MODAL LOGIC
+    // ==========================================================================
+    const adminChatModal = document.getElementById('adminChatModal');
+    const btnCloseChatModal = document.getElementById('btnCloseChatModal');
+    const btnMenuSupportLink = document.getElementById('btnMenuSupportLink');
+    const chatMessagesContainer = document.getElementById('chatMessagesContainer');
+    const chatInputMessage = document.getElementById('chatInputMessage');
+    const chatQuickOptions = document.getElementById('chatQuickOptions');
+
+    function openChatModal() {
+      closeAllDropdowns();
+      if (adminChatModal) {
+        adminChatModal.classList.add('show');
+        if (chatInputMessage) setTimeout(() => chatInputMessage.focus(), 200);
+      }
+    }
+
+    function closeChatModal() {
+      if (adminChatModal) adminChatModal.classList.remove('show');
+    }
+
+    if (btnMenuSupportLink) {
+      btnMenuSupportLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        openChatModal();
+      });
+    }
+
+    if (btnCloseChatModal) {
+      btnCloseChatModal.addEventListener('click', closeChatModal);
+    }
+
+    if (adminChatModal) {
+      adminChatModal.addEventListener('click', (e) => {
+        if (e.target === adminChatModal) closeChatModal();
+      });
+    }
+
+    function appendUserMessage(text) {
+      const row = document.createElement('div');
+      row.className = 'chat-msg-row user-row';
+      row.innerHTML = `<div class="chat-bubble user-bubble">${text}</div>`;
+      chatMessagesContainer.appendChild(row);
+      chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+    }
+
+    function appendAdminMessage(text) {
+      const row = document.createElement('div');
+      row.className = 'chat-msg-row admin-row';
+      row.innerHTML = `
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120" class="chat-bubble-avatar" alt="Admin">
+        <div class="chat-bubble admin-bubble">${text}</div>
+      `;
+      chatMessagesContainer.appendChild(row);
+      chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+    }
+
+    function sendQuickMessage(text) {
+      appendUserMessage(text);
+      if (chatQuickOptions) chatQuickOptions.style.display = 'none';
+
+      // Realistic automated admin response
+      setTimeout(() => {
+        if (text.includes('Live')) {
+          appendAdminMessage('Dạ chào bạn, các lớp học Live tương tác sẽ mở phòng trước 10 phút. Bạn chỉ cần vào tab <strong>Bảng điều khiển</strong> và bấm nút <em>"Vào Phòng Học Trực Tiếp"</em> để tham gia nhé!');
+        } else if (text.includes('VNPay')) {
+          appendAdminMessage('Hệ thống kiểm tra thấy đơn hàng <strong>#HD-2026-89410</strong> của bạn đã thanh toán thành công và các khóa học đã được kích hoạt đầy đủ vào tài khoản của bạn ạ.');
+        } else if (text.includes('chứng chỉ')) {
+          appendAdminMessage('Bạn có thể truy cập mục <strong>Chứng chỉ</strong> trên menu hoặc từ Hồ sơ cá nhân để tải bản PDF có ký số xác thực hoặc chia sẻ trực tuyến bất cứ lúc nào nhé!');
+        } else {
+          appendAdminMessage('Cảm ơn phản hồi quý báu của bạn! Bộ phận học thuật của LHD – Learning đã ghi nhận và sẽ phản hồi chi tiết tới email <strong>tanloc@lhd.edu.vn</strong> trong thời gian sớm nhất.');
+        }
+      }, 700);
+    }
+
+    function handleSendChatMessage(e) {
+      e.preventDefault();
+      const val = chatInputMessage.value.trim();
+      if (!val) return;
+      appendUserMessage(val);
+      chatInputMessage.value = '';
+      if (chatQuickOptions) chatQuickOptions.style.display = 'none';
+
+      setTimeout(() => {
+        appendAdminMessage('Cảm ơn câu hỏi của Huỳnh Tấn Lộc: <em>"' + val + '"</em>. Đội ngũ kỹ thuật viên và giảng viên của LHD đã tiếp nhận yêu cầu và sẽ hỗ trợ trực tiếp cho bạn ngay sau giây lát!');
+      }, 800);
+    }
+
+    // Avatar Synchronization
+    function syncUserAvatar() {
+      const savedAvatar = localStorage.getItem('lhd_user_avatar');
+      if (savedAvatar) {
+        document.querySelectorAll('.user-capsule-avatar, .menu-banner-avatar, #headerUserAvatar').forEach(img => {
+          img.src = savedAvatar;
+        });
+      }
+    }
+    syncUserAvatar();
+
+    // Floating Demo Switcher button
+    btnToggleDemo.addEventListener('click', () => {
+      if (isUserLoggedIn()) {
+        logout();
+      } else {
+        login();
+      }
+    });
+
+    // Initialize on page load
+    renderAuthState(isUserLoggedIn());
+
+    // ==========================================================================
+    // MENU NAV-LINKS INTERACTIVE CLICK EFFECT, RIPPLE & SCROLLSPY
+    // ==========================================================================
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const headerElem = document.querySelector('header');
+    let isProgrammaticScroll = false;
+
+    function getHeaderOffset() {
+      return (headerElem ? headerElem.offsetHeight : 70) + 12;
+    }
+
+    function setActiveMenu(targetKey) {
+      navLinks.forEach(link => {
+        link.classList.remove('nav-item-active');
+        const href = link.getAttribute('href');
+        if (
+          href === targetKey ||
+          href.endsWith(targetKey) ||
+          (targetKey === 'home' && (href === 'index.html' || href === '#top'))
+        ) {
+          link.classList.add('nav-item-active');
+        }
+      });
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+
+        // 1. Spawn glowing ripple effect on click
+        const rect = this.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        ripple.className = 'nav-click-ripple';
+        const diameter = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = diameter + 'px';
+        ripple.style.left = (e.clientX - rect.left - diameter / 2) + 'px';
+        ripple.style.top = (e.clientY - rect.top - diameter / 2) + 'px';
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+
+        // 2. If clicking on Home ("Trang chủ") while on index.html
+        if (href === 'index.html' || href === '#top') {
+          e.preventDefault();
+          navLinks.forEach(l => l.classList.remove('nav-item-active'));
+          this.classList.add('nav-item-active');
+          isProgrammaticScroll = true;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          setTimeout(() => { isProgrammaticScroll = false; }, 800);
+        }
+        // 3. If clicking on Section Hash ("#about" - Giới thiệu, "#footer" - Liên hệ)
+        else if (href.startsWith('#')) {
+          e.preventDefault();
+          const targetSection = document.querySelector(href);
+          if (targetSection) {
+            navLinks.forEach(l => l.classList.remove('nav-item-active'));
+            this.classList.add('nav-item-active');
+            isProgrammaticScroll = true;
+
+            const targetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
+            window.scrollTo({ top: targetTop, behavior: 'smooth' });
+            setTimeout(() => { isProgrammaticScroll = false; }, 800);
+          }
+        }
+        // 4. If clicking on "courses.html" (Khóa học): let the browser navigate normally
+      });
+    });
+
+    // ScrollSpy: Automatically highlight menu item as user scrolls through the page
+    window.addEventListener('scroll', () => {
+      if (isProgrammaticScroll) return;
+
+      const scrollPos = window.scrollY;
+      const aboutSection = document.getElementById('about');
+      const footerSection = document.getElementById('footer');
+
+      if (!aboutSection || !footerSection) return;
+
+      const offset = getHeaderOffset();
+      const aboutTop = aboutSection.offsetTop - offset - 100;
+      const aboutBottom = aboutTop + aboutSection.offsetHeight;
+      const footerTop = footerSection.offsetTop - offset - 250;
+
+      // Bottom / Footer -> Highlight "Liên hệ"
+      if (scrollPos >= footerTop || (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 60)) {
+        setActiveMenu('#footer');
+      }
+      // About Section -> Highlight "Giới thiệu"
+      else if (scrollPos >= aboutTop && scrollPos < aboutBottom) {
+        setActiveMenu('#about');
+      }
+      // Top Area -> Highlight "Trang chủ"
+      else if (scrollPos < aboutTop) {
+        setActiveMenu('home');
+      }
+    });
+
+    // Check URL hash on page load (e.g. index.html#about or index.html#footer)
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash) {
+        const hash = window.location.hash;
+        setActiveMenu(hash);
+        setTimeout(() => {
+          const target = document.querySelector(hash);
+          if (target) {
+            const targetTop = target.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
+            window.scrollTo({ top: targetTop, behavior: 'smooth' });
+          }
+        }, 180);
+      }
+    });
+  </script>
 </body>
+
 </html>
