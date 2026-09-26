@@ -1,7 +1,11 @@
 package com.mycompany.saas.controller;
 
+import java.util.Map;
+
+import com.mycompany.saas.domain.request.ForgotPasswordRequest;
 import com.mycompany.saas.domain.request.LoginRequest;
 import com.mycompany.saas.domain.request.RegisterRequest;
+import com.mycompany.saas.domain.request.ResetPasswordRequest;
 import com.mycompany.saas.domain.response.TokenResponse;
 import com.mycompany.saas.domain.response.UserResponse;
 import com.mycompany.saas.service.AuthService;
@@ -39,5 +43,30 @@ public class AuthController {
     @ApiMessage("Get current user profile successfully")
     public ResponseEntity<UserResponse> getCurrentUser() {
         return ResponseEntity.ok(authService.getCurrentUser());
+    }
+
+    @PostMapping("/forgot-password")
+    @ApiMessage("OTP code sent successfully")
+    public ResponseEntity<Map<String, String>> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) {
+        String otp = authService.forgotPassword(request);
+        return ResponseEntity.ok(Map.of(
+                "message", "Mã OTP đã được gửi đến email " + request.getEmail(),
+                "otpDemo", otp
+        ));
+    }
+
+    @PostMapping("/reset-password")
+    @ApiMessage("Password reset successfully")
+    public ResponseEntity<Map<String, String>> resetPassword(@Valid @RequestBody ResetPasswordRequest request) {
+        authService.resetPassword(request);
+        return ResponseEntity.ok(Map.of(
+                "message", "Đặt lại mật khẩu thành công. Vui lòng đăng nhập bằng mật khẩu mới."
+        ));
+    }
+
+    @PostMapping("/logout")
+    @ApiMessage("Logged out successfully")
+    public ResponseEntity<Map<String, String>> logout() {
+        return ResponseEntity.ok(Map.of("message", "Đã đăng xuất thành công"));
     }
 }

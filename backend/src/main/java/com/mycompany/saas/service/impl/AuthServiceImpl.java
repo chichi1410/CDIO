@@ -3,11 +3,16 @@ package com.mycompany.saas.service.impl;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.mycompany.saas.domain.Role;
 import com.mycompany.saas.domain.User;
+import com.mycompany.saas.domain.request.ForgotPasswordRequest;
 import com.mycompany.saas.domain.request.LoginRequest;
 import com.mycompany.saas.domain.request.RegisterRequest;
+import com.mycompany.saas.domain.request.ResetPasswordRequest;
 import com.mycompany.saas.domain.response.TokenResponse;
 import com.mycompany.saas.domain.response.UserResponse;
 import com.mycompany.saas.repository.UserRepository;
@@ -36,6 +41,9 @@ public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtEncoder jwtEncoder;
 
+    // In-memory OTP storage for demo/development purposes
+    private final Map<String, String> otpStorage = new ConcurrentHashMap<>();
+
     @Value("${AUTH_JWT_ISSUER:saas-app}")
     private String jwtIssuer;
 
@@ -51,7 +59,7 @@ public class AuthServiceImpl implements AuthService {
         user.setName(request.getName().trim());
         user.setEmail(email);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(Role.ROLE_USER);
+        user.setRole(request.getRole() != null ? request.getRole() : Role.ROLE_USER);
         user.setActive(true);
 
         User savedUser = userRepository.save(user);
@@ -103,5 +111,37 @@ public class AuthServiceImpl implements AuthService {
                 .orElseThrow(() -> new NotFoundException("User not found with email: " + email));
 
         return UserResponse.fromUser(user);
+    }
+
+    @Override
+    public String forgotPassword(ForgotPasswordRequest request) {
+        String email = request.getEmail().trim().toLowerCase(Locale.ROOT);
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("Email user not found: " + email));
+
+        // Generate 6-digit OTP
+        String otp = String.format("%06d", new Random().nextInt(900000) + 100000);
+        otpStorage.put(email, otp);
+        return otp;
+    }
+
+    @Override
+    @Transactional
+    public void resetPassword(ResetPasswordRequest request) {
+        String email = request.getEmail().trim().toLowerCase(Locale.ROOT);
+        String cachedOtp = otpStorage.get(email);
+
+        if (cachedOtp == null || !cachedOtp.equals(request.getOtp().trim())) {
+            throw new BadRequestException("Invalid or expired OTP code");
+        }
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("User not found: " + email));
+
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        userRepository.save(user);
+
+        // Remove used OTP
+        otpStorage.remove(email);
     }
 }

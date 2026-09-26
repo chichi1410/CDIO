@@ -59,33 +59,33 @@ Kế hoạch này chia nhỏ toàn bộ quá trình tạo project mới dựa tr
 
 ## Giai đoạn 3: Xây dựng Frontend từ gốc (Next.js 16 + React 19)
 
-- [ ] **Bước 3.1: Khởi tạo dự án Next.js 16**
+- [x] **Bước 3.1: Khởi tạo dự án Next.js 16**
   - Chạy lệnh khởi tạo Next.js với TypeScript, App Router, ESLint, alias `@/*`.
-- [ ] **Bước 3.2: Cài đặt Tailwind CSS v4 & Styling Utilities**
+- [x] **Bước 3.2: Cài đặt Tailwind CSS v4 & Styling Utilities**
   - Cài đặt `@tailwindcss/postcss` và `tailwindcss`.
   - Thiết lập `globals.css` theo chuẩn Tailwind 4 `@theme`.
   - Cài đặt `clsx`, `tailwind-merge`, `class-variance-authority`.
   - Tạo file `lib/utils.ts` chứa hàm `cn(...)`.
-- [ ] **Bước 3.3: Cài đặt bộ thư viện nòng cốt**
+- [x] **Bước 3.3: Cài đặt bộ thư viện nòng cốt**
   - Data Fetching: `@tanstack/react-query`, `axios`.
   - Form & Validation: `react-hook-form`, `zod`, `@hookform/resolvers`.
-  - UI & Icons: `lucide-react`, `@base-ui/react`, `@shadcn/react`, `sonner`, `motion`.
-- [ ] **Bước 3.4: Thiết lập cấu trúc thư mục chuẩn (Feature-Driven Architecture)**
+  - UI & Icons: `lucide-react`, `sonner`, `motion`.
+- [x] **Bước 3.4: Thiết lập cấu trúc thư mục chuẩn (Feature-Driven Architecture)**
   - Tạo các thư mục: `app/`, `features/`, `components/ui/`, `components/common/`, `components/provider/`, `apis/`, `services/`, `hooks/`, `types/`, `lib/`.
-- [ ] **Bước 3.5: Cấu hình HTTP Client & Providers**
+- [x] **Bước 3.5: Cấu hình HTTP Client & Providers**
   - `services/api-client.ts`: Tạo Axios instance cấu hình `baseURL: process.env.NEXT_PUBLIC_API_URL + '/api/v1'`, interceptor tự động inject Bearer token từ cookie/localStorage và xử lý refresh/401.
   - `components/provider/query-provider.tsx`: Bọc `QueryClientProvider` cho toàn app.
   - Thêm `<Toaster />` của `sonner` vào root `layout.tsx`.
-- [ ] **Bước 3.6: Tạo bộ UI Primitives cơ bản (`components/ui/`)**
+- [x] **Bước 3.6: Tạo bộ UI Primitives cơ bản (`components/ui/`)**
   - `button.tsx`: Nút bấm đa variant (primary, outline, ghost, loading state).
   - `input.tsx`: Input field hỗ trợ hiển thị lỗi validation.
   - `card.tsx`: Khung card hiển thị nội dung.
-- [ ] **Bước 3.7: Xây dựng Feature Auth mẫu (`features/auth/`)**
+- [x] **Bước 3.7: Xây dựng Feature Auth mẫu (`features/auth/`)**
   - `apis/auth.api.ts`: Hàm gọi `login`, `register`, `getMe`.
   - `features/auth/types.ts`: Zod schema cho Login/Register form.
   - `features/auth/components/login-form.tsx`: Form đăng nhập với validation và trạng thái loading.
   - `app/(auth)/login/page.tsx`: Trang đăng nhập.
-- [ ] **Bước 3.8: Kiểm thử Frontend độc lập**
+- [x] **Bước 3.8: Kiểm thử Frontend độc lập**
   - Chạy `pnpm lint` và `pnpm build` để xác nhận không có lỗi TypeScript hay cú pháp.
   - Chạy `pnpm dev` và truy cập giao diện thử nghiệm.
 
@@ -93,11 +93,11 @@ Kế hoạch này chia nhỏ toàn bộ quá trình tạo project mới dựa tr
 
 ## Giai đoạn 4: Tích hợp Cross-Stack & Hoàn thiện Boilerplate
 
-- [ ] **Bước 4.1: Cấu hình biến môi trường kết nối**
+- [x] **Bước 4.1: Cấu hình biến môi trường kết nối**
   - Tạo file `.env` cho backend và `.env.local` cho frontend (`NEXT_PUBLIC_API_URL=http://localhost:8080`).
-- [ ] **Bước 4.2: Kiểm thử luồng Full-stack End-to-End**
+- [x] **Bước 4.2: Kiểm thử luồng Full-stack End-to-End**
   - Người dùng đăng ký tài khoản mới trên giao diện Frontend -> Backend lưu vào MySQL.
   - Đăng nhập -> Nhận JWT Token -> Lưu token và chuyển hướng tới Dashboard.
   - Gọi API `/api/v1/auth/me` để hiển thị thông tin người dùng đang đăng nhập.
-- [ ] **Bước 4.3: Viết tài liệu README hướng dẫn chạy dự án mới**
+- [x] **Bước 4.3: Viết tài liệu README hướng dẫn chạy dự án mới**
   - Hướng dẫn clone, cấu hình database, sinh key RSA, chạy backend và chạy frontend.
