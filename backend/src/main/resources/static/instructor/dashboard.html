@@ -74,7 +74,14 @@
       <li><a href="quizzes.html">Ngân hàng câu hỏi</a></li>
       <li><a href="live-rooms.html">Phòng học Live</a></li>
     </ul>
-    <a href="course-builder.html" class="btn-create-course"><i class="fa-solid fa-plus"></i> Tạo Khóa Học Mới</a>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <a href="course-builder.html" class="btn-create-course"><i class="fa-solid fa-plus"></i> Tạo Khóa Học Mới</a>
+      <div style="display: flex; align-items: center; gap: 8px; background: white; padding: 6px 14px; border-radius: 9999px; border: 1.5px solid #f1f5f9; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+        <img class="user-capsule-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+        <span class="user-capsule-name" style="font-weight: 700; font-size: 0.88rem; color: #1e293b;">Giảng Viên</span>
+        <button onclick="logoutInstructor()" style="background: none; border: none; color: #ef4444; font-size: 0.95rem; cursor: pointer; margin-left: 6px;" title="Đăng xuất"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+      </div>
+    </div>
   </header>
 
   <div class="container">
@@ -134,5 +141,28 @@
     </div>
   </div>
 
+  <script>
+    let instUser = null;
+    try {
+      instUser = JSON.parse(localStorage.getItem('user_info') || sessionStorage.getItem('current_user') || 'null');
+    } catch (e) { instUser = null; }
+
+    if (!instUser || (instUser.role !== 'ROLE_INSTRUCTOR' && instUser.role !== 'ROLE_ADMIN')) {
+      alert('Bạn không có quyền truy cập Kênh Giảng Viên!');
+      window.location.replace('../auth/login.html');
+    }
+
+    if (instUser) {
+      document.querySelectorAll('.user-capsule-name').forEach(el => el.textContent = instUser.name || 'Giảng Viên');
+    }
+
+    function logoutInstructor() {
+      localStorage.removeItem('auth_token');
+      localStorage.removeItem('user_info');
+      localStorage.removeItem('lhd_learning_logged_in');
+      sessionStorage.clear();
+      window.location.href = '../auth/login.html';
+    }
+  </script>
 </body>
 </html>

@@ -75,5 +75,16 @@
     </div>
   </div>
 
+  <script>
+    let instUser = null;
+    try {
+      instUser = JSON.parse(localStorage.getItem('user_info') || sessionStorage.getItem('current_user') || 'null');
+    } catch (e) { instUser = null; }
+
+    if (!instUser || (instUser.role !== 'ROLE_INSTRUCTOR' && instUser.role !== 'ROLE_ADMIN')) {
+      alert('Bạn không có quyền truy cập trang này (Chỉ dành cho Giảng Viên)!');
+      window.location.replace('../auth/login.html');
+    }
+  </script>
 </body>
 </html>

@@ -49,5 +49,16 @@
     </div>
   </div>
 
+  <script>
+    let adminUser = null;
+    try {
+      adminUser = JSON.parse(localStorage.getItem('user_info') || sessionStorage.getItem('current_user') || 'null');
+    } catch (e) { adminUser = null; }
+
+    if (!adminUser || adminUser.role !== 'ROLE_ADMIN') {
+      alert('Bạn không có quyền truy cập trang này (Chỉ dành cho ROLE_ADMIN)!');
+      window.location.replace('../auth/login.html');
+    }
+  </script>
 </body>
 </html>

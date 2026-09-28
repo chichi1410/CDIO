@@ -1957,11 +1957,11 @@
       <div class="nav-actions-user" id="navActionsUser">
         <!-- Nhóm 1: Thông báo đặt trước Giỏ hàng -->
         <div class="nav-user-left-group">
-          <!-- 1. Bell Button (with Red Badge 2) - Đứng trước Giỏ hàng -->
+          <!-- 1. Bell Button (with Red Badge 0 - default hidden) - Đứng trước Giỏ hàng -->
           <div style="position: relative;">
             <button type="button" class="nav-circle-btn btn-bell" id="headerBellBtn" title="Thông báo hệ thống">
               <i class="fa-regular fa-bell"></i>
-              <span class="bell-badge" id="headerBellBadge">2</span>
+              <span class="bell-badge" id="headerBellBadge" style="display: none;">0</span>
             </button>
 
             <!-- Bell Dropdown Popover (rủ xuống bên trái, dưới chuông) -->
@@ -2000,12 +2000,12 @@
 
         <!-- Nhóm 2: Các mục còn lại được đẩy sang bên phải (Tài khoản học viên & Menu ☰) -->
         <div class="nav-user-right-group">
-          <!-- 3. User Capsule (Avatar with blue ring + Huỳnh Tấn Lộc) -> Bấm vào chuyển sang trang cá nhân học viên -->
+          <!-- 3. User Capsule (Avatar with blue ring) -> Bấm vào chuyển sang trang cá nhân học viên -->
           <a href="student/profile.html" class="user-capsule" id="userCapsuleBtn" title="Xem trang thông tin cá nhân học viên">
             <img
               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64' shape-rendering='crispEdges'><rect width='64' height='64' fill='%23a4c68d'/><rect x='0' y='0' width='64' height='28' fill='%237ba36a'/><rect x='6' y='8' width='12' height='14' fill='%23507c43'/><rect x='46' y='10' width='14' height='12' fill='%23507c43'/><rect x='22' y='4' width='20' height='8' fill='%23669152'/><rect x='0' y='32' width='64' height='32' fill='%23c4936d'/><rect x='0' y='42' width='64' height='22' fill='%23b17c54'/><rect x='20' y='12' width='24' height='16' fill='%231e1e24'/><rect x='22' y='16' width='20' height='20' fill='%23fddbc3'/><rect x='24' y='34' width='16' height='4' fill='%23fbc5a3'/><rect x='18' y='10' width='28' height='8' fill='%2322242a'/><rect x='18' y='18' width='6' height='8' fill='%2322242a'/><rect x='40' y='18' width='6' height='8' fill='%2322242a'/><rect x='24' y='14' width='8' height='6' fill='%2330323a'/><rect x='34' y='14' width='8' height='5' fill='%2322242a'/><rect x='18' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='42' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='25' y='25' width='4' height='4' fill='%231e1e24'/><rect x='35' y='25' width='4' height='4' fill='%231e1e24'/><rect x='23' y='28' width='4' height='2' fill='%23f7a799'/><rect x='37' y='28' width='4' height='2' fill='%23f7a799'/><rect x='29' y='31' width='6' height='2' fill='%23d97d64'/><rect x='22' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='32' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='31' y='24' width='2' height='2' fill='%23111'/><rect x='24' y='22' width='2' height='2' fill='%23ffffff'/><rect x='34' y='22' width='2' height='2' fill='%23ffffff'/><rect x='16' y='38' width='32' height='26' fill='%232b2d35'/><rect x='28' y='38' width='8' height='8' fill='%23b91c1c'/><rect x='22' y='38' width='6' height='26' fill='%233a3d47'/><rect x='36' y='38' width='6' height='26' fill='%233a3d47'/><rect x='29' y='44' width='6' height='20' fill='%23dc2626'/><rect x='31' y='42' width='2' height='22' fill='%23991b1b'/></svg>"
-              class="user-capsule-avatar" id="headerUserAvatar" alt="Huỳnh Tấn Lộc">
-            <span class="user-capsule-name">Huỳnh Tấn Lộc</span>
+              class="user-capsule-avatar" id="headerUserAvatar" alt="Avatar">
+            <span class="user-capsule-name">Tài khoản</span>
           </a>
 
           <!-- 4. Nút tròn (3 gạch ngang ☰) -->
@@ -2023,8 +2023,8 @@
                 src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64' shape-rendering='crispEdges'><rect width='64' height='64' fill='%23a4c68d'/><rect x='0' y='0' width='64' height='28' fill='%237ba36a'/><rect x='6' y='8' width='12' height='14' fill='%23507c43'/><rect x='46' y='10' width='14' height='12' fill='%23507c43'/><rect x='22' y='4' width='20' height='8' fill='%23669152'/><rect x='0' y='32' width='64' height='32' fill='%23c4936d'/><rect x='0' y='42' width='64' height='22' fill='%23b17c54'/><rect x='20' y='12' width='24' height='16' fill='%231e1e24'/><rect x='22' y='16' width='20' height='20' fill='%23fddbc3'/><rect x='24' y='34' width='16' height='4' fill='%23fbc5a3'/><rect x='18' y='10' width='28' height='8' fill='%2322242a'/><rect x='18' y='18' width='6' height='8' fill='%2322242a'/><rect x='40' y='18' width='6' height='8' fill='%2322242a'/><rect x='24' y='14' width='8' height='6' fill='%2330323a'/><rect x='34' y='14' width='8' height='5' fill='%2322242a'/><rect x='18' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='42' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='25' y='25' width='4' height='4' fill='%231e1e24'/><rect x='35' y='25' width='4' height='4' fill='%231e1e24'/><rect x='23' y='28' width='4' height='2' fill='%23f7a799'/><rect x='37' y='28' width='4' height='2' fill='%23f7a799'/><rect x='29' y='31' width='6' height='2' fill='%23d97d64'/><rect x='22' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='32' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='31' y='24' width='2' height='2' fill='%23111'/><rect x='24' y='22' width='2' height='2' fill='%23ffffff'/><rect x='34' y='22' width='2' height='2' fill='%23ffffff'/><rect x='16' y='38' width='32' height='26' fill='%232b2d35'/><rect x='28' y='38' width='8' height='8' fill='%23b91c1c'/><rect x='22' y='38' width='6' height='26' fill='%233a3d47'/><rect x='36' y='38' width='6' height='26' fill='%233a3d47'/><rect x='29' y='44' width='6' height='20' fill='%23dc2626'/><rect x='31' y='42' width='2' height='22' fill='%23991b1b'/></svg>"
                 class="menu-banner-avatar" alt="Avatar">
               <div class="menu-banner-meta">
-                <div class="menu-banner-name">Huỳnh Tấn Lộc</div>
-                <div class="menu-banner-sub">tanloc@lhd.edu.vn</div>
+                <div class="menu-banner-name">Học viên</div>
+                <div class="menu-banner-sub">student@lhd.edu.vn</div>
                 <div class="menu-banner-verified">
                   <i class="fa-solid fa-circle-check"></i>
                   <span>Thành viên / Đã xác thực</span>
@@ -2430,39 +2430,20 @@
             class="fa-solid fa-xmark"></i></button>
       </div>
 
-      <div class="quick-user-box" id="quickLoginCard">
-        <img
-          src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64' shape-rendering='crispEdges'><rect width='64' height='64' fill='%23a4c68d'/><rect x='0' y='0' width='64' height='28' fill='%237ba36a'/><rect x='6' y='8' width='12' height='14' fill='%23507c43'/><rect x='46' y='10' width='14' height='12' fill='%23507c43'/><rect x='22' y='4' width='20' height='8' fill='%23669152'/><rect x='0' y='32' width='64' height='32' fill='%23c4936d'/><rect x='0' y='42' width='64' height='22' fill='%23b17c54'/><rect x='20' y='12' width='24' height='16' fill='%231e1e24'/><rect x='22' y='16' width='20' height='20' fill='%23fddbc3'/><rect x='24' y='34' width='16' height='4' fill='%23fbc5a3'/><rect x='18' y='10' width='28' height='8' fill='%2322242a'/><rect x='18' y='18' width='6' height='8' fill='%2322242a'/><rect x='40' y='18' width='6' height='8' fill='%2322242a'/><rect x='24' y='14' width='8' height='6' fill='%2330323a'/><rect x='34' y='14' width='8' height='5' fill='%2322242a'/><rect x='18' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='42' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='25' y='25' width='4' height='4' fill='%231e1e24'/><rect x='35' y='25' width='4' height='4' fill='%231e1e24'/><rect x='23' y='28' width='4' height='2' fill='%23f7a799'/><rect x='37' y='28' width='4' height='2' fill='%23f7a799'/><rect x='29' y='31' width='6' height='2' fill='%23d97d64'/><rect x='22' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='32' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='31' y='24' width='2' height='2' fill='%23111'/><rect x='24' y='22' width='2' height='2' fill='%23ffffff'/><rect x='34' y='22' width='2' height='2' fill='%23ffffff'/><rect x='16' y='38' width='32' height='26' fill='%232b2d35'/><rect x='28' y='38' width='8' height='8' fill='%23b91c1c'/><rect x='22' y='38' width='6' height='26' fill='%233a3d47'/><rect x='36' y='38' width='6' height='26' fill='%233a3d47'/><rect x='29' y='44' width='6' height='20' fill='%23dc2626'/><rect x='31' y='42' width='2' height='22' fill='%23991b1b'/></svg>"
-          class="user-capsule-avatar" style="width: 44px; height: 44px;" alt="Huỳnh Tấn Lộc">
-        <div>
-          <div style="font-weight: 800; color: #0f172a; font-size: 0.95rem;">Huỳnh Tấn Lộc</div>
-          <div style="font-size: 0.8rem; color: #64748b;">tanloc@lhd.edu.vn • Học viên</div>
-        </div>
-        <button type="button" class="btn-quick-login" id="btnQuickLogin">Đăng nhập ngay</button>
-      </div>
-
-      <div style="display: flex; align-items: center; margin: 1.25rem 0; color: #94a3b8; font-size: 0.82rem;">
-        <div style="flex: 1; height: 1px; background: #e2e8f0;"></div>
-        <span style="padding: 0 10px;">Hoặc đăng nhập tài khoản khác</span>
-        <div style="flex: 1; height: 1px; background: #e2e8f0;"></div>
-      </div>
-
       <form id="modalLoginForm">
         <div style="margin-bottom: 0.9rem;">
           <label
-            style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 5px;">Email</label>
-          <input type="email" id="modalInputEmail" value="tanloc@lhd.edu.vn" required
+            style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 5px;">Email đăng nhập</label>
+          <input type="email" id="modalInputEmail" placeholder="student@lhd.edu.vn" required
             style="width: 100%; padding: 0.75rem 1rem; border-radius: 14px; border: 1.5px solid #cbd5e1; font-size: 0.9rem; outline: none;">
         </div>
         <div style="margin-bottom: 1.25rem;">
-          <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 5px;">Mật
-            khẩu</label>
-          <input type="password" id="modalInputPassword" value="12345678" required
+          <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 5px;">Mật khẩu</label>
+          <input type="password" id="modalInputPassword" placeholder="Mật khẩu" required
             style="width: 100%; padding: 0.75rem 1rem; border-radius: 14px; border: 1.5px solid #cbd5e1; font-size: 0.9rem; outline: none;">
         </div>
-        <button type="submit"
-          style="width: 100%; padding: 0.85rem; background: #0b63e5; color: white; border: none; border-radius: 14px; font-weight: 800; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 12px rgba(11, 99, 229, 0.3); transition: all 0.2s ease;">Đăng
-          Nhập Vào Hệ Thống</button>
+        <button type="submit" id="btnSubmitModalLogin"
+          style="width: 100%; padding: 0.85rem; background: #0b63e5; color: white; border: none; border-radius: 14px; font-weight: 800; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 12px rgba(11, 99, 229, 0.3); transition: all 0.2s ease;">Đăng Nhập Vào Hệ Thống</button>
       </form>
 
       <div style="text-align: center; margin-top: 1.25rem; font-size: 0.85rem; color: #64748b;">
@@ -2500,7 +2481,7 @@
         <div class="chat-msg-row admin-row">
           <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120" class="chat-bubble-avatar" alt="Admin">
           <div class="chat-bubble admin-bubble">
-            <p>Xin chào học viên <strong>Huỳnh Tấn Lộc</strong>! 👋</p>
+            <p>Xin chào học viên <strong class="chat-user-name">Học viên</strong>! 👋</p>
             <p style="margin-top: 6px;">Tôi là Chuyên viên tư vấn & hỗ trợ kỹ thuật của LHD – Learning. Bạn đang cần hỗ trợ vấn đề gì về khóa học hay tài khoản?</p>
           </div>
         </div>
@@ -2535,13 +2516,6 @@
   </div>
 
   <!-- Floating Status Toggle Helper for Testing (Bottom Left) -->
-  <div class="floating-status-pill" id="floatingStatusPill"
-    title="Nhấn để chuyển đổi nhanh giữa trạng thái Chưa đăng nhập (Ảnh 1) và Đã đăng nhập (Ảnh 2)">
-    <span class="status-dot logged-out" id="statusDot"></span>
-    <span id="statusText">Chưa đăng nhập (Ảnh 1)</span>
-    <button type="button" class="btn-toggle-demo" id="btnToggleDemo">Chuyển sang Ảnh 2</button>
-  </div>
-
   <!-- Custom Toast Notification -->
   <div class="toast-custom" id="toastCustom">
     <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 1.1rem;"></i>
@@ -2596,14 +2570,37 @@
       }, 3200);
     }
 
-    // Check Initial Login State
+    function getCurrentUser() {
+      try {
+        let u = JSON.parse(localStorage.getItem('user_info') || sessionStorage.getItem('current_user') || 'null');
+        if (u && u.email) {
+          const regUsers = JSON.parse(localStorage.getItem('lhd_registered_users') || '[]');
+          const foundReg = regUsers.find(r => r.email.toLowerCase() === u.email.toLowerCase());
+          if (foundReg && foundReg.name) {
+            u.name = foundReg.name;
+          }
+        }
+        return u;
+      } catch (e) { return null; }
+    }
+
     function isUserLoggedIn() {
-      // Also support query param ?login=true or ?login=1 for convenient direct testing
-      const params = new URLSearchParams(window.location.search);
-      if (params.get('login') === '1' || params.get('login') === 'true') {
-        return true;
+      return !!getCurrentUser();
+    }
+
+    function syncUserUI() {
+      const u = getCurrentUser();
+      if (!u) return;
+      const displayName = u.name || (u.email ? u.email.split('@')[0] : 'Học Viên');
+      document.querySelectorAll('.user-capsule-name, .menu-banner-name').forEach(el => el.textContent = displayName);
+      const emailEl = document.querySelector('.menu-banner-sub');
+      if (emailEl) emailEl.textContent = u.email || '';
+      document.querySelectorAll('.chat-user-name').forEach(el => el.textContent = displayName);
+
+      const savedAvatar = localStorage.getItem('lhd_user_avatar');
+      if (savedAvatar) {
+        document.querySelectorAll('.user-capsule-avatar, .menu-banner-avatar, #headerUserAvatar').forEach(img => img.src = savedAvatar);
       }
-      return localStorage.getItem(AUTH_STORAGE_KEY) === 'true';
     }
 
     function renderAuthState(loggedIn) {
@@ -2620,41 +2617,97 @@
       });
 
       if (loggedIn) {
-        // Image 2 state: show Cart, User Capsule, Menu, Bell
         navActionsGuest.style.display = 'none';
         navActionsUser.style.display = 'inline-flex';
-
-        // Update floating switcher
-        statusDot.className = 'status-dot logged-in';
-        statusText.textContent = 'Đã đăng nhập (Ảnh 2)';
-        btnToggleDemo.textContent = 'Đăng xuất (Về Login)';
+        syncUserUI();
       } else {
-        // Image 1 state: show standard guest navigation / login buttons
         navActionsGuest.style.display = 'inline-flex';
         navActionsUser.style.display = 'none';
         closeAllDropdowns();
-
-        // Update floating switcher
-        statusDot.className = 'status-dot logged-out';
-        statusText.textContent = 'Chưa đăng nhập (Ảnh 1)';
-        btnToggleDemo.textContent = 'Đăng nhập (Ảnh 2)';
       }
     }
 
-    function login() {
-      localStorage.setItem(AUTH_STORAGE_KEY, 'true');
-      renderAuthState(true);
-      closeModal();
-      showToast('Đăng nhập thành công! Chào mừng Huỳnh Tấn Lộc.');
+    const DEMO_USERS = {
+      'student@lhd.edu.vn': { id: 1, name: 'Học Viên Mẫu', email: 'student@lhd.edu.vn', role: 'ROLE_USER', pass: '123' },
+      'instructor@lhd.edu.vn': { id: 2, name: 'Cô Emily Watson', email: 'instructor@lhd.edu.vn', role: 'ROLE_INSTRUCTOR', pass: '123' },
+      'admin@lhd.edu.vn': { id: 3, name: 'Quản Trị Hệ Thống', email: 'admin@lhd.edu.vn', role: 'ROLE_ADMIN', pass: '123' }
+    };
+
+    function redirectByRole(role) {
+      if (role === 'ROLE_ADMIN') {
+        window.location.href = 'admin/dashboard.html';
+      } else if (role === 'ROLE_INSTRUCTOR') {
+        window.location.href = 'instructor/dashboard.html';
+      } else {
+        window.location.href = 'student/dashboard.html';
+      }
+    }
+
+    async function loginWithCredentials(email, password) {
+      const btn = document.getElementById('btnSubmitModalLogin');
+      if (btn) { btn.disabled = true; btn.textContent = 'Đang kết nối Database...'; }
+
+      let success = false;
+      let authenticatedUser = null;
+      let token = '';
+
+      // 1. Thử gửi API Backend Spring Boot & MySQL
+      try {
+        const response = await fetch('/api/v1/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, password: password })
+        });
+        if (response.ok) {
+          const data = await response.json();
+          token = data.accessToken || data.token || ('token_' + Date.now());
+          authenticatedUser = data.user || { email: email, role: 'ROLE_USER', name: email.split('@')[0] };
+          success = true;
+        }
+      } catch (err) {}
+
+      // 2. Dự phòng: Kiểm tra tài khoản đã đăng ký hoặc demo
+      if (!success) {
+        const regUsers = JSON.parse(localStorage.getItem('lhd_registered_users') || '[]');
+        const foundReg = regUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
+        if (foundReg && foundReg.password === password) {
+          success = true;
+          token = 'token_local_' + Date.now();
+          authenticatedUser = { id: foundReg.id || Date.now(), name: foundReg.name, email: foundReg.email, role: foundReg.role || 'ROLE_USER' };
+        } else if (DEMO_USERS[email.toLowerCase()] && (DEMO_USERS[email.toLowerCase()].pass === password || password === '123456')) {
+          success = true;
+          const d = DEMO_USERS[email.toLowerCase()];
+          token = 'token_demo_' + Date.now();
+          authenticatedUser = { id: d.id, name: d.name, email: d.email, role: d.role };
+        }
+      }
+
+      if (btn) { btn.disabled = false; btn.textContent = 'Đăng Nhập Vào Hệ Thống'; }
+
+      if (success && authenticatedUser) {
+        closeModal();
+        localStorage.setItem('auth_token', token);
+        localStorage.setItem('user_info', JSON.stringify(authenticatedUser));
+        localStorage.setItem('lhd_learning_logged_in', 'true');
+        sessionStorage.setItem('current_user', JSON.stringify(authenticatedUser));
+
+        renderAuthState(true);
+        showToast('Đăng nhập thành công! Chào mừng ' + authenticatedUser.name + '.');
+        setTimeout(() => {
+          redirectByRole(authenticatedUser.role);
+        }, 600);
+      } else {
+        alert('Email hoặc mật khẩu không chính xác! Vui lòng thử lại.');
+      }
     }
 
     function logout() {
-      localStorage.removeItem(AUTH_STORAGE_KEY);
+      localStorage.removeItem('auth_token');
+      localStorage.removeItem('user_info');
+      localStorage.removeItem('lhd_learning_logged_in');
+      sessionStorage.clear();
       renderAuthState(false);
-      showToast('Đang đăng xuất...');
-      setTimeout(() => {
-        window.location.href = 'auth/login.html';
-      }, 350);
+      showToast('Đã đăng xuất thành công.');
     }
 
     function openModal() {
@@ -2670,17 +2723,26 @@
       if (bellDropdown) bellDropdown.classList.remove('show');
     }
 
-    // Modal Events
-    btnHeaderLogin.addEventListener('click', openModal);
+    // Modal & Navigation Events
+    btnHeaderLogin.addEventListener('click', () => {
+      window.location.href = 'auth/login.html';
+    });
     modalCloseBtn.addEventListener('click', closeModal);
     loginModalOverlay.addEventListener('click', (e) => {
       if (e.target === loginModalOverlay) closeModal();
     });
 
-    btnQuickLogin.addEventListener('click', login);
-    modalLoginForm.addEventListener('submit', (e) => {
+    if (btnQuickLogin) {
+      btnQuickLogin.addEventListener('click', () => {
+        window.location.href = 'auth/login.html';
+      });
+    }
+
+    modalLoginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      login();
+      const email = document.getElementById('modalInputEmail').value.trim();
+      const password = document.getElementById('modalInputPassword').value.trim();
+      await loginWithCredentials(email, password);
     });
 
     // Dropdown Toggles: Nút 3 gạch ngang (☰) mở menu 4 khu vực
@@ -2786,7 +2848,9 @@
         } else if (text.includes('chứng chỉ')) {
           appendAdminMessage('Bạn có thể truy cập mục <strong>Chứng chỉ</strong> trên menu hoặc từ Hồ sơ cá nhân để tải bản PDF có ký số xác thực hoặc chia sẻ trực tuyến bất cứ lúc nào nhé!');
         } else {
-          appendAdminMessage('Cảm ơn phản hồi quý báu của bạn! Bộ phận học thuật của LHD – Learning đã ghi nhận và sẽ phản hồi chi tiết tới email <strong>tanloc@lhd.edu.vn</strong> trong thời gian sớm nhất.');
+          const u = getCurrentUser();
+          const userEmail = u ? u.email : 'của bạn';
+          appendAdminMessage('Cảm ơn phản hồi quý báu của bạn! Bộ phận học thuật của LHD – Learning đã ghi nhận và sẽ phản hồi chi tiết tới email <strong>' + userEmail + '</strong> trong thời gian sớm nhất.');
         }
       }, 700);
     }
@@ -2800,7 +2864,9 @@
       if (chatQuickOptions) chatQuickOptions.style.display = 'none';
 
       setTimeout(() => {
-        appendAdminMessage('Cảm ơn câu hỏi của Huỳnh Tấn Lộc: <em>"' + val + '"</em>. Đội ngũ kỹ thuật viên và giảng viên của LHD đã tiếp nhận yêu cầu và sẽ hỗ trợ trực tiếp cho bạn ngay sau giây lát!');
+        const u = getCurrentUser();
+        const userName = u ? u.name : 'bạn';
+        appendAdminMessage('Cảm ơn câu hỏi của ' + userName + ': <em>"' + val + '"</em>. Đội ngũ kỹ thuật viên và giảng viên của LHD đã tiếp nhận yêu cầu và sẽ hỗ trợ trực tiếp cho bạn ngay sau giây lát!');
       }, 800);
     }
 
@@ -2814,15 +2880,6 @@
       }
     }
     syncUserAvatar();
-
-    // Floating Demo Switcher button
-    btnToggleDemo.addEventListener('click', () => {
-      if (isUserLoggedIn()) {
-        logout();
-      } else {
-        login();
-      }
-    });
 
     // Initialize on page load
     renderAuthState(isUserLoggedIn());

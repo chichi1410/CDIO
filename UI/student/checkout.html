@@ -433,11 +433,11 @@
         <span>Quay lại giỏ hàng</span>
       </a>
 
-      <a href="profile.html" class="user-capsule-sm" title="Học viên Huỳnh Tấn Lộc">
+      <a href="profile.html" class="user-capsule-sm" title="Hồ sơ cá nhân">
         <img
           src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64' shape-rendering='crispEdges'><rect width='64' height='64' fill='%23a4c68d'/><rect x='0' y='0' width='64' height='28' fill='%237ba36a'/><rect x='6' y='8' width='12' height='14' fill='%23507c43'/><rect x='46' y='10' width='14' height='12' fill='%23507c43'/><rect x='22' y='4' width='20' height='8' fill='%23669152'/><rect x='0' y='32' width='64' height='32' fill='%23c4936d'/><rect x='0' y='42' width='64' height='22' fill='%23b17c54'/><rect x='20' y='12' width='24' height='16' fill='%231e1e24'/><rect x='22' y='16' width='20' height='20' fill='%23fddbc3'/><rect x='24' y='34' width='16' height='4' fill='%23fbc5a3'/><rect x='18' y='10' width='28' height='8' fill='%2322242a'/><rect x='18' y='18' width='6' height='8' fill='%2322242a'/><rect x='40' y='18' width='6' height='8' fill='%2322242a'/><rect x='24' y='14' width='8' height='6' fill='%2330323a'/><rect x='34' y='14' width='8' height='5' fill='%2322242a'/><rect x='18' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='42' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='25' y='25' width='4' height='4' fill='%231e1e24'/><rect x='35' y='25' width='4' height='4' fill='%231e1e24'/><rect x='23' y='28' width='4' height='2' fill='%23f7a799'/><rect x='37' y='28' width='4' height='2' fill='%23f7a799'/><rect x='29' y='31' width='6' height='2' fill='%23d97d64'/><rect x='22' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='32' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='31' y='24' width='2' height='2' fill='%23111'/><rect x='24' y='22' width='2' height='2' fill='%23ffffff'/><rect x='34' y='22' width='2' height='2' fill='%23ffffff'/><rect x='16' y='38' width='32' height='26' fill='%232b2d35'/><rect x='28' y='38' width='8' height='8' fill='%23b91c1c'/><rect x='22' y='38' width='6' height='26' fill='%233a3d47'/><rect x='36' y='38' width='6' height='26' fill='%233a3d47'/><rect x='29' y='44' width='6' height='20' fill='%23dc2626'/><rect x='31' y='42' width='2' height='22' fill='%23991b1b'/></svg>"
           class="user-avatar-sm" alt="Avatar">
-        <span>Huỳnh Tấn Lộc</span>
+        <span class="user-capsule-name">Học Viên</span>
       </a>
     </div>
   </header>
@@ -465,11 +465,11 @@
       <div class="payer-info-banner">
         <div class="payer-info-item">
           <i class="fa-solid fa-user-graduate"></i>
-          <span>Học viên: <strong>Huỳnh Tấn Lộc</strong></span>
+          <span>Học viên: <strong id="payerName">Học Viên</strong></span>
         </div>
         <div class="payer-info-item">
           <i class="fa-solid fa-envelope"></i>
-          <span>Email: <strong>tanloc@lhd.edu.vn</strong></span>
+          <span>Email: <strong id="payerEmail">user@lhd.edu.vn</strong></span>
         </div>
         <div class="payer-info-item">
           <i class="fa-solid fa-tag"></i>
@@ -545,12 +545,33 @@
   </main>
 
   <script>
-    const AUTH_STORAGE_KEY = 'lhd_learning_logged_in';
+    let user = null;
+    try {
+      user = JSON.parse(localStorage.getItem('user_info') || sessionStorage.getItem('current_user') || 'null');
+    } catch (e) { user = null; }
 
-    // Verify session
-    const isLogged = localStorage.getItem(AUTH_STORAGE_KEY) === 'true';
-    if (!isLogged) {
-      window.location.href = '../auth/login.html?redirect=student/checkout.html';
+    if (!user) {
+      window.location.replace('../auth/login.html');
+    }
+
+    if (user) {
+      if (user.email) {
+        const regUsers = JSON.parse(localStorage.getItem('lhd_registered_users') || '[]');
+        const foundReg = regUsers.find(r => r.email.toLowerCase() === user.email.toLowerCase());
+        if (foundReg && foundReg.name) {
+          user.name = foundReg.name;
+        }
+      }
+      const displayName = user.name || (user.email ? user.email.split('@')[0] : 'Học Viên');
+      document.querySelectorAll('.user-capsule-name').forEach(el => el.textContent = displayName);
+      const payerName = document.getElementById('payerName');
+      if (payerName) payerName.textContent = displayName;
+      const payerEmail = document.getElementById('payerEmail');
+      if (payerEmail) payerEmail.textContent = user.email || '';
+      const savedAvatar = localStorage.getItem('lhd_user_avatar');
+      if (savedAvatar) {
+        document.querySelectorAll('.user-capsule-avatar').forEach(img => img.src = savedAvatar);
+      }
     }
 
     function selectMethod(element, type) {
@@ -574,7 +595,6 @@
       }
     }, 1000);
   </script>
-
 </body>
 
 </html>

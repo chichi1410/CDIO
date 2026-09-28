@@ -280,7 +280,7 @@
 
     <h1 class="title">Thanh Toán Thành Công!</h1>
     <p class="subtitle">
-      Cảm ơn học viên <strong>Huỳnh Tấn Lộc</strong>! Giao dịch đơn hàng <strong>#HD-2026-89410</strong> đã hoàn tất thành công qua cổng VNPay. Khóa học đã được tự động kích hoạt vào bảng điều khiển của bạn.
+      Cảm ơn học viên <strong id="studentSuccessName">Học Viên</strong>! Giao dịch đơn hàng <strong>#HD-2026-89410</strong> đã hoàn tất thành công qua cổng VNPay. Khóa học đã được tự động kích hoạt vào bảng điều khiển của bạn.
     </p>
 
     <div class="receipt-box">
@@ -290,7 +290,7 @@
       </div>
       <div class="receipt-row">
         <span class="receipt-label">Học viên nhận</span>
-        <span class="receipt-val">Huỳnh Tấn Lộc (tanloc@lhd.edu.vn)</span>
+        <span class="receipt-val" id="studentReceiptVal">Học Viên (user@lhd.edu.vn)</span>
       </div>
       <div class="receipt-row">
         <span class="receipt-label">Phương thức</span>
@@ -320,6 +320,23 @@
 
   </div>
 
+  <script>
+    let user = null;
+    try {
+      user = JSON.parse(localStorage.getItem('user_info') || sessionStorage.getItem('current_user') || 'null');
+    } catch (e) { user = null; }
+
+    if (!user) {
+      window.location.replace('../auth/login.html');
+    }
+
+    if (user) {
+      const name = user.name || 'Học Viên';
+      const email = user.email || '';
+      document.getElementById('studentSuccessName').textContent = name;
+      document.getElementById('studentReceiptVal').textContent = `${name} (${email})`;
+    }
+  </script>
 </body>
 
 </html>
