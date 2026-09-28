@@ -11,6 +11,8 @@ public interface CloudinaryService {
 
     FileUploadResponse uploadVideo(MultipartFile file, String folder);
 
+    FileUploadResponse uploadAudio(MultipartFile file, String folder);
+
     CloudinarySignatureResponse generatePresignedSignature(PresignedSignatureRequest request);
 
     void deleteFile(String publicId, String resourceType);

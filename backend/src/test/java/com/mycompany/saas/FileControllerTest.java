@@ -74,4 +74,18 @@ class FileControllerTest {
             cloudinaryService.uploadVideo(invalidFile, "saas/test");
         });
     }
+
+    @Test
+    void testUploadAudioWithInvalidTypeThrowsException() {
+        MockMultipartFile invalidFile = new MockMultipartFile(
+                "file",
+                "test.pdf",
+                "application/pdf",
+                "Fake PDF Content".getBytes()
+        );
+
+        Assertions.assertThrows(BadRequestException.class, () -> {
+            cloudinaryService.uploadAudio(invalidFile, "saas/test");
+        });
+    }
 }

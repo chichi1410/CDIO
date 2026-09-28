@@ -120,7 +120,23 @@ curl -X POST "http://localhost:8080/api/v1/files/upload-video?folder=saas/course
 
 ---
 
-### 3.3. Lấy Presigned Signature Cho Direct Upload Video (Frontend -> Cloudinary)
+### 3.3. Upload File Âm Thanh / MP3 Qua Server Backend (Audio Upload)
+- **Endpoint**: `POST /api/v1/files/upload-audio`
+- **Content-Type**: `multipart/form-data`
+- **Parameters**:
+  - `file`: File âm thanh (bắt buộc). Định dạng hỗ trợ: MP3, WAV, AAC, M4A, OGG.
+  - `folder` *(tùy chọn)*: Thư mục trên Cloudinary. Mặc định: `saas/audios`.
+
+#### Ví dụ cURL:
+```bash
+curl -X POST "http://localhost:8080/api/v1/files/upload-audio?folder=saas/audios" \
+  -H "Authorization: Bearer <YOUR_JWT_TOKEN>" \
+  -F "file=@/path/to/song.mp3"
+```
+
+---
+
+### 3.4. Lấy Presigned Signature Cho Direct Upload Video/Audio (Frontend -> Cloudinary)
 - **Endpoint**: `POST /api/v1/files/presigned-signature`
 - **Content-Type**: `application/json`
 

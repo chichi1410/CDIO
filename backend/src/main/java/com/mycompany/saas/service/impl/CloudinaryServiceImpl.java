@@ -63,8 +63,18 @@ public class CloudinaryServiceImpl implements CloudinaryService {
     public FileUploadResponse uploadVideo(MultipartFile file, String folder) {
         validateFile(file);
         String contentType = file.getContentType();
-        if (contentType == null || !contentType.startsWith("video/")) {
-            throw new BadRequestException("File tải lên phải là video (mp4, mov, avi, webm,...)");
+        String originalFilename = file.getOriginalFilename() != null ? file.getOriginalFilename().toLowerCase() : "";
+
+        boolean isMedia = (contentType != null && (contentType.startsWith("video/") || contentType.startsWith("audio/")))
+                || originalFilename.endsWith(".mp4")
+                || originalFilename.endsWith(".mov")
+                || originalFilename.endsWith(".avi")
+                || originalFilename.endsWith(".webm")
+                || originalFilename.endsWith(".mp3")
+                || originalFilename.endsWith(".wav");
+
+        if (!isMedia) {
+            throw new BadRequestException("File tải lên phải là video hoặc âm thanh (mp4, mov, avi, webm, mp3,...)");
         }
 
         String targetFolder = (folder != null && !folder.isBlank()) ? folder : "saas/videos";
@@ -80,6 +90,39 @@ public class CloudinaryServiceImpl implements CloudinaryService {
             return mapToUploadResponse(uploadResult);
         } catch (IOException e) {
             throw new BadRequestException("Không thể tải video lên Cloudinary: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public FileUploadResponse uploadAudio(MultipartFile file, String folder) {
+        validateFile(file);
+        String contentType = file.getContentType();
+        String originalFilename = file.getOriginalFilename() != null ? file.getOriginalFilename().toLowerCase() : "";
+
+        boolean isAudio = (contentType != null && contentType.startsWith("audio/"))
+                || originalFilename.endsWith(".mp3")
+                || originalFilename.endsWith(".wav")
+                || originalFilename.endsWith(".aac")
+                || originalFilename.endsWith(".m4a")
+                || originalFilename.endsWith(".ogg");
+
+        if (!isAudio) {
+            throw new BadRequestException("File tải lên phải là file âm thanh (mp3, wav, aac, m4a, ogg,...)");
+        }
+
+        String targetFolder = (folder != null && !folder.isBlank()) ? folder : "saas/audios";
+
+        try {
+            Map<?, ?> uploadResult = cloudinary.uploader().upload(
+                    file.getBytes(),
+                    ObjectUtils.asMap(
+                            "folder", targetFolder,
+                            "resource_type", "video"
+                    )
+            );
+            return mapToUploadResponse(uploadResult);
+        } catch (IOException e) {
+            throw new BadRequestException("Không thể tải file âm thanh lên Cloudinary: " + e.getMessage());
         }
     }
 

@@ -47,6 +47,15 @@ public class FileController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    @PostMapping("/upload-audio")
+    @ApiMessage("Tải file âm thanh lên thành công")
+    public ResponseEntity<FileUploadResponse> uploadAudio(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam(value = "folder", required = false) String folder) {
+        FileUploadResponse response = cloudinaryService.uploadAudio(file, folder);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
     @PostMapping("/presigned-signature")
     @ApiMessage("Tạo chữ ký upload trực tiếp thành công")
     public ResponseEntity<CloudinarySignatureResponse> generatePresignedSignature(
