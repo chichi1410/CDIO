@@ -60,6 +60,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	implementation("com.turkraft.springfilter:jpa:3.1.7")
+	implementation("com.cloudinary:cloudinary-http44:1.39.0")
 
 	runtimeOnly("com.mysql:mysql-connector-j")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
