@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phê Duyệt Khóa Học | Admin Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root { --primary: #9333ea; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: #f8fafc; color: #0f172a; min-height: 100vh; }
+
+    header { background: #0f172a; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; color: white; }
+    .container { max-width: 1100px; margin: 2.5rem auto; padding: 0 5%; }
+
+    .approval-card {
+      background: white; border-radius: 28px; padding: 2rem; border: 1.5px solid #f1f5f9;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.03); margin-bottom: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .btn-approve {
+      padding: 0.7rem 1.4rem; border-radius: 9999px; border: none; background: #16a34a;
+      color: white; font-weight: 700; cursor: pointer; margin-right: 8px;
+    }
+
+    .btn-reject {
+      padding: 0.7rem 1.4rem; border-radius: 9999px; border: none; background: #dc2626;
+      color: white; font-weight: 700; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="dashboard.html" style="font-weight: 800; text-decoration: none; color: white;"> Quay lại Admin Dashboard</a>
+    <span style="font-weight: 800;">Duyệt Khóa Học Mới Từ Giảng Viên</span>
+  </header>
+
+  <div class="container">
+    <h1 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem;">Danh Sách Khóa Học Cho Phê Duyệt (1)</h1>
+
+    <div class="approval-card">
+      <div>
+        <h3 style="font-weight: 800; font-size: 1.15rem;">🇯🇵 Luyện Thi JLPT N3 Đọc Hiểu & Nghe Hiểu</h3>
+        <p style="color: #64748b; font-size: 0.88rem; margin-top: 4px;">Giảng viên: Thầy Kenji Tanaka • Đơn giá: 1,690,000đ • Số bài giảng: 18 bài video</p>
+      </div>
+      <div>
+        <button class="btn-approve"><i class="fa-solid fa-check"></i> Duyệt Xuất Bản</button>
+        <button class="btn-reject"><i class="fa-solid fa-xmark"></i> Từ Chối</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

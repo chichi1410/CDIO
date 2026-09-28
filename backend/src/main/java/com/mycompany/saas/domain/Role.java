@@ -1,0 +1,8 @@
+package com.mycompany.saas.domain;
+
+public enum Role {
+    ROLE_USER,
+    ROLE_INSTRUCTOR,
+    ROLE_ADMIN
+}
+
