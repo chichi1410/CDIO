@@ -78,6 +78,7 @@ public class SecurityConfiguration {
                                 "/**/*.ico",
                                 "/admin/**",
                                 "/auth/**",
+                                "/api/v1/files/**",
                                 "/files/**",
                                 "/instructor/**",
                                 "/student/**",
