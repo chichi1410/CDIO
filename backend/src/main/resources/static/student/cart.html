@@ -7,8 +7,7 @@
   <title>Giỏ Hàng | LHD – Learning</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -80,6 +79,12 @@
       justify-content: space-between;
     }
 
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 3.5rem;
+    }
+
     .brand-logo {
       display: flex;
       align-items: center;
@@ -90,7 +95,7 @@
     .brand-icon {
       width: 42px;
       height: 42px;
-      background: var(--primary-grad);
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -98,15 +103,63 @@
       color: white;
       font-size: 1.25rem;
       box-shadow: 0 4px 16px rgba(139, 92, 246, 0.35);
+      flex-shrink: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .brand-logo:hover .brand-icon {
+      transform: rotate(-6deg) scale(1.06);
+      box-shadow: 0 6px 22px rgba(236, 72, 153, 0.45);
     }
 
     .brand-title {
       font-size: 1.35rem;
       font-weight: 800;
-      background: var(--primary-grad);
+      background: linear-gradient(135deg, #0b63e5 0%, #7c3aed 55%, #ec4899 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.3px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #374151;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 8px 20px;
+      border-radius: 9999px;
+      transition: all 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: #7c3aed;
+      background: linear-gradient(135deg, rgba(11, 99, 229, 0.05), rgba(236, 72, 153, 0.08));
+    }
+
+    .nav-links a.nav-item-active {
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%) !important;
+      color: #ffffff !important;
+      padding: 8px 20px;
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.38);
     }
 
     .header-right {
@@ -226,7 +279,7 @@
     .cart-item {
       background: white;
       border-radius: 24px;
-      padding: 1.5rem;
+      padding: 1.25rem 1.5rem;
       margin-bottom: 1.2rem;
       display: flex;
       gap: 1.5rem;
@@ -241,13 +294,32 @@
       transform: translateY(-2px);
     }
 
-    .cart-thumb {
-      width: 120px;
+    .cart-thumb-box {
+      width: 130px;
       height: 80px;
-      border-radius: 16px;
-      background-size: cover;
-      background-position: center;
+      border-radius: 14px;
+      overflow: hidden;
       flex-shrink: 0;
+      background: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .cart-thumb-box svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .cart-thumb-box img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
     }
 
     .cart-info {
@@ -259,12 +331,14 @@
       font-size: 1.05rem;
       margin-bottom: 0.35rem;
       color: var(--text-main);
+      line-height: 1.4;
     }
 
     .cart-price {
       font-weight: 800;
       font-size: 1.2rem;
       color: var(--primary-color);
+      white-space: nowrap;
     }
 
     .summary-card {
@@ -314,6 +388,11 @@
       outline: none;
       font-weight: 600;
       font-size: 0.9rem;
+      transition: border-color 0.2s;
+    }
+
+    .voucher-input:focus {
+      border-color: var(--primary-color);
     }
 
     .btn-apply {
@@ -325,6 +404,7 @@
       font-weight: 700;
       cursor: pointer;
       transition: background 0.2s;
+      white-space: nowrap;
     }
 
     .btn-apply:hover {
@@ -369,10 +449,18 @@
   <div class="bg-orb bg-orb-2"></div>
 
   <header>
-    <a href="../index.html" class="brand-logo">
-      <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-      <span class="brand-title">LHD – Learning</span>
-    </a>
+    <div class="header-left">
+      <a href="../index.html" class="brand-logo">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span class="brand-title">LHD – Learning</span>
+      </a>
+
+      <!-- Desktop Navigation Menu (Đồng bộ vị trí với index.html) -->
+      <ul class="nav-links">
+        <li><a href="../index.html">Trang chủ</a></li>
+        <li><a href="../courses.html">Khóa học</a></li>
+      </ul>
+    </div>
 
     <div class="header-right">
       <a href="../courses.html" class="btn-nav-outline">
@@ -398,48 +486,32 @@
     <h1 class="page-h1">
       <i class="fa-solid fa-cart-shopping" style="color: var(--primary-color);"></i>
       Giỏ Hàng Của Bạn
-      <span class="cart-badge-count">2 Khóa học</span>
+      <span class="cart-badge-count" id="cartHeaderBadge">0 Khóa học</span>
     </h1>
 
     <div class="cart-grid">
-      <div>
-        <div class="cart-item">
-          <div class="cart-thumb" style="background-image: url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=300');"></div>
-          <div class="cart-info">
-            <div class="cart-title">Tiếng Anh Giao Tiếp Siêu Phản Xạ Cùng Người Bản Xứ</div>
-            <div style="font-size: 0.85rem; color: #64748b;"><i class="fa-solid fa-chalkboard-user"></i> Giảng viên: Cô Emily Watson</div>
-          </div>
-          <div class="cart-price">1.290.000đ</div>
-          <i class="fa-solid fa-trash-can" style="color: #94a3b8; cursor: pointer; margin-left: 1rem;" title="Xóa khóa học" onclick="this.closest('.cart-item').remove()"></i>
-        </div>
-
-        <div class="cart-item">
-          <div class="cart-thumb" style="background-image: url('https://images.unsplash.com/photo-1528164344705-47542687990d?w=300');"></div>
-          <div class="cart-info">
-            <div class="cart-title">Chinh Phục N5 - N4 Tiếng Nhật Cấp Tốc</div>
-            <div style="font-size: 0.85rem; color: #64748b;"><i class="fa-solid fa-chalkboard-user"></i> Giảng viên: Thầy Kenji Tanaka</div>
-          </div>
-          <div class="cart-price">1.450.000đ</div>
-          <i class="fa-solid fa-trash-can" style="color: #94a3b8; cursor: pointer; margin-left: 1rem;" title="Xóa khóa học" onclick="this.closest('.cart-item').remove()"></i>
-        </div>
+      <div id="cartItemsList">
+        <!-- Dynamic list rendered by JavaScript -->
       </div>
 
       <div class="summary-card">
         <h2 class="summary-h2">Tóm Tắt Đơn Hàng</h2>
-        <div class="summary-row"><span>Tạm tính</span> <span>2.740.000đ</span></div>
-        <div class="summary-row"><span>Giảm giá Voucher (CHAOMUNG2026)</span> <span style="color: #059669; font-weight: 700;">-200.000đ</span></div>
+        <div class="summary-row"><span>Tạm tính</span> <span id="summarySubtotal">0đ</span></div>
+        <div class="summary-row"><span>Giảm giá Voucher</span> <span id="summaryDiscount"
+            style="color: #059669; font-weight: 700;">0đ</span></div>
 
         <div class="voucher-wrap">
-          <input type="text" value="CHAOMUNG2026" class="voucher-input">
-          <button class="btn-apply">Áp dụng</button>
+          <input type="text" value="" placeholder="Nhập mã giảm giá (VD: CHAOMUNG2026)" class="voucher-input"
+            id="voucherInput">
+          <button type="button" class="btn-apply" onclick="applyVoucher()">Áp dụng</button>
         </div>
 
         <div class="summary-row summary-total">
           <span>Tổng thanh toán</span>
-          <span style="color: var(--primary-color); font-size: 1.4rem;">2.540.000đ</span>
+          <span id="summaryTotal" style="color: var(--primary-color); font-size: 1.4rem;">0đ</span>
         </div>
 
-        <a href="checkout.html" class="btn-checkout" style="margin-top: 1.5rem;">
+        <a href="checkout.html" class="btn-checkout" id="btnProceedCheckout" style="margin-top: 1.5rem;">
           <i class="fa-solid fa-shield-check"></i>
           <span>TIẾN HÀNH THANH TOÁN VNPAY</span>
         </a>
@@ -472,6 +544,154 @@
         document.querySelectorAll('.user-capsule-avatar, .user-pill-avatar').forEach(img => img.src = savedAvatar);
       }
     }
+
+    let appliedVoucher = null;
+
+    const VOUCHERS = {
+      'CHAOMUNG2026': { discount: 200000, type: 'fixed', label: 'CHAOMUNG2026' },
+      'LHDVIP': { discount: 500000, type: 'fixed', label: 'LHDVIP' },
+      'GIAM100K': { discount: 100000, type: 'fixed', label: 'GIAM100K' },
+      'GIAM50K': { discount: 50000, type: 'fixed', label: 'GIAM50K' },
+      'GIAM10PT': { discount: 0.1, type: 'percent', label: 'GIAM10PT' },
+      'HOCVIENMOI': { discount: 150000, type: 'fixed', label: 'HOCVIENMOI' }
+    };
+
+    function formatMoney(amount) {
+      return (amount || 0).toLocaleString('vi-VN') + 'đ';
+    }
+
+    function getCartData() {
+      try {
+        return JSON.parse(localStorage.getItem('lhd_cart') || '[]');
+      } catch (e) { return []; }
+    }
+
+    function saveCartData(cart) {
+      localStorage.setItem('lhd_cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function removeCartItem(index) {
+      let cart = getCartData();
+      if (index >= 0 && index < cart.length) {
+        cart.splice(index, 1);
+        saveCartData(cart);
+      }
+    }
+
+    function applyVoucher() {
+      const input = document.getElementById('voucherInput');
+      const code = (input.value || '').trim().toUpperCase();
+
+      if (!code) {
+        appliedVoucher = null;
+        alert('Vui lòng nhập mã giảm giá.');
+        renderCart();
+        return;
+      }
+
+      if (VOUCHERS[code]) {
+        appliedVoucher = { code, ...VOUCHERS[code] };
+        let discMsg = appliedVoucher.type === 'percent' ? (appliedVoucher.discount * 100 + '%') : formatMoney(appliedVoucher.discount);
+        alert(`Áp dụng mã giảm giá ${code} thành công! Được giảm ${discMsg}.`);
+      } else {
+        appliedVoucher = null;
+        alert('Mã giảm giá không hợp lệ hoặc đã hết hạn.');
+      }
+      renderCart();
+    }
+
+    function renderCart() {
+      const cart = getCartData();
+      const listElem = document.getElementById('cartItemsList');
+      const badgeElem = document.getElementById('cartHeaderBadge');
+      const subtotalElem = document.getElementById('summarySubtotal');
+      const discountElem = document.getElementById('summaryDiscount');
+      const totalElem = document.getElementById('summaryTotal');
+      const btnCheckout = document.getElementById('btnProceedCheckout');
+
+      badgeElem.textContent = cart.length + ' Khóa học';
+
+      if (cart.length === 0) {
+        listElem.innerHTML = `
+          <div style="text-align: center; padding: 3rem 1.5rem; background: white; border-radius: 24px; border: 1.5px solid #f1f5f9; box-shadow: 0 8px 25px rgba(0,0,0,0.03);">
+            <i class="fa-solid fa-cart-shopping" style="font-size: 3.5rem; color: #cbd5e1; margin-bottom: 1rem;"></i>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #1e293b; margin-bottom: 0.5rem;">Giỏ hàng của bạn đang trống</h3>
+            <p style="color: #64748b; font-size: 0.92rem; margin-bottom: 1.5rem;">Bạn chưa thêm khóa học nào vào giỏ hàng. Hãy khám phá ngay các khóa học chất lượng của LHD!</p>
+            <a href="../courses.html" class="btn-checkout" style="display: inline-flex; width: auto; padding: 0.8rem 2rem;">
+              <i class="fa-solid fa-compass"></i>
+              <span>Khám phá khóa học ngay</span>
+            </a>
+          </div>
+        `;
+        subtotalElem.textContent = '0đ';
+        discountElem.textContent = '0đ';
+        totalElem.textContent = '0đ';
+        if (btnCheckout) {
+          btnCheckout.style.opacity = '0.5';
+          btnCheckout.style.pointerEvents = 'none';
+        }
+        return;
+      }
+
+      if (btnCheckout) {
+        btnCheckout.style.opacity = '1';
+        btnCheckout.style.pointerEvents = 'auto';
+      }
+
+      let subtotal = 0;
+      let html = '';
+
+      cart.forEach((item, idx) => {
+        let priceNum = item.priceVal || parseInt((item.price || '0').replace(/[^0-9]/g, '')) || 1850000;
+        subtotal += priceNum;
+
+        let thumbMarkup = '';
+        if (item.thumbSvg) {
+          thumbMarkup = `<div class="cart-thumb-box">${item.thumbSvg}</div>`;
+        } else if (item.thumb && item.thumb.startsWith('data:image/svg+xml')) {
+          thumbMarkup = `<div class="cart-thumb-box"><img src="${item.thumb}" alt="${item.title}"></div>`;
+        } else if (item.thumb) {
+          thumbMarkup = `<div class="cart-thumb-box"><img src="${item.thumb}" alt="${item.title}"></div>`;
+        } else {
+          thumbMarkup = `<div class="cart-thumb-box"><img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=300" alt="${item.title}"></div>`;
+        }
+
+        html += `
+          <div class="cart-item">
+            ${thumbMarkup}
+            <div class="cart-info">
+              <div class="cart-title">${item.title}</div>
+              <div style="font-size: 0.85rem; color: #64748b;"><i class="fa-solid fa-chalkboard-user"></i> Giảng viên: ${item.instructor || 'Giảng viên LHD – Learning'}</div>
+            </div>
+            <div class="cart-price">${item.price || formatMoney(priceNum)}</div>
+            <i class="fa-solid fa-trash-can" style="color: #94a3b8; cursor: pointer; margin-left: 1rem; font-size: 1.15rem; transition: color 0.2s;" title="Xóa khóa học khỏi giỏ hàng" onmouseover="this.style.color='#ef4444'" onmouseout="this.style.color='#94a3b8'" onclick="removeCartItem(${idx})"></i>
+          </div>
+        `;
+      });
+
+      listElem.innerHTML = html;
+
+      let discount = 0;
+      if (appliedVoucher) {
+        if (appliedVoucher.type === 'percent') {
+          discount = Math.round(subtotal * appliedVoucher.discount);
+        } else {
+          discount = appliedVoucher.discount;
+        }
+      }
+      if (discount > subtotal) discount = subtotal;
+
+      let finalTotal = Math.max(0, subtotal - discount);
+
+      subtotalElem.textContent = formatMoney(subtotal);
+      discountElem.textContent = discount > 0 ? ('-' + formatMoney(discount)) : '0đ';
+      totalElem.textContent = formatMoney(finalTotal);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderCart();
+    });
 
     const btnLogoutUser = document.getElementById('btnLogoutUser');
     if (btnLogoutUser) {

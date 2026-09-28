@@ -2672,9 +2672,10 @@
           body: JSON.stringify({ email: email, password: password })
         });
         if (response.ok) {
-          const data = await response.json();
-          token = data.accessToken || data.token || ('token_' + Date.now());
-          authenticatedUser = data.user || { email: email, role: 'ROLE_USER', name: email.split('@')[0] };
+          const resData = await response.json();
+          const payload = resData.data || resData;
+          token = payload.accessToken || payload.token || resData.accessToken || ('token_' + Date.now());
+          authenticatedUser = payload.user || resData.user || { email: email, role: 'ROLE_USER', name: email.split('@')[0] };
           success = true;
         }
       } catch (err) { }

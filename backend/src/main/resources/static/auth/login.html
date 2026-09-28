@@ -812,9 +812,10 @@
         });
 
         if (response.ok) {
-          const data = await response.json();
-          token = data.accessToken || data.token || ('token_' + Date.now());
-          authenticatedUser = data.user || { email: email, role: 'ROLE_USER', name: email.split('@')[0] };
+          const resData = await response.json();
+          const payload = resData.data || resData;
+          token = payload.accessToken || payload.token || resData.accessToken || ('token_' + Date.now());
+          authenticatedUser = payload.user || resData.user || { email: email, role: 'ROLE_USER', name: email.split('@')[0] };
           success = true;
         } else {
           const errData = await response.json().catch(() => ({}));
@@ -844,11 +845,13 @@
       }
 
       if (success && authenticatedUser) {
-        // Kiểm tra ưu tiên lấy Họ và tên đăng ký ban đầu từ lhd_registered_users nếu có
-        const regUsers = JSON.parse(localStorage.getItem('lhd_registered_users') || '[]');
-        const foundReg = regUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
-        if (foundReg && foundReg.name) {
-          authenticatedUser.name = foundReg.name;
+        // Chỉ fallback Họ và tên từ lhd_registered_users nếu tài khoản chưa có tên từ backend
+        if (!authenticatedUser.name) {
+          const regUsers = JSON.parse(localStorage.getItem('lhd_registered_users') || '[]');
+          const foundReg = regUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
+          if (foundReg && foundReg.name) {
+            authenticatedUser.name = foundReg.name;
+          }
         }
 
         // Lưu thông tin phiên đăng nhập vào trình duyệt
@@ -856,6 +859,11 @@
         localStorage.setItem('user_info', JSON.stringify(authenticatedUser));
         localStorage.setItem('lhd_learning_logged_in', 'true');
         sessionStorage.setItem('current_user', JSON.stringify(authenticatedUser));
+
+        // Đồng bộ avatar từ backend vào localStorage (hỗ trợ đăng nhập đa thiết bị)
+        if (authenticatedUser.avatarUrl) {
+          localStorage.setItem('lhd_user_avatar', authenticatedUser.avatarUrl);
+        }
 
         const roleLabel = authenticatedUser.role === 'ROLE_ADMIN' ? 'Quản trị viên' : (authenticatedUser.role === 'ROLE_INSTRUCTOR' ? 'Giảng viên' : 'Học viên');
         showToast(`Đăng nhập thành công! Xin chào ${authenticatedUser.name} (${roleLabel}). Đang chuyển hướng về trang chủ...`);

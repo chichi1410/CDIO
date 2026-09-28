@@ -2,6 +2,7 @@ package com.mycompany.saas.service.impl;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import com.cloudinary.Cloudinary;
@@ -63,9 +64,11 @@ public class CloudinaryServiceImpl implements CloudinaryService {
     public FileUploadResponse uploadVideo(MultipartFile file, String folder) {
         validateFile(file);
         String contentType = file.getContentType();
-        String originalFilename = file.getOriginalFilename() != null ? file.getOriginalFilename().toLowerCase() : "";
+        String originalFilename = file.getOriginalFilename() != null
+                ? file.getOriginalFilename().toLowerCase(Locale.ROOT) : "";
 
-        boolean isMedia = (contentType != null && (contentType.startsWith("video/") || contentType.startsWith("audio/")))
+        boolean isMedia = (contentType != null
+                && (contentType.startsWith("video/") || contentType.startsWith("audio/")))
                 || originalFilename.endsWith(".mp4")
                 || originalFilename.endsWith(".mov")
                 || originalFilename.endsWith(".avi")
@@ -97,7 +100,8 @@ public class CloudinaryServiceImpl implements CloudinaryService {
     public FileUploadResponse uploadAudio(MultipartFile file, String folder) {
         validateFile(file);
         String contentType = file.getContentType();
-        String originalFilename = file.getOriginalFilename() != null ? file.getOriginalFilename().toLowerCase() : "";
+        String originalFilename = file.getOriginalFilename() != null
+                ? file.getOriginalFilename().toLowerCase(Locale.ROOT) : "";
 
         boolean isAudio = (contentType != null && contentType.startsWith("audio/"))
                 || originalFilename.endsWith(".mp3")

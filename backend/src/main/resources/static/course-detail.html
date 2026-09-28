@@ -914,20 +914,14 @@
             <!-- Bell Dropdown Popover (rủ xuống bên trái, dưới chuông) -->
             <div class="nav-dropdown" id="bellDropdown" style="min-width: 320px; left: 0; right: auto;">
               <div class="dropdown-header" style="display: flex; justify-content: space-between; align-items: center;">
-                <div class="dropdown-header-title">Thông báo mới</div>
+                <div class="dropdown-header-title">Thông báo (0)</div>
                 <button type="button" id="btnMarkAllRead"
                   style="background: none; border: none; color: #0b63e5; font-size: 0.78rem; font-weight: 700; cursor: pointer;">Đã
                   đọc tất cả</button>
               </div>
-              <div style="padding: 0.65rem 0.85rem; border-radius: 12px; background: #f8fafc; margin-bottom: 6px;">
-                <div style="font-weight: 700; font-size: 0.85rem; color: #0f172a; margin-bottom: 3px;">🇬🇧 Lớp học Live sắp bắt đầu</div>
-                <div style="font-size: 0.8rem; color: #475569; line-height: 1.4;">Buổi tương tác phản xạ Tiếng Anh cùng Cô Emily Watson sẽ mở lúc 20:00.</div>
-                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 4px;">15 phút trước</div>
-              </div>
-              <div style="padding: 0.65rem 0.85rem; border-radius: 12px; background: #f8fafc;">
-                <div style="font-weight: 700; font-size: 0.85rem; color: #0f172a; margin-bottom: 3px;">🇯🇵 Kết quả bài test từ vựng N5</div>
-                <div style="font-size: 0.8rem; color: #475569; line-height: 1.4;">Điểm số của bạn: 95/100. Đủ điều kiện chuyển sang giai đoạn N4.</div>
-                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 4px;">2 giờ trước</div>
+              <div style="padding: 1.5rem; text-align: center; color: #94a3b8; font-size: 0.88rem;">
+                <i class="fa-regular fa-bell-slash" style="font-size: 1.8rem; margin-bottom: 0.5rem; display: block; color: #cbd5e1;"></i>
+                Không có thông báo mới
               </div>
             </div>
           </div>
@@ -1168,21 +1162,31 @@
           const raw = localStorage.getItem('lhd_user_session') || sessionStorage.getItem('lhd_user_session');
           if (raw) u = JSON.parse(raw);
         }
-        if (u && u.email) {
+        if (!u) {
+          const raw = localStorage.getItem('user') || sessionStorage.getItem('user');
+          if (raw) u = JSON.parse(raw);
+        }
+        if (u && (u.email || u.username || u.name)) {
           const regUsers = JSON.parse(localStorage.getItem('lhd_registered_users') || '[]');
-          const foundReg = regUsers.find(r => r.email.toLowerCase() === u.email.toLowerCase());
+          const foundReg = regUsers.find(r => (u.email && r.email && r.email.toLowerCase() === u.email.toLowerCase()) || (u.name && r.name && r.name.toLowerCase() === u.name.toLowerCase()));
           if (foundReg && foundReg.name) {
             u.name = foundReg.name;
           }
         }
         if (u) return u;
       } catch (e) {}
-      if (localStorage.getItem(AUTH_STORAGE_KEY) === 'true') {
+
+      const regUsers = JSON.parse(localStorage.getItem('lhd_registered_users') || '[]');
+      const hasAvatar = localStorage.getItem('lhd_user_avatar');
+      const hasAuth = localStorage.getItem('auth_token') || localStorage.getItem('lhd_learning_logged_in') === 'true' || localStorage.getItem(AUTH_STORAGE_KEY) === 'true';
+
+      if (hasAuth || hasAvatar || regUsers.length > 0) {
+        const lastReg = regUsers.length > 0 ? regUsers[regUsers.length - 1] : null;
         return {
-          id: 'user_default',
-          name: localStorage.getItem('lhd_user_fullname') || 'Học viên',
-          email: 'hocvien@lhd.edu.vn',
-          role: 'ROLE_STUDENT'
+          id: lastReg ? lastReg.id : 'user_default',
+          name: (lastReg && lastReg.name) ? lastReg.name : (localStorage.getItem('lhd_user_fullname') || 'talooc'),
+          email: (lastReg && lastReg.email) ? lastReg.email : 'student@lhd.edu.vn',
+          role: (lastReg && lastReg.role) ? lastReg.role : 'ROLE_STUDENT'
         };
       }
       return null;
@@ -1221,13 +1225,64 @@
       const isLogged = !!u;
       renderAuthState(isLogged);
       if (u) {
-        document.querySelectorAll('.user-capsule-name, .menu-banner-name, .chat-user-name').forEach(el => el.textContent = u.name);
+        const displayName = u.name || u.fullName || u.username || (u.email ? u.email.split('@')[0] : 'talooc');
+        document.querySelectorAll('.user-capsule-name, .menu-banner-name, .chat-user-name').forEach(el => el.textContent = displayName);
+        const emailEl = document.querySelector('.menu-banner-sub');
+        if (emailEl) emailEl.textContent = u.email || 'student@lhd.edu.vn';
         document.querySelectorAll('.menu-banner-role').forEach(el => {
           if (u.role === 'ROLE_ADMIN') el.textContent = 'Quản trị viên Hệ thống';
           else if (u.role === 'ROLE_INSTRUCTOR') el.textContent = 'Giảng viên chuyên môn';
           else el.textContent = 'Học viên trực tuyến';
         });
+        const savedAvatar = localStorage.getItem('lhd_user_avatar');
+        if (savedAvatar) {
+          document.querySelectorAll('.user-capsule-avatar, .menu-banner-avatar, #headerUserAvatar').forEach(img => img.src = savedAvatar);
+        }
       }
+    }
+
+    // Immediate and continuous sync
+    syncUserUI();
+    setInterval(syncUserUI, 400);
+
+    const defaultCourseObj = {
+      id: 1,
+      title: 'Tiếng Anh Giao Tiếp Siêu Phản Xạ Cùng Người Bản Xứ',
+      instructor: 'Cô Emily Watson',
+      price: '1.290.000đ',
+      priceVal: 1290000,
+      thumb: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=300'
+    };
+
+    function addCourseToCartStorage(courseObj) {
+      let cart = [];
+      try { cart = JSON.parse(localStorage.getItem('lhd_cart') || '[]'); } catch (e) { cart = []; }
+      const exists = cart.find(c => c.title === courseObj.title);
+      if (!exists) {
+        cart.push(courseObj);
+        localStorage.setItem('lhd_cart', JSON.stringify(cart));
+      }
+    }
+
+    if (dynamicCartBtn) {
+      dynamicCartBtn.addEventListener('click', (e) => {
+        if (isUserLoggedIn()) {
+          e.preventDefault();
+          addCourseToCartStorage(defaultCourseObj);
+          alert('Đã thêm khóa học "' + defaultCourseObj.title + '" vào giỏ hàng thành công!');
+          window.location.href = 'student/cart.html';
+        }
+      });
+    }
+
+    if (dynamicBuyBtn) {
+      dynamicBuyBtn.addEventListener('click', (e) => {
+        if (isUserLoggedIn()) {
+          e.preventDefault();
+          addCourseToCartStorage(defaultCourseObj);
+          window.location.href = 'student/cart.html';
+        }
+      });
     }
 
     if (btnLogoutUser) {

@@ -1,5 +1,7 @@
 package com.mycompany.saas;
 
+import java.nio.charset.StandardCharsets;
+
 import com.mycompany.saas.domain.request.PresignedSignatureRequest;
 import com.mycompany.saas.domain.response.CloudinarySignatureResponse;
 import com.mycompany.saas.service.CloudinaryService;
@@ -11,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 
 @SpringBootTest
-@edu.umd.cs.findbugs.annotations.SuppressFBWarnings("EI_EXPOSE_REP2")
 class FileControllerTest {
 
     @Autowired
@@ -53,7 +54,7 @@ class FileControllerTest {
                 "file",
                 "test.txt",
                 "text/plain",
-                "Hello World".getBytes()
+                "Hello World".getBytes(StandardCharsets.UTF_8)
         );
 
         Assertions.assertThrows(BadRequestException.class, () -> {
@@ -67,7 +68,7 @@ class FileControllerTest {
                 "file",
                 "test.png",
                 "image/png",
-                "Fake Image Content".getBytes()
+                "Fake Image Content".getBytes(StandardCharsets.UTF_8)
         );
 
         Assertions.assertThrows(BadRequestException.class, () -> {
@@ -81,7 +82,7 @@ class FileControllerTest {
                 "file",
                 "test.pdf",
                 "application/pdf",
-                "Fake PDF Content".getBytes()
+                "Fake PDF Content".getBytes(StandardCharsets.UTF_8)
         );
 
         Assertions.assertThrows(BadRequestException.class, () -> {

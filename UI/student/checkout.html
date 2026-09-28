@@ -574,6 +574,21 @@
       }
     }
 
+    // Sync total from cart
+    try {
+      const cart = JSON.parse(localStorage.getItem('lhd_cart') || '[]');
+      if (cart.length > 0) {
+        let totalVal = 0;
+        cart.forEach(item => {
+          totalVal += item.priceVal || parseInt((item.price || '0').replace(/[^0-9]/g, '')) || 0;
+        });
+        const totalElem = document.querySelector('.price-total-val');
+        if (totalElem && totalVal > 0) {
+          totalElem.textContent = totalVal.toLocaleString('vi-VN') + 'đ';
+        }
+      }
+    } catch (e) {}
+
     function selectMethod(element, type) {
       document.querySelectorAll('.method-item').forEach(item => {
         item.classList.remove('active');
