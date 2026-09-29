@@ -1860,18 +1860,18 @@
 
     <div class="header-right">
       <!-- State 1: Guest (When NOT logged in) -->
-      <div class="nav-actions-guest" id="navActionsGuest">
-        <button type="button" class="btn-guest-login" id="btnHeaderLogin">
+      <div class="nav-actions-guest" id="navActionsGuest" style="display: inline-flex;">
+        <a href="auth/login.html" class="btn-guest-login" id="btnHeaderLogin">
           <i class="fa-regular fa-user"></i>
           <span>Đăng nhập</span>
-        </button>
+        </a>
         <a href="auth/register.html" class="btn-guest-register">
           <span>Đăng ký</span>
         </a>
       </div>
 
       <!-- State 2: Logged in (Thứ tự: Thông báo -> Giỏ hàng | Đẩy sang phải: Tài khoản -> Menu ☰) -->
-      <div class="nav-actions-user" id="navActionsUser">
+      <div class="nav-actions-user" id="navActionsUser" style="display: none;">
         <!-- Nhóm 1: Thông báo đặt trước Giỏ hàng -->
         <div class="nav-user-left-group">
           <!-- 1. Bell Button (with Red Badge 0 - default hidden) - Nằm trước Giỏ hàng -->
@@ -1943,7 +1943,12 @@
 
               <!-- 2. Quản lý Học tập -->
               <div class="menu-group-heading">Quản lý Học tập</div>
-              <a href="student/dashboard.html" class="student-menu-item">
+              <a href="student/home.html" class="student-menu-item">
+                <div class="menu-item-icon"><i class="fa-solid fa-house"></i></div>
+                <span class="menu-item-title">Trang chủ học viên</span>
+              </a>
+
+              <a href="student/my-courses.html" class="student-menu-item">
                 <div class="menu-item-icon"><i class="fa-solid fa-book-bookmark"></i></div>
                 <span class="menu-item-title">Khóa học của tôi</span>
               </a>
@@ -1951,6 +1956,11 @@
               <a href="courses.html" class="student-menu-item">
                 <div class="menu-item-icon"><i class="fa-solid fa-compass"></i></div>
                 <span class="menu-item-title">Khám phá khóa học</span>
+              </a>
+
+              <a href="student/certificates.html" class="student-menu-item">
+                <div class="menu-item-icon"><i class="fa-solid fa-award"></i></div>
+                <span class="menu-item-title">Chứng chỉ đạt được</span>
               </a>
 
               <a href="student/profile.html#orders" class="student-menu-item">
@@ -2864,8 +2874,8 @@
       <div>
         <h4 class="footer-title">Học Viên</h4>
         <ul class="footer-links">
-          <li><a href="student/dashboard.html">Bảng điều khiển</a></li>
-          <li><a href="auth/login.html" class="footer-cart-link">Giỏ hàng</a></li>
+          <li><a href="student/home.html">Không gian học viên</a></li>
+          <li><a href="student/my-courses.html">Khóa học của tôi</a></li>
           <li><a href="student/certificates.html">Chứng chỉ hoàn thành</a></li>
           <li><a href="javascript:void(0)" onclick="openChatModal()">Hỗ trợ kỹ thuật</a></li>
         </ul>
@@ -3044,6 +3054,9 @@
 
     function getCurrentUser() {
       try {
+        const token = localStorage.getItem('auth_token') || sessionStorage.getItem('auth_token');
+        if (!token) return null;
+
         let u = JSON.parse(localStorage.getItem('user_info') || sessionStorage.getItem('current_user') || 'null');
         if (!u) {
           const raw = localStorage.getItem('lhd_user_session') || sessionStorage.getItem('lhd_user_session');
@@ -3059,23 +3072,10 @@
           if (foundReg && foundReg.name) {
             u.name = foundReg.name;
           }
+          return u;
         }
-        if (u) return u;
-      } catch (e) { }
+      } catch (e) {}
 
-      const regUsers = JSON.parse(localStorage.getItem('lhd_registered_users') || '[]');
-      const hasAvatar = localStorage.getItem('lhd_user_avatar');
-      const hasAuth = localStorage.getItem('auth_token') || localStorage.getItem('lhd_learning_logged_in') === 'true' || localStorage.getItem(AUTH_STORAGE_KEY) === 'true';
-
-      if (hasAuth || hasAvatar || regUsers.length > 0) {
-        const lastReg = regUsers.length > 0 ? regUsers[regUsers.length - 1] : null;
-        return {
-          id: lastReg ? lastReg.id : 'user_default',
-          name: (lastReg && lastReg.name) ? lastReg.name : (localStorage.getItem('lhd_user_fullname') || 'talooc'),
-          email: (lastReg && lastReg.email) ? lastReg.email : 'student@lhd.edu.vn',
-          role: (lastReg && lastReg.role) ? lastReg.role : 'ROLE_STUDENT'
-        };
-      }
       return null;
     }
 
@@ -3137,7 +3137,7 @@
     }, 400);
 
     function login() {
-      window.location.href = 'auth/login.html';
+      window.location.href = 'index.html';
     }
 
     function logout() {
@@ -3366,7 +3366,7 @@
           window.location.href = 'student/cart.html';
         }, 600);
       } else {
-        window.location.href = 'auth/login.html';
+        window.location.href = 'index.html';
       }
     }
 

@@ -766,8 +766,14 @@
         window.location.href = redirectUrl;
         return;
       }
-      // Đăng nhập thành công -> Về Trang chủ (index.html)
-      window.location.href = '../index.html';
+      if (role === 'ROLE_ADMIN') {
+        window.location.href = '../admin/dashboard.html';
+      } else if (role === 'ROLE_INSTRUCTOR') {
+        window.location.href = '../instructor/dashboard.html';
+      } else {
+        // Đăng nhập học viên thành công -> Vào Phân hệ Học viên
+        window.location.href = '../student/home.html';
+      }
     }
 
     // Xử lý sự kiện ẩn nhãn khi người dùng gõ hoặc trình duyệt tự điền (tránh đè chữ)
@@ -866,7 +872,8 @@
         }
 
         const roleLabel = authenticatedUser.role === 'ROLE_ADMIN' ? 'Quản trị viên' : (authenticatedUser.role === 'ROLE_INSTRUCTOR' ? 'Giảng viên' : 'Học viên');
-        showToast(`Đăng nhập thành công! Xin chào ${authenticatedUser.name} (${roleLabel}). Đang chuyển hướng về trang chủ...`);
+        const targetPortal = authenticatedUser.role === 'ROLE_ADMIN' ? 'Cổng Quản Trị' : (authenticatedUser.role === 'ROLE_INSTRUCTOR' ? 'Cổng Giảng Viên' : 'Không Gian Học Viên');
+        showToast(`Đăng nhập thành công! Xin chào ${authenticatedUser.name} (${roleLabel}). Đang chuyển hướng vào ${targetPortal}...`);
 
         setTimeout(() => {
           const params = new URLSearchParams(window.location.search);

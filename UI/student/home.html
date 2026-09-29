@@ -1,0 +1,3888 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LHD – Learning | Nền tảng Học Ngoại Ngữ Trực Tuyến Thế Hệ Mới</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #0b63e5;
+      --primary-light: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent-pink: #ec4899;
+      --accent-blue: #0ea5e9;
+      --accent-mint: #14b8a6;
+      --bg-light: #f8fafc;
+      --text-main: #0f172a;
+      --text-sub: #475569;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --card-border: rgba(255, 255, 255, 0.95);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Liquid Pastel Background Blobs */
+    .liquid-blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: -2;
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .blob-rose {
+      width: 500px;
+      height: 500px;
+      top: -10%;
+      left: -5%;
+      background: linear-gradient(135deg, #ffdde1 0%, #fcb69f 100%);
+      animation: floatBlob1 18s ease-in-out infinite alternate;
+    }
+
+    .blob-lavender {
+      width: 600px;
+      height: 600px;
+      top: 40%;
+      right: -10%;
+      background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+      animation: floatBlob2 22s ease-in-out infinite alternate;
+    }
+
+    .blob-mint {
+      width: 450px;
+      height: 450px;
+      bottom: -10%;
+      left: 20%;
+      background: linear-gradient(135deg, #c2e9fb 0%, #ffecd2 100%);
+      animation: floatBlob3 16s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatBlob1 {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(60px, 40px) scale(1.1);
+      }
+    }
+
+    @keyframes floatBlob2 {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(-50px, -60px) scale(1.05);
+      }
+    }
+
+    @keyframes floatBlob3 {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(40px, -30px) scale(0.95);
+      }
+    }
+
+    /* Header / Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #ffffff;
+      border-bottom: 1.5px solid #eef2f6;
+      padding: 0.85rem 4%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 3.5rem;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.35);
+      flex-shrink: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .brand-logo:hover .brand-icon {
+      transform: rotate(-6deg) scale(1.06);
+      box-shadow: 0 6px 22px rgba(236, 72, 153, 0.45);
+    }
+
+    .brand-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #0b63e5 0%, #7c3aed 55%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.3px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #374151;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 8px 20px;
+      border-radius: 9999px;
+      transition: background-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, transform 0.12s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-links a:hover {
+      color: #7c3aed;
+      background: linear-gradient(135deg, rgba(11, 99, 229, 0.05), rgba(236, 72, 153, 0.08));
+    }
+
+    .nav-links a:active {
+      transform: scale(0.95);
+    }
+
+    @keyframes navPillPop {
+      0% {
+        transform: scale(0.92);
+        box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7);
+      }
+
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 4px 22px rgba(236, 72, 153, 0.55);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 4px 16px rgba(139, 92, 246, 0.38);
+      }
+    }
+
+    /* Active pill state - Gradient Xanh - Hồng Tím */
+    .nav-links a.nav-item-active {
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%) !important;
+      color: #ffffff !important;
+      padding: 8px 20px;
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.38);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: navPillPop 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-links a.nav-item-active:hover {
+      box-shadow: 0 6px 20px rgba(236, 72, 153, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .nav-links a.nav-item-active:active {
+      transform: scale(0.95);
+    }
+
+    .nav-click-ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      transform: scale(0);
+      animation: rippleAnim 0.6s linear;
+      pointer-events: none;
+    }
+
+    @keyframes rippleAnim {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    /* Guest state actions */
+    .nav-actions-guest {
+      display: none;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-guest-login {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border-radius: 9999px;
+      border: 1.5px solid #e2e8f0;
+      background: #ffffff;
+      color: #334155;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-guest-login:hover {
+      border-color: #0b63e5;
+      color: #0b63e5;
+      background: #f8fafc;
+    }
+
+    .btn-guest-register {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 22px;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 100%);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(11, 99, 229, 0.28);
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .btn-guest-register:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(139, 92, 246, 0.4);
+    }
+
+    /* Logged in state actions */
+    .nav-actions-user {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-user-left-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-user-divider {
+      width: 1px;
+      height: 24px;
+      background: #e2e8f0;
+      margin: 0 2px;
+    }
+
+    .nav-user-right-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-circle-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1.5px solid #e2e8f0;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #334155;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      text-decoration: none;
+    }
+
+    .nav-circle-btn:hover {
+      border-color: #0b63e5;
+      color: #0b63e5;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(11, 99, 229, 0.12);
+    }
+
+    .btn-menu {
+      border: 1.5px solid #e2e8f0;
+      background: #f8fafc;
+      color: #0b63e5;
+    }
+
+    .btn-menu:hover {
+      background: #eff6ff;
+      border-color: #0b63e5;
+    }
+
+    .bell-badge,
+    .cart-badge {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #ef4444;
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #ffffff;
+    }
+
+    .user-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 16px 4px 5px;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 9999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .user-capsule:hover {
+      border-color: #0b63e5;
+      box-shadow: 0 4px 12px rgba(11, 99, 229, 0.12);
+    }
+
+    .user-capsule-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid #0b63e5;
+      background: #e2e8f0;
+    }
+
+    .user-capsule-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #0f172a;
+      white-space: nowrap;
+    }
+
+    /* Dropdown Menus */
+    .nav-dropdown {
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      padding: 0.75rem;
+      min-width: 260px;
+      display: none;
+      flex-direction: column;
+      z-index: 1100;
+      animation: dropdownFadeIn 0.2s ease;
+    }
+
+    .nav-dropdown.show {
+      display: flex;
+    }
+
+    @keyframes dropdownFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .student-mega-dropdown {
+      min-width: 290px;
+      max-width: 320px;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+      padding: 0.85rem;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+      border: 1.5px solid rgba(226, 232, 240, 0.95);
+    }
+
+    .menu-user-banner {
+      background: linear-gradient(135deg, #091e42 0%, #1e1b4b 60%, #31104b 100%);
+      border-radius: 18px;
+      padding: 1.1rem;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 4px 15px rgba(15, 23, 42, 0.15);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .menu-user-banner-glow {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #8b5cf6;
+      filter: blur(25px);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .menu-banner-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      object-fit: cover;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .menu-banner-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      overflow: hidden;
+    }
+
+    .menu-banner-name {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .menu-banner-sub {
+      font-size: 0.75rem;
+      color: #cbd5e1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .menu-banner-verified {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.7rem;
+      color: #38bdf8;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .menu-group-heading {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.6rem 0.75rem 0.3rem;
+    }
+
+    .student-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.65rem 0.85rem;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #334155;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+
+    .student-menu-item:hover {
+      background: #f1f5f9;
+      color: #0b63e5;
+      transform: translateX(2px);
+    }
+
+    .menu-item-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: rgba(11, 99, 229, 0.08);
+      color: #0b63e5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+
+    .student-menu-item:hover .menu-item-icon {
+      background: #0b63e5;
+      color: #ffffff;
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background: #f1f5f9;
+      margin: 0.35rem 0;
+    }
+
+    .btn-menu-logout {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0.7rem;
+      border-radius: 12px;
+      border: 1px solid #fee2e2;
+      background: #fef2f2;
+      color: #dc2626;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-menu-logout:hover {
+      background: #dc2626;
+      color: #ffffff;
+      border-color: #dc2626;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 3.5rem 4% 4rem;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      background: rgba(11, 99, 229, 0.08);
+      color: #0b63e5;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      border: 1px solid rgba(11, 99, 229, 0.15);
+    }
+
+    .hero-title {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #0b63e5 0%, #7c3aed 55%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: #475569;
+      line-height: 1.65;
+      margin-bottom: 2rem;
+      max-width: 580px;
+    }
+
+    .hero-btns {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      padding: 1rem 2.2rem;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
+      color: white;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 25px rgba(11, 99, 229, 0.3);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-hero-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(236, 72, 153, 0.45);
+    }
+
+    .btn-hero-secondary {
+      padding: 1rem 2rem;
+      border-radius: 9999px;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      color: #334155;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .btn-hero-secondary:hover {
+      border-color: #0b63e5;
+      color: #0b63e5;
+      background: #f8fafc;
+    }
+
+    /* Hero Language Selection Card */
+    .hero-card-glass {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border-radius: 32px;
+      border: 1.5px solid rgba(255, 255, 255, 0.95);
+      padding: 2.2rem;
+      box-shadow: 0 20px 50px rgba(148, 118, 205, 0.12);
+    }
+
+    .language-selection-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    .lang-card {
+      background: #ffffff;
+      border: 1.5px solid #f1f5f9;
+      border-radius: 24px;
+      padding: 1.6rem 1.2rem;
+      text-align: center;
+      text-decoration: none;
+      color: #0f172a;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lang-card:hover {
+      border-color: #8b5cf6;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(139, 92, 246, 0.18);
+    }
+
+    .lang-flag {
+      font-size: 2.2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .lang-name {
+      font-weight: 800;
+      font-size: 1.15rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .lang-count {
+      font-size: 0.78rem;
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    /* Section Styles */
+    .section-container {
+      padding: 4rem 4%;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #0b63e5;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+    }
+
+    /* Course Cards */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .course-card {
+      background: #ffffff;
+      border-radius: 24px;
+      border: 1.5px solid #f1f5f9;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .course-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(139, 92, 246, 0.4);
+      box-shadow: 0 20px 45px rgba(139, 92, 246, 0.15);
+    }
+
+    .course-thumb {
+      height: 200px;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .course-badge-lang {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(8px);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .course-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .course-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: #64748b;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .course-rating {
+      color: #f59e0b;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .course-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+
+    .course-instructor {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: #475569;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .course-instructor img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .course-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 1rem;
+    }
+
+    .course-price {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #0b63e5;
+    }
+
+    .btn-add-cart {
+      padding: 8px 18px;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 100%);
+      color: white;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-add-cart:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(11, 99, 229, 0.35);
+    }
+
+    /* About Section */
+    .about-section {
+      padding: 4.5rem 4%;
+      background: linear-gradient(180deg, rgba(248, 250, 252, 0.5) 0%, rgba(241, 245, 249, 0.85) 100%);
+      position: relative;
+    }
+
+    .about-quote-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(139, 92, 246, 0.08);
+      color: #8b5cf6;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.8rem;
+    }
+
+    .about-hero-box {
+      background: #ffffff;
+      border-radius: 32px;
+      border: 1.5px solid #eef2f6;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.05);
+      padding: 3rem;
+      margin-bottom: 3.5rem;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .about-headline {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.3;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.4px;
+    }
+
+    .about-headline span {
+      background: linear-gradient(135deg, #0b63e5 0%, #7c3aed 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .about-lead-text {
+      color: #475569;
+      font-size: 1.02rem;
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+    }
+
+    .about-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .about-check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    .about-check-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.12);
+      color: #10b981;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .about-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .about-stat-card {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 1.5px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 1.6rem 1.4rem;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+
+    .about-stat-card:hover {
+      border-color: #8b5cf6;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(139, 92, 246, 0.12);
+      background: #ffffff;
+    }
+
+    .about-stat-num {
+      font-size: 2.1rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 4px;
+    }
+
+    .about-stat-desc {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .pillar-card {
+      background: #ffffff;
+      border: 1.5px solid #f1f5f9;
+      border-radius: 24px;
+      padding: 2rem 1.6rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(139, 92, 246, 0.4);
+      box-shadow: 0 18px 40px rgba(139, 92, 246, 0.14);
+    }
+
+    .pillar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.4rem;
+    }
+
+    .pillar-icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+    }
+
+    .pillar-icon-blue {
+      background: rgba(11, 99, 229, 0.1);
+      color: #0b63e5;
+    }
+
+    .pillar-icon-green {
+      background: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+    }
+
+    .pillar-icon-purple {
+      background: rgba(139, 92, 246, 0.1);
+      color: #8b5cf6;
+    }
+
+    .pillar-icon-amber {
+      background: rgba(245, 158, 11, 0.1);
+      color: #f59e0b;
+    }
+
+    .pillar-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #94a3b8;
+      background: #f8fafc;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .pillar-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 0.8rem;
+    }
+
+    .pillar-desc {
+      font-size: 0.88rem;
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 1.4rem;
+    }
+
+    .pillar-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 1rem;
+    }
+
+    .pillar-badge-item {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #475569;
+      background: #f1f5f9;
+      padding: 3px 10px;
+      border-radius: 9999px;
+    }
+
+    .about-cta-banner {
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
+      border-radius: 28px;
+      padding: 2.5rem 3rem;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      box-shadow: 0 20px 45px rgba(139, 92, 246, 0.25);
+    }
+
+    .about-cta-title {
+      font-size: 1.7rem;
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+    }
+
+    .about-cta-desc {
+      font-size: 0.95rem;
+      opacity: 0.92;
+      max-width: 600px;
+    }
+
+    .btn-about-cta {
+      padding: 0.9rem 2.2rem;
+      border-radius: 9999px;
+      background: #ffffff;
+      color: #0b63e5;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      transition: all 0.25s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .btn-about-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 4rem 4% 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-desc {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-top: 1rem;
+      max-width: 320px;
+    }
+
+    .footer-title {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+      color: #ffffff;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #38bdf8;
+      transform: translateX(4px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1e293b;
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      color: #64748b;
+      font-size: 0.85rem;
+    }
+
+    /* Toast */
+    .toast-custom {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 0.9rem 1.6rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      z-index: 9999;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast-custom.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Support Chat Modal */
+    .chat-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 1rem;
+    }
+
+    .chat-modal-overlay.show {
+      display: flex;
+    }
+
+    .chat-modal-box {
+      width: 100%;
+      max-width: 480px;
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 25px 60px rgba(15, 23, 42, 0.25);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-modal-header {
+      padding: 1.25rem 1.5rem;
+      background: linear-gradient(135deg, #091e42 0%, #1e1b4b 60%, #31104b 100%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .chat-modal-close-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .chat-modal-close-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+    }
+
+    .chat-modal-body {
+      padding: 1.25rem 1.5rem;
+      height: 320px;
+      overflow-y: auto;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chat-msg-row {
+      display: flex;
+      gap: 10px;
+      max-width: 85%;
+    }
+
+    .chat-msg-row.admin-row {
+      align-self: flex-start;
+    }
+
+    .chat-msg-row.user-row {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+
+    .chat-bubble-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .chat-bubble {
+      padding: 10px 14px;
+      border-radius: 18px;
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .admin-bubble {
+      background: #ffffff;
+      color: #1e293b;
+      border: 1px solid #e2e8f0;
+      border-bottom-left-radius: 4px;
+    }
+
+    .user-bubble {
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 100%);
+      color: #ffffff;
+      border-bottom-right-radius: 4px;
+    }
+
+    .chat-quick-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .quick-chip {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 9999px;
+      padding: 5px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #0b63e5;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .quick-chip:hover {
+      background: #eff6ff;
+      border-color: #0b63e5;
+    }
+
+    .chat-modal-footer {
+      padding: 1rem 1.25rem;
+      border-top: 1px solid #e2e8f0;
+      background: #ffffff;
+    }
+
+    .chat-input-field {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: 9999px;
+      border: 1.5px solid #cbd5e1;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .chat-input-field:focus {
+      border-color: #0b63e5;
+    }
+
+    .btn-chat-send {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 100%);
+      border: none;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-chat-send:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 960px) {
+      .hero-section {
+        grid-template-columns: 1fr;
+        padding-top: 2rem;
+      }
+
+      .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-hero-box {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+      }
+
+      .pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-cta-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-title {
+        font-size: 2.2rem;
+      }
+
+      .courses-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .user-capsule-name {
+        display: none;
+      }
+    }
+  </style>
+
+  <!-- UNIFIED STUDENT HEADER & NAVIGATION STYLES -->
+  <style id="student-unified-header-styles">
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 2.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.35);
+      flex-shrink: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .brand-logo:hover .brand-icon {
+      transform: rotate(-6deg) scale(1.06);
+      box-shadow: 0 6px 22px rgba(236, 72, 153, 0.45);
+    }
+
+    .brand-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #0b63e5 0%, #7c3aed 55%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.3px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #374151;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 8px 20px;
+      border-radius: 9999px;
+      transition: background-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, transform 0.12s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-links a:hover {
+      color: #7c3aed;
+      background: linear-gradient(135deg, rgba(11, 99, 229, 0.05), rgba(236, 72, 153, 0.08));
+    }
+
+    .nav-links a:active {
+      transform: scale(0.95);
+    }
+
+    @keyframes navPillPop {
+      0% {
+        transform: scale(0.92);
+        box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 4px 22px rgba(236, 72, 153, 0.55);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 4px 16px rgba(139, 92, 246, 0.38);
+      }
+    }
+
+    .nav-links a.nav-item-active {
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 55%, #ec4899 100%) !important;
+      color: #ffffff !important;
+      padding: 8px 20px;
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.38);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: navPillPop 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-links a.nav-item-active:hover {
+      box-shadow: 0 6px 20px rgba(236, 72, 153, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .nav-links a.nav-item-active:active {
+      transform: scale(0.95);
+    }
+
+    .nav-click-ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      transform: scale(0);
+      animation: rippleAnim 0.6s linear;
+      pointer-events: none;
+    }
+
+    @keyframes rippleAnim {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .nav-actions-user {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-user-left-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-user-divider {
+      width: 1px;
+      height: 24px;
+      background: #e2e8f0;
+      margin: 0 2px;
+    }
+
+    .nav-user-right-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-circle-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1.5px solid #e2e8f0;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #334155;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      text-decoration: none;
+    }
+
+    .nav-circle-btn:hover {
+      border-color: #0b63e5;
+      color: #0b63e5;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(11, 99, 229, 0.12);
+    }
+
+    .btn-menu {
+      border: 1.5px solid #e2e8f0;
+      background: #f8fafc;
+      color: #0b63e5;
+    }
+
+    .btn-menu:hover {
+      background: #eff6ff;
+      border-color: #0b63e5;
+    }
+
+    .bell-badge,
+    .cart-badge {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #ef4444;
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #ffffff;
+    }
+
+    .user-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 16px 4px 5px;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 9999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .user-capsule:hover {
+      border-color: #0b63e5;
+      box-shadow: 0 4px 12px rgba(11, 99, 229, 0.12);
+    }
+
+    .user-capsule-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid #0b63e5;
+      background: #e2e8f0;
+    }
+
+    .user-capsule-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #0f172a;
+      white-space: nowrap;
+    }
+
+    .nav-dropdown {
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      padding: 0.75rem;
+      min-width: 260px;
+      display: none;
+      flex-direction: column;
+      z-index: 1100;
+      animation: dropdownFadeIn 0.2s ease;
+    }
+
+    .nav-dropdown.show {
+      display: flex;
+    }
+
+    @keyframes dropdownFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .student-mega-dropdown {
+      min-width: 290px;
+      max-width: 320px;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+      padding: 0.85rem;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+      border: 1.5px solid rgba(226, 232, 240, 0.95);
+    }
+
+    .menu-user-banner {
+      background: linear-gradient(135deg, #091e42 0%, #1e1b4b 60%, #31104b 100%);
+      border-radius: 18px;
+      padding: 1.1rem;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 4px 15px rgba(15, 23, 42, 0.15);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .menu-user-banner-glow {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #8b5cf6;
+      filter: blur(25px);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .menu-banner-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      object-fit: cover;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .menu-banner-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      overflow: hidden;
+    }
+
+    .menu-banner-name {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .menu-banner-sub {
+      font-size: 0.75rem;
+      color: #cbd5e1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .menu-banner-verified {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.7rem;
+      color: #38bdf8;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .menu-group-heading {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.6rem 0.75rem 0.3rem;
+    }
+
+    .student-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.65rem 0.85rem;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #334155;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+
+    .student-menu-item:hover {
+      background: #f1f5f9;
+      color: #0b63e5;
+      transform: translateX(2px);
+    }
+
+    .menu-item-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: rgba(11, 99, 229, 0.08);
+      color: #0b63e5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+
+    .student-menu-item:hover .menu-item-icon {
+      background: #0b63e5;
+      color: #ffffff;
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background: #f1f5f9;
+      margin: 0.35rem 0;
+    }
+
+    .btn-menu-logout {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0.7rem;
+      border-radius: 12px;
+      border: 1px solid #fee2e2;
+      background: #fef2f2;
+      color: #dc2626;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-menu-logout:hover {
+      background: #dc2626;
+      color: #ffffff;
+      border-color: #dc2626;
+    }
+
+    /* Live Chat Support Modal */
+    .chat-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .chat-modal-overlay.show {
+      display: flex;
+      animation: modalFadeIn 0.25s ease;
+    }
+
+    .chat-modal-content {
+      background: #ffffff;
+      border-radius: 28px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .chat-modal-header {
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 100%);
+      color: #ffffff;
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .chat-admin-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chat-admin-avatar-wrap {
+      position: relative;
+    }
+
+    .chat-admin-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      object-fit: cover;
+      background: #ffffff;
+    }
+
+    .chat-online-badge {
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 2px solid #ffffff;
+    }
+
+    .chat-admin-name {
+      font-size: 0.98rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .chat-admin-status {
+      font-size: 0.76rem;
+      opacity: 0.92;
+      margin-top: 2px;
+    }
+
+    .btn-close-chat {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: #ffffff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .btn-close-chat:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .chat-modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.2rem;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 340px;
+    }
+
+    .chat-timestamp-divider {
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #94a3b8;
+      margin-bottom: 4px;
+    }
+
+    .chat-msg-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .chat-msg-row.admin-row {
+      justify-content: flex-start;
+    }
+
+    .chat-msg-row.user-row {
+      justify-content: flex-end;
+    }
+
+    .chat-bubble-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .chat-bubble {
+      max-width: 78%;
+      padding: 0.85rem 1.1rem;
+      border-radius: 18px;
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .admin-bubble {
+      background: #ffffff;
+      color: #0f172a;
+      border: 1.5px solid #e2e8f0;
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .user-bubble {
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 100%);
+      color: #ffffff;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 4px 14px rgba(11, 99, 229, 0.25);
+    }
+
+    .chat-quick-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 4px;
+      margin-left: 40px;
+    }
+
+    .quick-chip {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      color: #0b63e5;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quick-chip:hover {
+      background: #eff6ff;
+      border-color: #0b63e5;
+    }
+
+    .chat-modal-footer {
+      padding: 1rem 1.2rem;
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .chat-input-text {
+      flex: 1;
+      padding: 0.75rem 1.2rem;
+      border-radius: 9999px;
+      border: 1.5px solid #cbd5e1;
+      outline: none;
+      font-size: 0.9rem;
+      transition: border-color 0.2s;
+    }
+
+    .chat-input-text:focus {
+      border-color: #0b63e5;
+    }
+
+    .btn-chat-send {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0b63e5 0%, #8b5cf6 100%);
+      color: #ffffff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .btn-chat-send:hover {
+      transform: scale(1.08);
+    }
+  </style>
+
+
+  <script id="student-global-dropdown-handlers">
+    // Auto ensure student logged in state
+    if (!localStorage.getItem('lhd_learning_logged_in')) {
+      localStorage.setItem('lhd_learning_logged_in', 'true');
+    }
+
+    window.closeAllDropdowns = function() {
+      const m = document.getElementById('menuDropdown');
+      const b = document.getElementById('bellDropdown');
+      if (m) m.classList.remove('show');
+      if (b) b.classList.remove('show');
+    };
+
+    window.toggleMegaMenu = function(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      const m = document.getElementById('menuDropdown');
+      const b = document.getElementById('bellDropdown');
+      if (b) b.classList.remove('show');
+      if (m) {
+        m.classList.toggle('show');
+      }
+    };
+
+    window.toggleBellDropdown = function(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      const m = document.getElementById('menuDropdown');
+      const b = document.getElementById('bellDropdown');
+      if (m) m.classList.remove('show');
+      if (b) {
+        b.classList.toggle('show');
+      }
+    };
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.nav-dropdown') && !e.target.closest('.nav-circle-btn') && !e.target.closest('#headerMenuBtn') && !e.target.closest('#headerBellBtn')) {
+        window.closeAllDropdowns();
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const navUser = document.getElementById('navActionsUser');
+      if (navUser) navUser.style.display = 'inline-flex';
+    });
+  </script>
+
+<style id="student-banner-enhancement-style">
+    /* Ultra-compact & Sleek Student Mega Dropdown (Fits All Items + Logout on Screen) */
+    .student-mega-dropdown {
+      width: 320px !important;
+      max-width: 94vw !important;
+      max-height: calc(100vh - 75px) !important;
+      overflow-y: auto !important;
+      padding: 0.65rem 0.75rem !important;
+      border-radius: 20px !important;
+      box-shadow: 0 16px 45px rgba(15, 23, 42, 0.22) !important;
+      border: 1.5px solid rgba(226, 232, 240, 0.95) !important;
+      scrollbar-width: thin !important;
+      scrollbar-color: #cbd5e1 transparent !important;
+    }
+
+    .student-mega-dropdown::-webkit-scrollbar {
+      width: 4px !important;
+    }
+
+    .student-mega-dropdown::-webkit-scrollbar-thumb {
+      background: #cbd5e1 !important;
+      border-radius: 4px !important;
+    }
+
+    .menu-user-banner {
+      background: linear-gradient(135deg, #091e42 0%, #1e1b4b 55%, #31104b 100%) !important;
+      border-radius: 14px !important;
+      padding: 0.65rem 0.85rem !important;
+      color: #ffffff !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      margin-bottom: 0.35rem !important;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2) !important;
+      position: relative !important;
+      overflow: hidden !important;
+      cursor: pointer !important;
+      min-height: 66px !important;
+      box-sizing: border-box !important;
+      transition: transform 0.18s ease, box-shadow 0.18s ease !important;
+    }
+
+    .menu-user-banner:hover {
+      transform: translateY(-1px) !important;
+      box-shadow: 0 6px 18px rgba(139, 92, 246, 0.35) !important;
+    }
+
+    .menu-user-banner-glow {
+      position: absolute !important;
+      top: -25px !important;
+      right: -25px !important;
+      width: 80px !important;
+      height: 80px !important;
+      border-radius: 50% !important;
+      background: #8b5cf6 !important;
+      filter: blur(22px) !important;
+      opacity: 0.55 !important;
+      pointer-events: none !important;
+    }
+
+    .menu-banner-avatar {
+      width: 42px !important;
+      height: 42px !important;
+      border-radius: 50% !important;
+      border: 2px solid rgba(255, 255, 255, 0.9) !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+      object-fit: cover !important;
+      background: #ffffff !important;
+      flex-shrink: 0 !important;
+    }
+
+    .menu-banner-meta {
+      flex: 1 !important;
+      min-width: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 2px !important;
+      justify-content: center !important;
+    }
+
+    .menu-banner-name {
+      font-size: 0.92rem !important;
+      font-weight: 800 !important;
+      color: #ffffff !important;
+      line-height: 1.2 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    .menu-banner-sub {
+      font-size: 0.72rem !important;
+      color: #cbd5e1 !important;
+      line-height: 1.2 !important;
+      margin: 0 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    .menu-banner-verified {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 3px !important;
+      font-size: 0.68rem !important;
+      color: #38bdf8 !important;
+      font-weight: 700 !important;
+      margin-top: 2px !important;
+      width: fit-content !important;
+      line-height: 1 !important;
+    }
+
+    .menu-banner-verified i {
+      font-size: 0.68rem !important;
+    }
+
+    .menu-group-heading {
+      font-size: 0.66rem !important;
+      font-weight: 800 !important;
+      color: #94a3b8 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.06em !important;
+      padding: 0.35rem 0.55rem 0.15rem !important;
+      margin-top: 1px !important;
+      line-height: 1 !important;
+    }
+
+    .student-menu-item {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      padding: 0.4rem 0.65rem !important;
+      border-radius: 10px !important;
+      text-decoration: none !important;
+      color: #334155 !important;
+      font-weight: 600 !important;
+      font-size: 0.84rem !important;
+      transition: all 0.15s ease !important;
+      cursor: pointer !important;
+      margin-bottom: 1px !important;
+    }
+
+    .student-menu-item:hover {
+      background: #f1f5f9 !important;
+      color: #0b63e5 !important;
+      transform: translateX(3px) !important;
+    }
+
+    .menu-item-icon {
+      width: 28px !important;
+      height: 28px !important;
+      border-radius: 8px !important;
+      background: rgba(11, 99, 229, 0.08) !important;
+      color: #0b63e5 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 0.8rem !important;
+      flex-shrink: 0 !important;
+      transition: all 0.15s ease !important;
+    }
+
+    .student-menu-item:hover .menu-item-icon {
+      background: #0b63e5 !important;
+      color: #ffffff !important;
+    }
+
+    .menu-item-title {
+      font-size: 0.84rem !important;
+      font-weight: 600 !important;
+      color: #1e293b !important;
+      transition: color 0.15s ease !important;
+    }
+
+    .student-menu-item:hover .menu-item-title {
+      color: #0b63e5 !important;
+    }
+
+    .dropdown-divider {
+      height: 1px !important;
+      background: #f1f5f9 !important;
+      margin: 0.25rem 0 !important;
+    }
+
+    .btn-menu-logout {
+      width: 100% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 8px !important;
+      padding: 0.52rem 0.8rem !important;
+      border-radius: 10px !important;
+      border: 1px solid #fee2e2 !important;
+      background: #fef2f2 !important;
+      color: #dc2626 !important;
+      font-weight: 700 !important;
+      font-size: 0.84rem !important;
+      cursor: pointer !important;
+      transition: all 0.18s ease !important;
+      margin-top: 2px !important;
+    }
+
+    .btn-menu-logout:hover {
+      background: #fee2e2 !important;
+      border-color: #fca5a5 !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.18) !important;
+    }
+  </style>
+<style>
+    /* Live Classroom Schedule Tags in Home */
+    .course-schedule-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      background: linear-gradient(135deg, rgba(11, 99, 229, 0.08), rgba(236, 72, 153, 0.08));
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      border-radius: 9999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #7c3aed;
+      margin-bottom: 0.75rem;
+      width: fit-content;
+    }
+    .course-schedule-tag i {
+      color: #ec4899;
+    }
+    .btn-add-cart-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1.5px solid #0b63e5;
+      background: #ffffff;
+      color: #0b63e5;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+    .btn-add-cart-icon:hover {
+      background: #0b63e5;
+      color: #ffffff;
+      transform: scale(1.08);
+      box-shadow: 0 4px 12px rgba(11, 99, 229, 0.3);
+    }
+</style>
+</head>
+
+<body>
+
+  <!-- Liquid Pastel Background Blobs -->
+  <div class="liquid-blob blob-rose"></div>
+  <div class="liquid-blob blob-lavender"></div>
+  <div class="liquid-blob blob-mint"></div>
+
+  <!-- Header Navbar -->
+  <header>
+    <div class="header-left">
+      <a href="home.html" class="brand-logo">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <span class="brand-title">LHD – Learning</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="home.html" class="nav-item-active">Trang chủ</a></li>
+        <li><a href="courses.html">Khóa học</a></li>
+        <li><a href="my-courses.html">Khóa học của tôi</a></li>
+        <li><a href="home.html#about">Giới thiệu</a></li>
+        <li><a href="home.html#footer">Liên hệ</a></li>
+      </ul>
+    </div>
+
+    <div class="header-right">
+      <!-- Logged in Student Actions (Thứ tự: Thông báo -> Giỏ hàng | Đẩy sang phải: Tài khoản -> Menu ☰) -->
+      <div class="nav-actions-user" id="navActionsUser">
+        <!-- Nhóm 1: Thông báo & Giỏ hàng -->
+        <div class="nav-user-left-group">
+          <!-- 1. Bell Button (with Popover) -->
+          <div style="position: relative;">
+            <button type="button" class="nav-circle-btn btn-bell" id="headerBellBtn" onclick="toggleBellDropdown(event)" title="Thông báo hệ thống">
+              <i class="fa-regular fa-bell"></i>
+              <span class="bell-badge" id="headerBellBadge" style="display: none;">0</span>
+            </button>
+
+            <!-- Bell Dropdown Popover -->
+            <div class="nav-dropdown" id="bellDropdown" style="min-width: 340px; max-width: 380px; left: 0; right: auto; padding: 0.85rem;"
+              onclick="event.stopPropagation()">
+              <div class="dropdown-header"
+                style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid #f1f5f9; margin-bottom: 8px;">
+                <div style="font-weight: 800; font-size: 0.95rem; color: #0f172a;">Thông báo mới</div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <button type="button" id="btnMarkAllRead" onclick="markAllNotificationsRead()"
+                    style="background: none; border: none; color: #0b63e5; font-size: 0.76rem; font-weight: 700; cursor: pointer;">Đã đọc</button>
+                  <span style="color: #cbd5e1; font-size: 0.75rem;">•</span>
+                  <button type="button" id="btnClearAllNotifs" onclick="clearAllNotifications(event)"
+                    style="background: none; border: none; color: #ef4444; font-size: 0.76rem; font-weight: 700; cursor: pointer;">Xóa tất cả</button>
+                </div>
+              </div>
+              <div id="bellNotificationList" style="max-height: 380px; overflow-y: auto;">
+                <!-- Dynamic notifications injected by JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Shopping Cart Button -->
+          <a href="cart.html" class="nav-circle-btn btn-cart" title="Giỏ hàng khóa học">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+          </a>
+        </div>
+
+        <!-- Vạch phân cách & đẩy các mục còn lại sang bên phải -->
+        <div class="nav-user-divider"></div>
+
+        <!-- Nhóm 2: Các mục còn lại được đẩy sang bên phải (Tài khoản học viên & Menu ☰) -->
+        <div class="nav-user-right-group">
+          <!-- 3. User Capsule -->
+          <a href="profile.html" class="user-capsule" id="userCapsuleBtn" title="Xem trang thông tin cá nhân học viên">
+            <img
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64' shape-rendering='crispEdges'><rect width='64' height='64' fill='%23a4c68d'/><rect x='0' y='0' width='64' height='28' fill='%237ba36a'/><rect x='6' y='8' width='12' height='14' fill='%23507c43'/><rect x='46' y='10' width='14' height='12' fill='%23507c43'/><rect x='22' y='4' width='20' height='8' fill='%23669152'/><rect x='0' y='32' width='64' height='32' fill='%23c4936d'/><rect x='0' y='42' width='64' height='22' fill='%23b17c54'/><rect x='20' y='12' width='24' height='16' fill='%231e1e24'/><rect x='22' y='16' width='20' height='20' fill='%23fddbc3'/><rect x='24' y='34' width='16' height='4' fill='%23fbc5a3'/><rect x='18' y='10' width='28' height='8' fill='%2322242a'/><rect x='18' y='18' width='6' height='8' fill='%2322242a'/><rect x='40' y='18' width='6' height='8' fill='%2322242a'/><rect x='24' y='14' width='8' height='6' fill='%2330323a'/><rect x='34' y='14' width='8' height='5' fill='%2322242a'/><rect x='18' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='42' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='25' y='25' width='4' height='4' fill='%231e1e24'/><rect x='35' y='25' width='4' height='4' fill='%231e1e24'/><rect x='23' y='28' width='4' height='2' fill='%23f7a799'/><rect x='37' y='28' width='4' height='2' fill='%23f7a799'/><rect x='29' y='31' width='6' height='2' fill='%23d97d64'/><rect x='22' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='32' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='31' y='24' width='2' height='2' fill='%23111'/><rect x='24' y='22' width='2' height='2' fill='%23ffffff'/><rect x='34' y='22' width='2' height='2' fill='%23ffffff'/><rect x='16' y='38' width='32' height='26' fill='%232b2d35'/><rect x='28' y='38' width='8' height='8' fill='%23b91c1c'/><rect x='22' y='38' width='6' height='26' fill='%233a3d47'/><rect x='36' y='38' width='6' height='26' fill='%233a3d47'/><rect x='29' y='44' width='6' height='20' fill='%23dc2626'/><rect x='31' y='42' width='2' height='22' fill='%23991b1b'/></svg>"
+              class="user-capsule-avatar" id="headerUserAvatar" alt="Avatar">
+            <span class="user-capsule-name" id="headerUserName">talooc</span>
+          </a>
+
+          <!-- 4. Nút tròn (3 gạch ngang ☰) -->
+          <div style="position: relative;">
+            <button type="button" class="nav-circle-btn btn-menu" id="headerMenuBtn" onclick="toggleMegaMenu(event)" title="Menu quản lý học viên (☰)">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- Mega Dropdown Menu 4 Khu Vực -->
+            <div class="nav-dropdown student-mega-dropdown" id="menuDropdown" style="right: 0; left: auto;" onclick="event.stopPropagation()">
+              <!-- 1. Khu vực Thông tin cá nhân -->
+              <div class="menu-user-banner" onclick="window.location.href='profile.html'">
+                <div class="menu-user-banner-glow"></div>
+                <img
+                  src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='64' height='64' shape-rendering='crispEdges'><rect width='64' height='64' fill='%23a4c68d'/><rect x='0' y='0' width='64' height='28' fill='%237ba36a'/><rect x='6' y='8' width='12' height='14' fill='%23507c43'/><rect x='46' y='10' width='14' height='12' fill='%23507c43'/><rect x='22' y='4' width='20' height='8' fill='%23669152'/><rect x='0' y='32' width='64' height='32' fill='%23c4936d'/><rect x='0' y='42' width='64' height='22' fill='%23b17c54'/><rect x='20' y='12' width='24' height='16' fill='%231e1e24'/><rect x='22' y='16' width='20' height='20' fill='%23fddbc3'/><rect x='24' y='34' width='16' height='4' fill='%23fbc5a3'/><rect x='18' y='10' width='28' height='8' fill='%2322242a'/><rect x='18' y='18' width='6' height='8' fill='%2322242a'/><rect x='40' y='18' width='6' height='8' fill='%2322242a'/><rect x='24' y='14' width='8' height='6' fill='%2330323a'/><rect x='34' y='14' width='8' height='5' fill='%2322242a'/><rect x='18' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='42' y='24' width='4' height='6' fill='%23fbc5a3'/><rect x='25' y='25' width='4' height='4' fill='%231e1e24'/><rect x='35' y='25' width='4' height='4' fill='%231e1e24'/><rect x='23' y='28' width='4' height='2' fill='%23f7a799'/><rect x='37' y='28' width='4' height='2' fill='%23f7a799'/><rect x='29' y='31' width='6' height='2' fill='%23d97d64'/><rect x='22' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='32' y='21' width='10' height='9' fill='none' stroke='%23111' stroke-width='2'/><rect x='31' y='24' width='2' height='2' fill='%23111'/><rect x='24' y='22' width='2' height='2' fill='%23ffffff'/><rect x='34' y='22' width='2' height='2' fill='%23ffffff'/><rect x='16' y='38' width='32' height='26' fill='%232b2d35'/><rect x='28' y='38' width='8' height='8' fill='%23b91c1c'/><rect x='22' y='38' width='6' height='26' fill='%233a3d47'/><rect x='36' y='38' width='6' height='26' fill='%233a3d47'/><rect x='29' y='44' width='6' height='20' fill='%23dc2626'/><rect x='31' y='42' width='2' height='22' fill='%23991b1b'/></svg>"
+                  class="menu-banner-avatar" id="menuBannerAvatar" alt="Avatar">
+                <div class="menu-banner-meta">
+                  <div class="menu-banner-name" id="menuBannerName">Học viên</div>
+                  <div class="menu-banner-sub" id="menuBannerEmail">student@lhd.edu.vn</div>
+                  <div class="menu-banner-verified">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Thành viên / Đã xác thực</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2. Quản lý Học tập -->
+              <div class="menu-group-heading">Quản lý Học tập</div>
+              <a href="home.html" class="student-menu-item">
+                <div class="menu-item-icon"><i class="fa-solid fa-house"></i></div>
+                <span class="menu-item-title">Trang chủ học viên</span>
+              </a>
+
+              <a href="my-courses.html" class="student-menu-item">
+                <div class="menu-item-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+                <span class="menu-item-title">Khóa học của tôi</span>
+              </a>
+
+              <a href="courses.html" class="student-menu-item">
+                <div class="menu-item-icon"><i class="fa-solid fa-compass"></i></div>
+                <span class="menu-item-title">Khám phá khóa học</span>
+              </a>
+
+              <a href="certificates.html" class="student-menu-item">
+                <div class="menu-item-icon"><i class="fa-solid fa-award"></i></div>
+                <span class="menu-item-title">Chứng chỉ đạt được</span>
+              </a>
+
+              <a href="profile.html#orders" class="student-menu-item">
+                <div class="menu-item-icon"><i class="fa-solid fa-receipt"></i></div>
+                <span class="menu-item-title">Lịch sử giao dịch</span>
+              </a>
+
+              <div class="dropdown-divider"></div>
+
+              <!-- 3. Cài đặt & Hỗ trợ -->
+              <div class="menu-group-heading">Cài đặt & Hỗ trợ</div>
+              <a href="profile.html" class="student-menu-item">
+                <div class="menu-item-icon"><i class="fa-solid fa-user-gear"></i></div>
+                <span class="menu-item-title">Thông tin cá nhân</span>
+              </a>
+
+              <a href="profile.html#security" class="student-menu-item">
+                <div class="menu-item-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <span class="menu-item-title">Đổi mật khẩu / Bảo mật</span>
+              </a>
+
+              <a href="javascript:void(0)" class="student-menu-item" id="btnMenuSupportLink">
+                <div class="menu-item-icon"><i class="fa-solid fa-headset"></i></div>
+                <span class="menu-item-title">Hỗ trợ & Phản hồi</span>
+              </a>
+
+              <div class="dropdown-divider"></div>
+
+              <!-- 4. Đăng xuất -->
+              <div style="padding-top: 4px;">
+                <button type="button" class="btn-menu-logout" id="btnLogoutUser">
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <span>Đăng xuất</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div>
+      <div class="hero-badge">
+        <i class="fa-solid fa-sparkles"></i>
+        <span>Nền tảng học trực tuyến LHD – Learning</span>
+      </div>
+      <h1 class="hero-title">Chinh phục <span>Tiếng Anh & Tiếng Nhật</span> Tự Nhiên</h1>
+      <p class="hero-desc">
+        Mô hình lớp học trực tuyến Live tương tác trực tiếp 100% cùng giảng viên chất lượng cao qua Google Meet HD. Lịch học linh hoạt, sĩ số giới hạn tối đa 30 học viên/lớp, mở lớp khi đạt từ 20 học viên, thực hành phản xạ đa chiều.
+      </p>
+      <div class="hero-btns">
+        <a href="my-courses.html" class="btn-hero-primary">
+          <span>BẮT ĐẦU HỌC NGAY</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="courses.html" class="btn-hero-secondary">
+          <i class="fa-solid fa-compass"></i>
+          <span>Khám phá khóa học</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card-glass">
+        <h3 style="font-weight: 800; font-size: 1.25rem; color: var(--text-main);">Chọn ngôn ngữ bạn muốn học:</h3>
+        <div class="language-selection-grid">
+          <a href="courses.html?lang=en" class="lang-card">
+            <div class="lang-flag">🇬🇧</div>
+            <div class="lang-name">Tiếng Anh</div>
+            <div class="lang-count">48+ Khóa học • IELTS / Communication</div>
+          </a>
+          <a href="courses.html?lang=jp" class="lang-card">
+            <div class="lang-flag">🇯🇵</div>
+            <div class="lang-name">Tiếng Nhật</div>
+            <div class="lang-count">36+ Khóa học • JLPT N5 -> N1</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Courses Section -->
+  <section class="section-container">
+    <div class="section-header">
+      <span class="section-tag">Khóa Học Nổi Bật</span>
+      <h2 class="section-title">Lộ Trình Học Chuyên Sâu Cùng Giảng Viên Đỉnh Cao</h2>
+    </div>
+
+        <div class="courses-grid">
+      <!-- Course 1 -->
+      <div class="course-card">
+        <div class="course-thumb"
+          style="background-image: url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600&auto=format&fit=crop&q=60');">
+          <span class="course-badge-lang">🇬🇧 Tiếng Anh</span>
+        </div>
+        <div class="course-content">
+          <div class="course-meta">
+            <span>Sơ cấp -> Trung cấp</span>
+            <div class="course-rating"><i class="fa-solid fa-star"></i> 4.9 (1,240)</div>
+          </div>
+          <div class="course-schedule-tag">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <span>Lớp Live: Thứ 2 - 4 - 6 (19:30 – 21:00)</span>
+          </div>
+          <h3 class="course-title">Tiếng Anh Giao Tiếp Siêu Phản Xạ Cùng Người Bản Xứ</h3>
+          <div class="course-instructor">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=60"
+              alt="Avatar">
+            <span>Cô Emily Watson (IELTS 8.5)</span>
+          </div>
+          <div class="course-footer">
+            <div class="course-price">1.290.000đ</div>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <button type="button" class="btn-add-cart-icon" onclick="addToCartHome('Tiếng Anh Giao Tiếp Siêu Phản Xạ Cùng Người Bản Xứ', 'Cô Emily Watson (IELTS 8.5)', 1290000, '1.290.000đ', 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600', 'Thứ 2 - 4 - 6', '19:30 – 21:00', '05/10/2026', '36 buổi Live (3 tháng)')" title="Thêm vào giỏ hàng">
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+              <a href="course-detail.html" class="btn-add-cart">Xem chi tiết</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Course 2 -->
+      <div class="course-card">
+        <div class="course-thumb"
+          style="background-image: url('https://images.unsplash.com/photo-1528164344705-47542687990d?w=600&auto=format&fit=crop&q=60');">
+          <span class="course-badge-lang">🇯🇵 Tiếng Nhật</span>
+        </div>
+        <div class="course-content">
+          <div class="course-meta">
+            <span>JLPT N5 -> N4</span>
+            <div class="course-rating"><i class="fa-solid fa-star"></i> 5.0 (890)</div>
+          </div>
+          <div class="course-schedule-tag">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <span>Lớp Live: Thứ 3 - 5 - 7 (18:00 – 19:30)</span>
+          </div>
+          <h3 class="course-title">Chinh Phục N5 - N4 Tiếng Nhật Cấp Tốc Cho Người Mới</h3>
+          <div class="course-instructor">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=60"
+              alt="Avatar">
+            <span>Thầy Kenji Tanaka</span>
+          </div>
+          <div class="course-footer">
+            <div class="course-price">1.450.000đ</div>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <button type="button" class="btn-add-cart-icon" onclick="addToCartHome('Chinh Phục N5 - N4 Tiếng Nhật Cấp Tốc Cho Người Mới', 'Thầy Kenji Tanaka', 1450000, '1.450.000đ', 'https://images.unsplash.com/photo-1528164344705-47542687990d?w=600', 'Thứ 3 - 5 - 7', '18:00 – 19:30', '06/10/2026', '36 buổi Live (3 tháng)')" title="Thêm vào giỏ hàng">
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+              <a href="course-detail.html" class="btn-add-cart">Xem chi tiết</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Course 3 -->
+      <div class="course-card">
+        <div class="course-thumb"
+          style="background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60');">
+          <span class="course-badge-lang">🇬🇧 Tiếng Anh</span>
+        </div>
+        <div class="course-content">
+          <div class="course-meta">
+            <span>IELTS Academic</span>
+            <div class="course-rating"><i class="fa-solid fa-star"></i> 4.8 (950)</div>
+          </div>
+          <div class="course-schedule-tag">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <span>Lớp Live: Thứ 2 - 4 - 6 (20:00 – 21:30)</span>
+          </div>
+          <h3 class="course-title">Bứt Phá IELTS Writing & Speaking Band 7.0+</h3>
+          <div class="course-instructor">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=60"
+              alt="Avatar">
+            <span>Thầy David Miller</span>
+          </div>
+          <div class="course-footer">
+            <div class="course-price">1.890.000đ</div>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <button type="button" class="btn-add-cart-icon" onclick="addToCartHome('Bứt Phá IELTS Writing & Speaking Band 7.0+', 'Thầy David Miller', 1890000, '1.890.000đ', 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600', 'Thứ 2 - 4 - 6', '20:00 – 21:30', '05/10/2026', '36 buổi Live (3 tháng)')" title="Thêm vào giỏ hàng">
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+              <a href="course-detail.html" class="btn-add-cart">Xem chi tiết</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Giới Thiệu (About Section) -->
+  <section id="about" class="about-section">
+    <div class="section-header">
+      <span class="about-quote-tag">
+        <i class="fa-solid fa-sparkles"></i>
+        <span>Về LHD – Learning</span>
+      </span>
+      <h2 class="section-title">Hành Trình Khơi Mở Tiềm Năng Ngôn Ngữ Vô Tận</h2>
+      <p style="color: var(--text-sub); max-width: 760px; margin: 1rem auto 0; font-size: 1.05rem; line-height: 1.7;">
+        Được sáng lập với sứ mệnh xóa bỏ rào cản ngoại ngữ, LHD – Learning mang đến giải pháp học trực tuyến toàn diện:
+        từ kiến thức học thuật chuẩn quốc tế đến kỹ năng phản xạ thực chiến tự nhiên nhất.
+      </p>
+    </div>
+
+    <!-- Hero Story & Highlight Box -->
+    <div class="about-hero-box">
+      <div>
+        <div class="about-quote-tag" style="background: rgba(11, 99, 229, 0.08); color: #0b63e5;">
+          <i class="fa-solid fa-compass"></i>
+          <span>Phương Pháp Đào Tạo Tiên Phong</span>
+        </div>
+        <h3 class="about-headline">
+          Học ngoại ngữ theo cách <span>bản năng của não bộ</span>, không ghi nhớ máy móc
+        </h3>
+        <p class="about-lead-text">
+          Tại LHD – Learning, mỗi buổi học là một trải nghiệm thực tế với mô hình tương tác đa giác quan. Người học được
+          đắm mình vào ngữ cảnh văn hóa, thảo luận cùng giảng viên bản xứ và nhận phản hồi chỉnh sửa ngữ điệu tức thời.
+        </p>
+        <ul class="about-checklist">
+          <li class="about-check-item">
+            <span class="about-check-icon"><i class="fa-solid fa-check"></i></span>
+            <span>Lộ trình cá nhân hóa đo lường chính xác theo chuẩn khung tham chiếu CEFR & JLPT.</span>
+          </li>
+          <li class="about-check-item">
+            <span class="about-check-icon"><i class="fa-solid fa-check"></i></span>
+            <span>Lớp học Live nhóm nhỏ tối đa 6 học viên, đảm bảo thời lượng thực hành phản xạ trên 70%.</span>
+          </li>
+          <li class="about-check-item">
+            <span class="about-check-icon"><i class="fa-solid fa-check"></i></span>
+            <span>Kho tài liệu số hóa không giới hạn cùng hệ thống bài tập luyện phát âm thông minh.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="about-stats-grid">
+        <div class="about-stat-card">
+          <div class="about-stat-num">98.8%</div>
+          <div class="about-stat-desc">Học viên đạt chứng chỉ mục tiêu ngay lần thi đầu</div>
+        </div>
+        <div class="about-stat-card">
+          <div class="about-stat-num">15,000+</div>
+          <div class="about-stat-desc">Học viên tin tưởng đồng hành và bứt phá thành công</div>
+        </div>
+        <div class="about-stat-card">
+          <div class="about-stat-num">50,000+</div>
+          <div class="about-stat-desc">Giờ học Live tương tác trực tiếp chất lượng cao</div>
+        </div>
+        <div class="about-stat-card">
+          <div class="about-stat-num">4.9/5.0★</div>
+          <div class="about-stat-desc">Điểm số hài lòng tuyệt đối từ cộng đồng học viên</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 Pillars Grid -->
+    <div class="pillars-grid">
+      <!-- Pillar 1 -->
+      <div class="pillar-card">
+        <div class="pillar-header">
+          <div class="pillar-icon-box pillar-icon-blue">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <span class="pillar-tag">Độc Quyền LHD</span>
+        </div>
+        <h4 class="pillar-title">Phương Pháp Aura Morph</h4>
+        <p class="pillar-desc">
+          Kích hoạt khả năng tiếp thu ngôn ngữ tự nhiên thông qua ngữ cảnh đa phương tiện, giúp não bộ hình thành liên
+          kết từ vựng sâu sắc và phản xạ nói không cần dịch nhẩm.
+        </p>
+        <div class="pillar-badges">
+          <span class="pillar-badge-item">Phản xạ tự nhiên</span>
+          <span class="pillar-badge-item">Ghi nhớ tiềm thức</span>
+        </div>
+      </div>
+
+      <!-- Pillar 2 -->
+      <div class="pillar-card">
+        <div class="pillar-header">
+          <div class="pillar-icon-box pillar-icon-green">
+            <i class="fa-solid fa-chalkboard-user"></i>
+          </div>
+          <span class="pillar-tag">Top 5% Tuyển Chọn</span>
+        </div>
+        <h4 class="pillar-title">Giảng Viên Chuyên Nghiệp</h4>
+        <p class="pillar-desc">
+          100% đội ngũ giảng viên và cố vấn sở hữu chứng chỉ quốc tế IELTS 8.0+ / JLPT N1, được đào tạo bài bản về kỹ
+          năng sư phạm hiện đại và truyền cảm hứng học tập mạnh mẽ.
+        </p>
+        <div class="pillar-badges">
+          <span class="pillar-badge-item">IELTS 8.0+ / JLPT N1</span>
+          <span class="pillar-badge-item">Sửa lỗi phát âm 1:1</span>
+        </div>
+      </div>
+
+      <!-- Pillar 3 -->
+      <div class="pillar-card">
+        <div class="pillar-header">
+          <div class="pillar-icon-box pillar-icon-purple">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <span class="pillar-tag">Thời Gian Thực</span>
+        </div>
+        <h4 class="pillar-title">Lớp Live Đa Chiều 24/7</h4>
+        <p class="pillar-desc">
+          Phòng học tương tác trực tuyến với công nghệ âm thanh chuẩn phòng thu, bảng viết số hóa và các bài tập trắc
+          nghiệm nhanh, mang lại cảm giác chân thực như tại lớp học offline.
+        </p>
+        <div class="pillar-badges">
+          <span class="pillar-badge-item">Tương tác trực tiếp</span>
+          <span class="pillar-badge-item">Lịch học linh hoạt</span>
+        </div>
+      </div>
+
+      <!-- Pillar 4 -->
+      <div class="pillar-card">
+        <div class="pillar-header">
+          <div class="pillar-icon-box pillar-icon-amber">
+            <i class="fa-solid fa-certificate"></i>
+          </div>
+          <span class="pillar-tag">Bảo Mật QR Code</span>
+        </div>
+        <h4 class="pillar-title">Chứng Chỉ Số Chuẩn Hóa</h4>
+        <p class="pillar-desc">
+          Cấp chứng chỉ điện tử có mã định danh QR chống giả mạo ngay sau khi hoàn thành khóa học, được đối tác học
+          thuật công nhận và dễ dàng thêm vào hồ sơ năng lực LinkedIn.
+        </p>
+        <div class="pillar-badges">
+          <span class="pillar-badge-item">Chuẩn CEFR & JLPT</span>
+          <span class="pillar-badge-item">Định danh điện tử</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom CTA Banner -->
+    <div class="about-cta-banner">
+      <div>
+        <h3 class="about-cta-title">Sẵn sàng bứt phá trình độ ngoại ngữ của bạn?</h3>
+        <p class="about-cta-desc">Tham gia cùng hơn 15,000 học viên tại LHD – Learning để mở ra cánh cửa học tập và sự
+          nghiệp toàn cầu.</p>
+      </div>
+      <a href="courses.html" class="btn-about-cta">
+        <span>Khám phá các khóa học</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="footer-grid">
+      <div>
+        <a href="home.html" class="brand-logo" style="margin-bottom: 1rem;">
+          <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <span class="brand-title">LHD – Learning</span>
+        </a>
+        <p class="footer-desc">
+          Hệ sinh thái đào tạo trực tuyến LHD – Learning áp dụng công nghệ E-Learning LMS hiện đại, mang đến trải nghiệm
+          học tập chuẩn quốc tế, tự nhiên và bứt phá.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Khám Phá</h4>
+        <ul class="footer-links">
+          <li><a href="courses.html?lang=en">Tiếng Anh Giao Tiếp</a></li>
+          <li><a href="courses.html?lang=jp">Tiếng Nhật JLPT</a></li>
+          <li><a href="courses.html">Tất cả khóa học</a></li>
+          <li><a href="#about">Về LHD – Learning</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Học Viên</h4>
+        <ul class="footer-links">
+          <li><a href="home.html">Trang chủ học viên</a></li>
+          <li><a href="my-courses.html">Khóa học của tôi</a></li>
+          <li><a href="certificates.html">Chứng chỉ hoàn thành</a></li>
+          <li><a href="javascript:void(0)" onclick="openChatModal()">Hỗ trợ kỹ thuật</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Hệ Thống</h4>
+        <ul class="footer-links">
+          <li><a href="../instructor/dashboard.html">Kênh Giảng Viên</a></li>
+          <li><a href="../admin/dashboard.html">Quản Trị Hệ Thống</a></li>
+          <li><a href="../auth/login.html">Đăng Nhập Tài Khoản</a></li>
+          <li><a href="../auth/register.html">Đăng Ký Thành Viên</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 LHD – Learning Platform. All rights reserved.</span>
+      <span>Liên hệ hỗ trợ: support@lhd.edu.vn</span>
+    </div>
+  </footer>
+
+  <!-- Admin Support Live Chat Modal -->
+  <div class="chat-modal-overlay" id="adminChatModal">
+    <div class="chat-modal-box">
+      <!-- Header -->
+      <div class="chat-modal-header">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="position: relative;">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120"
+              style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid #38bdf8;"
+              alt="Admin Support">
+            <span
+              style="position: absolute; bottom: 0; right: 0; width: 11px; height: 11px; background: #22c55e; border: 2px solid #ffffff; border-radius: 50%;"></span>
+          </div>
+          <div>
+            <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0; color: #ffffff;">Hỗ Trợ Học Viên LHD</h4>
+            <div style="font-size: 0.75rem; color: #94a3b8; display: flex; align-items: center; gap: 5px;">
+              <span>Trực tuyến 24/7</span>
+              <span>•</span>
+              <span style="color: #38bdf8;">Phản hồi nhanh</span>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="chat-modal-close-btn" id="btnCloseChatModal" title="Đóng cửa sổ"><i
+            class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Messages Body -->
+      <div class="chat-modal-body" id="chatMessagesContainer">
+        <!-- Welcome Admin Msg -->
+        <div class="chat-msg-row admin-row">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120" class="chat-bubble-avatar"
+            alt="Admin">
+          <div class="chat-bubble admin-bubble">
+            <p>Xin chào học viên <strong class="chat-user-name">Học viên</strong>! 👋</p>
+            <p style="margin-top: 6px;">Tôi là Chuyên viên tư vấn & hỗ trợ kỹ thuật của LHD – Learning. Bạn đang cần hỗ
+              trợ vấn đề gì về khóa học hay tài khoản?</p>
+          </div>
+        </div>
+
+        <!-- Quick Options -->
+        <div class="chat-quick-options" id="chatQuickOptions">
+          <button type="button" class="quick-chip"
+            onclick="sendQuickMessage('Cách tham gia phòng học Live Google Meet?')">
+            🎥 Vào phòng học Live
+          </button>
+          <button type="button" class="quick-chip" onclick="sendQuickMessage('Kiểm tra trạng thái thanh toán VNPay')">
+            💳 Kiểm tra đơn hàng VNPay
+          </button>
+          <button type="button" class="quick-chip"
+            onclick="sendQuickMessage('Hướng dẫn tải chứng chỉ PDF có chữ ký số')">
+            📜 Cấp chứng chỉ khóa học
+          </button>
+          <button type="button" class="quick-chip"
+            onclick="sendQuickMessage('Tôi muốn phản hồi về nội dung bài giảng')">
+            💡 Góp ý / Phản hồi
+          </button>
+        </div>
+      </div>
+
+      <!-- Input Footer -->
+      <div class="chat-modal-footer">
+        <form id="chatForm" onsubmit="handleSendChatMessage(event)" style="display: flex; gap: 8px; width: 100%;">
+          <input type="text" id="chatInputMessage" placeholder="Nhập câu hỏi hoặc phản hồi của bạn..."
+            class="chat-input-field" autocomplete="off" required>
+          <button type="submit" class="btn-chat-send" title="Gửi tin nhắn">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Toast Notification -->
+  <div class="toast-custom" id="toastCustom">
+    <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 1.1rem;"></i>
+    <span id="toastMessage">Thông báo</span>
+  </div>
+
+  <!-- Interactive JavaScript Logic -->
+  <script>
+    // User controls
+    const userCapsuleBtn = document.getElementById('userCapsuleBtn');
+    const btnLogoutUser = document.getElementById('btnLogoutUser');
+
+    // Menu button & dropdown
+    const headerMenuBtn = document.getElementById('headerMenuBtn');
+    const menuDropdown = document.getElementById('menuDropdown');
+
+    // Bell button & dropdown
+    const headerBellBtn = document.getElementById('headerBellBtn');
+    const bellDropdown = document.getElementById('bellDropdown');
+    const headerBellBadge = document.getElementById('headerBellBadge');
+    const btnMarkAllRead = document.getElementById('btnMarkAllRead');
+
+    // Toast
+    const toastCustom = document.getElementById('toastCustom');
+    const toastMessage = document.getElementById('toastMessage');
+    let toastTimeout;
+
+    function showToast(msg) {
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastMessage.textContent = msg;
+      toastCustom.classList.add('show');
+      toastTimeout = setTimeout(() => {
+        toastCustom.classList.remove('show');
+      }, 3200);
+    }
+
+    function getCurrentUser() {
+      try {
+        const u = JSON.parse(localStorage.getItem('currentUser') || localStorage.getItem('user_info') || localStorage.getItem('user') || 'null');
+        if (u) return u;
+      } catch (e) {}
+      return {
+        id: 'std_default',
+        name: localStorage.getItem('lhd_user_fullname') || 'talooc',
+        email: 'student@lhd.edu.vn',
+        role: 'ROLE_STUDENT'
+      };
+    }
+
+    function syncUserUI() {
+      const u = getCurrentUser();
+      if (!u) {
+        // Fallback default student info
+        document.querySelectorAll('.user-capsule-name, .menu-banner-name').forEach(el => el.textContent = 'Học Viên');
+        return;
+      }
+      const displayName = u.name || (u.email ? u.email.split('@')[0] : 'Học Viên');
+      document.querySelectorAll('.user-capsule-name, .menu-banner-name').forEach(el => el.textContent = displayName);
+      const emailEl = document.querySelector('.menu-banner-sub');
+      if (emailEl) emailEl.textContent = u.email || 'student@lhd.edu.vn';
+      document.querySelectorAll('.chat-user-name').forEach(el => el.textContent = displayName);
+
+      const savedAvatar = localStorage.getItem('lhd_user_avatar');
+      if (savedAvatar) {
+        document.querySelectorAll('.user-capsule-avatar, .menu-banner-avatar, #headerUserAvatar').forEach(img => img.src = savedAvatar);
+      }
+    }
+
+    function syncCartCount() {
+      try {
+        const cart = JSON.parse(localStorage.getItem('lhd_cart') || '[]');
+        const badge = document.getElementById('cartBadge');
+        if (badge && cart.length > 0) {
+          badge.textContent = cart.length;
+          badge.style.display = 'flex';
+        }
+      } catch (e) {}
+    }
+
+    function logout() {
+      localStorage.removeItem('auth_token');
+      localStorage.removeItem('user_info');
+      localStorage.removeItem('lhd_learning_logged_in');
+      sessionStorage.clear();
+      showToast('Đang đăng xuất khỏi hệ thống...');
+      setTimeout(() => {
+        window.location.href = '../index.html';
+      }, 500);
+    }
+
+    function closeAllDropdowns() {
+      if (menuDropdown) menuDropdown.classList.remove('show');
+      if (bellDropdown) bellDropdown.classList.remove('show');
+    }
+
+    // Dropdown Toggles: Nút 3 gạch ngang (☰) mở menu 4 khu vực
+    /* headerMenuBtn listener replaced by global toggleMegaMenu */
+
+    /* headerBellBtn listener replaced by global toggleBellDropdown */
+
+    btnLogoutUser.addEventListener('click', (e) => {
+      e.preventDefault();
+      logout();
+    });
+
+    // ==========================================================================
+    // NOTIFICATION MANAGEMENT
+    // ==========================================================================
+    const DEFAULT_NOTIFICATIONS = [
+      {
+        id: '1727632800001',
+        title: '🔔 Nhắc nhở buổi học trực tuyến',
+        message: 'Khóa "Tiếng Anh Giao Tiếp Bản Xứ Siêu Phản Xạ" sẽ bắt đầu lúc 19:30 tối nay trên Google Meet.',
+        time: '15 phút trước',
+        link: 'my-courses.html',
+        unread: true
+      },
+      {
+        id: '1727632800002',
+        title: '⏳ Lớp học đủ điều kiện mở lớp',
+        message: 'Khóa "Tiếng Anh IELTS Bứt Phá (Band 5.0 - 6.0)" đã đạt 27/30 HV. Dự kiến khai giảng vào 06/10/2026.',
+        time: '2 giờ trước',
+        link: 'my-courses.html',
+        unread: true
+      },
+      {
+        id: '1727632800003',
+        title: '🏆 Cấp chứng chỉ hoàn thành',
+        message: 'Chúc mừng bạn đã hoàn thành 100% khóa học "Tiếng Nhật Nhập Môn JLPT N5 Cơ Bản". Xem chứng chỉ ngay!',
+        time: '1 ngày trước',
+        link: 'certificates.html',
+        unread: false
+      }
+    ];
+
+    function getNotifications() {
+      try {
+        const raw = localStorage.getItem('lhd_notifications');
+        if (!raw) {
+          localStorage.setItem('lhd_notifications', JSON.stringify(DEFAULT_NOTIFICATIONS));
+          return DEFAULT_NOTIFICATIONS;
+        }
+        return JSON.parse(raw);
+      } catch (e) {
+        return DEFAULT_NOTIFICATIONS;
+      }
+    }
+
+    function saveNotifications(notifs) {
+      localStorage.setItem('lhd_notifications', JSON.stringify(notifs));
+      renderNotifications();
+    }
+
+    window.addNotification = function (title, message, link) {
+      const notifs = getNotifications();
+      const newNotif = {
+        id: String(Date.now()),
+        title: title || '🛒 Đã thêm vào giỏ hàng',
+        message: message || 'Bạn vừa thêm khóa học vào giỏ hàng thành công.',
+        time: 'Vừa xong',
+        link: link || 'cart.html',
+        unread: true
+      };
+      notifs.unshift(newNotif);
+      if (notifs.length > 20) notifs.length = 20;
+      saveNotifications(notifs);
+    };
+
+    window.deleteNotification = function (id, event) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      let notifs = getNotifications();
+      notifs = notifs.filter(n => String(n.id) !== String(id));
+      saveNotifications(notifs);
+      showToast('Đã xóa thông báo thành công.');
+    };
+
+    window.clearAllNotifications = function (event) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      saveNotifications([]);
+      showToast('Đã xóa toàn bộ thông báo.');
+    };
+
+    function renderNotifications() {
+      const notifs = getNotifications();
+      const badge = document.getElementById('headerBellBadge');
+      const notifList = document.getElementById('bellNotificationList');
+      const unreadCount = notifs.filter(n => n.unread).length;
+
+      if (badge) {
+        if (unreadCount > 0) {
+          badge.textContent = unreadCount;
+          badge.style.display = 'inline-flex';
+        } else {
+          badge.textContent = '0';
+          badge.style.display = 'none';
+        }
+      }
+
+      if (notifList) {
+        if (notifs.length === 0) {
+          notifList.innerHTML = '<div style="text-align: center; padding: 1.6rem 1rem; color: #94a3b8; font-size: 0.85rem;"><i class="fa-regular fa-bell-slash" style="font-size: 1.8rem; margin-bottom: 8px; display: block; color: #cbd5e1;"></i><span>Hiện tại bạn không có thông báo mới</span></div>';
+        } else {
+          notifList.innerHTML = notifs.map(n => {
+            const bg = n.unread ? '#f0fdf4' : '#f8fafc';
+            const border = n.unread ? '#bbf7d0' : '#f1f5f9';
+            const titleColor = n.unread ? '#15803d' : '#0f172a';
+            const targetLink = n.link || 'cart.html';
+            const badgeHtml = n.unread ? '<span style="font-size: 0.65rem; background: #22c55e; color: #ffffff; padding: 1px 6px; border-radius: 999px; font-weight: 700;">Mới</span>' : '<span style="font-size: 0.72rem; color: #94a3b8;">' + (n.time || '') + '</span>';
+            const timeHtml = n.unread ? '<div style="font-size: 0.72rem; color: #16a34a; margin-top: 4px; font-weight: 600;">' + (n.time || 'Vừa xong') + '</div>' : '';
+            return '<div class="bell-notif-item" onclick="window.location.href=\'' + targetLink + '\'" style="position: relative; padding: 0.65rem 2rem 0.65rem 0.85rem; border-radius: 12px; background: ' + bg + '; border: 1px solid ' + border + '; margin-bottom: 6px; cursor: pointer; transition: all 0.15s ease;"><div style="font-weight: 700; font-size: 0.85rem; color: ' + titleColor + '; margin-bottom: 3px; display: flex; align-items: center; justify-content: space-between; padding-right: 6px;"><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 190px;">' + n.title + '</span>' + badgeHtml + '</div><div style="font-size: 0.8rem; color: #475569; line-height: 1.4;">' + n.message + '</div>' + timeHtml + '<button type="button" class="btn-delete-notif" onclick="deleteNotification(\'' + n.id + '\', event)" title="Xóa thông báo này" style="position: absolute; top: 6px; right: 6px; background: none; border: none; color: #94a3b8; font-size: 0.78rem; cursor: pointer; padding: 4px 6px; border-radius: 6px; transition: all 0.15s ease;" onmouseover="this.style.color=\'#ef4444\'; this.style.background=\'#fee2e2\';" onmouseout="this.style.color=\'#94a3b8\'; this.style.background=\'none\';"><i class="fa-solid fa-trash-can"></i></button></div>';
+          }).join('');
+        }
+      }
+    }
+
+    window.markAllNotificationsRead = function () {
+      const notifs = getNotifications();
+      notifs.forEach(n => n.unread = false);
+      saveNotifications(notifs);
+      showToast('Đã đánh dấu tất cả thông báo là đã đọc.');
+    };
+
+    if (btnMarkAllRead) {
+      btnMarkAllRead.addEventListener('click', window.markAllNotificationsRead);
+    }
+
+    // Close dropdowns on outside click
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav-dropdown') && !e.target.closest('.nav-circle-btn')) {
+        closeAllDropdowns();
+      }
+    });
+
+    // ==========================================================================
+    // SUPPORT LIVE CHAT MODAL LOGIC
+    // ==========================================================================
+    const adminChatModal = document.getElementById('adminChatModal');
+    const btnCloseChatModal = document.getElementById('btnCloseChatModal');
+    const btnMenuSupportLink = document.getElementById('btnMenuSupportLink');
+    const chatMessagesContainer = document.getElementById('chatMessagesContainer');
+    const chatInputMessage = document.getElementById('chatInputMessage');
+    const chatQuickOptions = document.getElementById('chatQuickOptions');
+
+    function openChatModal() {
+      closeAllDropdowns();
+      if (adminChatModal) {
+        adminChatModal.classList.add('show');
+        if (chatInputMessage) setTimeout(() => chatInputMessage.focus(), 200);
+      }
+    }
+
+    function closeChatModal() {
+      if (adminChatModal) adminChatModal.classList.remove('show');
+    }
+
+    if (btnMenuSupportLink) {
+      btnMenuSupportLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        openChatModal();
+      });
+    }
+
+    if (btnCloseChatModal) {
+      btnCloseChatModal.addEventListener('click', closeChatModal);
+    }
+
+    if (adminChatModal) {
+      adminChatModal.addEventListener('click', (e) => {
+        if (e.target === adminChatModal) closeChatModal();
+      });
+    }
+
+    function appendUserMessage(text) {
+      const row = document.createElement('div');
+      row.className = 'chat-msg-row user-row';
+      row.innerHTML = `<div class="chat-bubble user-bubble">${text}</div>`;
+      chatMessagesContainer.appendChild(row);
+      chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+    }
+
+    function appendAdminMessage(text) {
+      const row = document.createElement('div');
+      row.className = 'chat-msg-row admin-row';
+      row.innerHTML = `
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120" class="chat-bubble-avatar" alt="Admin">
+        <div class="chat-bubble admin-bubble">${text}</div>
+      `;
+      chatMessagesContainer.appendChild(row);
+      chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+    }
+
+    function sendQuickMessage(text) {
+      appendUserMessage(text);
+      if (chatQuickOptions) chatQuickOptions.style.display = 'none';
+
+      setTimeout(() => {
+        if (text.includes('Live')) {
+          appendAdminMessage('Dạ chào bạn, các lớp học Live tương tác sẽ mở phòng trước 10 phút. Bạn chỉ cần vào tab <strong>Khóa học của tôi</strong> hoặc click link phòng học để tham gia nhé!');
+        } else if (text.includes('VNPay')) {
+          appendAdminMessage('Hệ thống kiểm tra thấy đơn hàng của bạn đã thanh toán thành công và các khóa học đã được kích hoạt đầy đủ vào tài khoản của bạn ạ.');
+        } else if (text.includes('chứng chỉ')) {
+          appendAdminMessage('Bạn có thể truy cập mục <strong>Chứng chỉ</strong> trên menu hoặc từ Hồ sơ cá nhân để tải bản PDF có ký số xác thực hoặc chia sẻ trực tuyến bất cứ lúc nào nhé!');
+        } else {
+          const u = getCurrentUser();
+          const userEmail = u ? u.email : 'của bạn';
+          appendAdminMessage('Cảm ơn phản hồi quý báu của bạn! Bộ phận học thuật của LHD – Learning đã ghi nhận và sẽ phản hồi chi tiết tới email <strong>' + userEmail + '</strong> trong thời gian sớm nhất.');
+        }
+      }, 700);
+    }
+
+    function handleSendChatMessage(e) {
+      e.preventDefault();
+      const val = chatInputMessage.value.trim();
+      if (!val) return;
+      appendUserMessage(val);
+      chatInputMessage.value = '';
+      if (chatQuickOptions) chatQuickOptions.style.display = 'none';
+
+      setTimeout(() => {
+        const u = getCurrentUser();
+        const userName = u ? u.name : 'bạn';
+        appendAdminMessage('Cảm ơn câu hỏi của ' + userName + ': <em>"' + val + '"</em>. Đội ngũ kỹ thuật viên và giảng viên của LHD đã tiếp nhận yêu cầu và sẽ hỗ trợ trực tiếp cho bạn ngay sau giây lát!');
+      }, 800);
+    }
+
+    // Initialize UI
+    syncUserUI();
+    syncCartCount();
+
+    // ==========================================================================
+    // MENU NAV-LINKS INTERACTIVE CLICK EFFECT, RIPPLE & SCROLLSPY
+    // ==========================================================================
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const headerElem = document.querySelector('header');
+    let isProgrammaticScroll = false;
+
+    function getHeaderOffset() {
+      return (headerElem ? headerElem.offsetHeight : 70) + 12;
+    }
+
+    function setActiveMenu(targetKey) {
+      navLinks.forEach(link => {
+        link.classList.remove('nav-item-active');
+        const href = link.getAttribute('href');
+        if (
+          href === targetKey ||
+          href.endsWith(targetKey) ||
+          (targetKey === 'home' && (href === 'home.html' || href === 'index.html' || href === '#top'))
+        ) {
+          link.classList.add('nav-item-active');
+        }
+      });
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+
+        // 1. Spawn glowing ripple effect on click
+        const rect = this.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        ripple.className = 'nav-click-ripple';
+        const diameter = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = diameter + 'px';
+        ripple.style.left = (e.clientX - rect.left - diameter / 2) + 'px';
+        ripple.style.top = (e.clientY - rect.top - diameter / 2) + 'px';
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+
+        // 2. If clicking on Home ("Trang chủ") while on home.html
+        if (href === 'home.html' || href === 'index.html' || href === '#top') {
+          e.preventDefault();
+          navLinks.forEach(l => l.classList.remove('nav-item-active'));
+          this.classList.add('nav-item-active');
+          isProgrammaticScroll = true;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          setTimeout(() => { isProgrammaticScroll = false; }, 800);
+        }
+        // 3. If clicking on Section Hash ("#about" - Giới thiệu, "#footer" - Liên hệ)
+        else if (href.startsWith('#')) {
+          e.preventDefault();
+          const targetSection = document.querySelector(href);
+          if (targetSection) {
+            navLinks.forEach(l => l.classList.remove('nav-item-active'));
+            this.classList.add('nav-item-active');
+            isProgrammaticScroll = true;
+
+            const targetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
+            window.scrollTo({ top: targetTop, behavior: 'smooth' });
+            setTimeout(() => { isProgrammaticScroll = false; }, 800);
+          }
+        }
+      });
+    });
+
+    // ScrollSpy: Automatically highlight menu item as user scrolls through the page
+    window.addEventListener('scroll', () => {
+      if (isProgrammaticScroll) return;
+
+      const scrollPos = window.scrollY;
+      const aboutSection = document.getElementById('about');
+      const footerSection = document.getElementById('footer');
+
+      if (!aboutSection || !footerSection) return;
+
+      const offset = getHeaderOffset();
+      const aboutTop = aboutSection.offsetTop - offset - 100;
+      const aboutBottom = aboutTop + aboutSection.offsetHeight;
+      const footerTop = footerSection.offsetTop - offset - 250;
+
+      // Bottom / Footer -> Highlight "Liên hệ"
+      if (scrollPos >= footerTop || (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 60)) {
+        setActiveMenu('#footer');
+      }
+      // About Section -> Highlight "Giới thiệu"
+      else if (scrollPos >= aboutTop && scrollPos < aboutBottom) {
+        setActiveMenu('#about');
+      }
+      // Top Area -> Highlight "Trang chủ"
+      else if (scrollPos < aboutTop) {
+        setActiveMenu('home');
+      }
+    });
+
+    // Check URL hash on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash) {
+        const hash = window.location.hash;
+        setActiveMenu(hash);
+        setTimeout(() => {
+          const target = document.querySelector(hash);
+          if (target) {
+            const targetTop = target.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
+            window.scrollTo({ top: targetTop, behavior: 'smooth' });
+          }
+        }, 180);
+      }
+    });
+  </script>
+
+  <!-- UNIFIED STUDENT HEADER INTERACTIVE LOGIC -->
+  <script id="student-unified-header-script">
+    (function () {
+      // 1. User Info & Avatar Synchronization
+      function getCurrentUser() {
+        try {
+          let u = JSON.parse(localStorage.getItem('currentUser') || localStorage.getItem('user_info') || localStorage.getItem('user') || sessionStorage.getItem('current_user') || 'null');
+          if (u) {
+            if (!u.name || u.name === 'Học Viên' || u.name === 'Học viên') {
+              const regUsers = JSON.parse(localStorage.getItem('lhd_registered_users') || '[]');
+              const foundReg = regUsers.find(function (r) {
+                return (u.email && r.email && r.email.toLowerCase() === u.email.toLowerCase()) || 
+                       (u.name && r.name && r.name.toLowerCase() === u.name.toLowerCase());
+              });
+              if (foundReg && foundReg.name) u.name = foundReg.name;
+              if (foundReg && foundReg.email && !u.email) u.email = foundReg.email;
+            }
+            return u;
+          }
+        } catch (e) {}
+
+        const regUsers = JSON.parse(localStorage.getItem('lhd_registered_users') || '[]');
+        const lastReg = regUsers.length > 0 ? regUsers[regUsers.length - 1] : null;
+
+        return {
+          id: lastReg ? lastReg.id : 'user_default',
+          name: (lastReg && lastReg.name) ? lastReg.name : (localStorage.getItem('lhd_user_fullname') || 'talooc'),
+          email: (lastReg && lastReg.email) ? lastReg.email : 'jerryhlgame123@gmail.com',
+          role: (lastReg && lastReg.role) ? lastReg.role : 'ROLE_STUDENT',
+          phone: (lastReg && lastReg.phone) ? lastReg.phone : '0987654321',
+          birthDate: (lastReg && lastReg.birthDate) ? lastReg.birthDate : '2000-01-01',
+          gender: (lastReg && lastReg.gender) ? lastReg.gender : 'male',
+          bio: 'Học viên năng động, đam mê chinh phục Tiếng Anh & Tiếng Nhật giao tiếp thực tế.'
+        };
+      }
+
+      function syncUserUI() {
+        const u = getCurrentUser();
+        if (!u) return;
+        const displayName = u.name || u.fullName || u.username || (u.email ? u.email.split('@')[0] : 'talooc');
+        const userEmail = u.email || 'jerryhlgame123@gmail.com';
+
+        document.querySelectorAll('.user-capsule-name, .menu-banner-name, #headerUserName, #welcomeUserName, #menuBannerName').forEach(function (el) {
+          el.textContent = displayName;
+        });
+        document.querySelectorAll('.menu-banner-sub, #menuBannerEmail').forEach(function (el) {
+          el.textContent = userEmail;
+        });
+        document.querySelectorAll('.chat-user-name').forEach(function (el) {
+          el.textContent = displayName;
+        });
+
+        const savedAvatar = localStorage.getItem('lhd_user_avatar');
+        if (savedAvatar) {
+          document.querySelectorAll('.user-capsule-avatar, .menu-banner-avatar, #headerUserAvatar, #menuBannerAvatar, #heroAvatarImg').forEach(function (img) {
+            img.src = savedAvatar;
+          });
+        }
+      }
+
+      function updateCartBadgeCount() {
+        try {
+          const cart = JSON.parse(localStorage.getItem('lhd_cart') || '[]');
+          const badge = document.getElementById('cartBadge');
+          if (badge) {
+            if (cart.length > 0) {
+              badge.textContent = cart.length;
+              badge.style.display = 'inline-flex';
+            } else {
+              badge.style.display = 'none';
+            }
+          }
+          const cartHeaderBadge = document.getElementById('cartHeaderBadge');
+          if (cartHeaderBadge) {
+            cartHeaderBadge.textContent = cart.length + ' Khóa học';
+          }
+        } catch (e) {}
+      }
+
+      // ====================================================================
+      // 2. Notification Management (LocalStorage: lhd_notifications)
+      // ====================================================================
+      function getNotifications() {
+        try {
+          return JSON.parse(localStorage.getItem('lhd_notifications') || '[]');
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveNotifications(notifs) {
+        localStorage.setItem('lhd_notifications', JSON.stringify(notifs));
+        renderNotifications();
+      }
+
+      window.addNotification = function (title, message, link) {
+        const notifs = getNotifications();
+        const newNotif = {
+          id: Date.now(),
+          title: title || '🛒 Đã thêm vào giỏ hàng',
+          message: message || 'Bạn vừa thêm khóa học vào giỏ hàng thành công.',
+          time: 'Vừa xong',
+          link: link || 'cart.html',
+          unread: true
+        };
+        notifs.unshift(newNotif);
+        if (notifs.length > 20) notifs.length = 20;
+        saveNotifications(notifs);
+      };
+
+      function renderNotifications() {
+        const notifs = getNotifications();
+        const badge = document.getElementById('headerBellBadge');
+        const notifList = document.getElementById('bellNotificationList');
+
+        const unreadCount = notifs.filter(function (n) { return n.unread; }).length;
+
+        // 1. Update Bell Badge (0 is hidden)
+        if (badge) {
+          if (unreadCount > 0) {
+            badge.textContent = unreadCount;
+            badge.style.display = 'inline-flex';
+          } else {
+            badge.textContent = '0';
+            badge.style.display = 'none';
+          }
+        }
+
+        // 2. Render List inside #bellNotificationList
+        if (notifList) {
+          if (notifs.length === 0) {
+            notifList.innerHTML = '<div class="bell-empty-state" style="text-align: center; padding: 1.6rem 1rem; color: #94a3b8; font-size: 0.85rem;"><i class="fa-regular fa-bell-slash" style="font-size: 1.8rem; margin-bottom: 8px; display: block; color: #cbd5e1;"></i><span>Hiện tại bạn không có thông báo mới</span></div>';
+          } else {
+            notifList.innerHTML = notifs.map(function (n) {
+              const bg = n.unread ? '#f0fdf4' : '#f8fafc';
+              const border = n.unread ? '#bbf7d0' : '#f1f5f9';
+              const titleColor = n.unread ? '#15803d' : '#0f172a';
+              const targetLink = n.link || 'cart.html';
+              const badgeHtml = n.unread ? '<span style="font-size: 0.65rem; background: #22c55e; color: #ffffff; padding: 1px 6px; border-radius: 999px; font-weight: 700;">Mới</span>' : '<span style="font-size: 0.72rem; color: #94a3b8;">' + (n.time || '') + '</span>';
+              const timeHtml = n.unread ? '<div style="font-size: 0.72rem; color: #16a34a; margin-top: 4px; font-weight: 600;">' + (n.time || 'Vừa xong') + '</div>' : '';
+              return '<div class="bell-notif-item" onclick="window.location.href=\'' + targetLink + '\'" style="padding: 0.65rem 0.85rem; border-radius: 12px; background: ' + bg + '; border: 1px solid ' + border + '; margin-bottom: 6px; cursor: pointer; transition: all 0.15s ease;"><div style="font-weight: 700; font-size: 0.85rem; color: ' + titleColor + '; margin-bottom: 3px; display: flex; align-items: center; justify-content: space-between;"><span>' + n.title + '</span>' + badgeHtml + '</div><div style="font-size: 0.8rem; color: #475569; line-height: 1.4;">' + n.message + '</div>' + timeHtml + '</div>';
+            }).join('');
+          }
+        }
+      }
+
+      window.markAllNotificationsRead = function () {
+        const notifs = getNotifications();
+        notifs.forEach(function (n) { n.unread = false; });
+        saveNotifications(notifs);
+        if (typeof showToast === 'function') {
+          showToast('Đã đánh dấu tất cả thông báo là đã đọc.');
+        }
+      };
+
+      function logout() {
+        localStorage.removeItem('auth_token');
+        localStorage.removeItem('user_info');
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('lhd_learning_logged_in');
+        sessionStorage.clear();
+        window.location.href = '../index.html';
+      }
+
+      // Live Chat Modal handlers
+      const adminChatModal = document.getElementById('adminChatModal');
+      const btnCloseChatModal = document.getElementById('btnCloseChatModal');
+      const btnMenuSupportLink = document.getElementById('btnMenuSupportLink');
+      const chatMessagesContainer = document.getElementById('chatMessagesContainer');
+      const chatInputMessage = document.getElementById('chatInputMessage');
+      const chatQuickOptions = document.getElementById('chatQuickOptions');
+      const btnLogoutUser = document.getElementById('btnLogoutUser');
+      const btnMarkAllRead = document.getElementById('btnMarkAllRead');
+
+      window.openChatModal = function () {
+        if (window.closeAllDropdowns) window.closeAllDropdowns();
+        if (adminChatModal) {
+          adminChatModal.classList.add('show');
+          if (chatInputMessage) setTimeout(function () { chatInputMessage.focus(); }, 200);
+        }
+      };
+
+      window.closeChatModal = function () {
+        if (adminChatModal) adminChatModal.classList.remove('show');
+      };
+
+      if (btnMenuSupportLink) {
+        btnMenuSupportLink.addEventListener('click', function (e) {
+          e.preventDefault();
+          window.openChatModal();
+        });
+      }
+
+      if (btnCloseChatModal) {
+        btnCloseChatModal.addEventListener('click', window.closeChatModal);
+      }
+
+      if (adminChatModal) {
+        adminChatModal.addEventListener('click', function (e) {
+          if (e.target === adminChatModal) window.closeChatModal();
+        });
+      }
+
+      if (btnLogoutUser) {
+        btnLogoutUser.addEventListener('click', logout);
+      }
+
+      if (btnMarkAllRead) {
+        btnMarkAllRead.addEventListener('click', window.markAllNotificationsRead);
+      }
+
+      window.appendUserMessage = function (text) {
+        if (!chatMessagesContainer) return;
+        const row = document.createElement('div');
+        row.className = 'chat-msg-row user-row';
+        row.innerHTML = '<div class="chat-bubble user-bubble">' + text + '</div>';
+        chatMessagesContainer.appendChild(row);
+        chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+      };
+
+      window.appendAdminMessage = function (text) {
+        if (!chatMessagesContainer) return;
+        const row = document.createElement('div');
+        row.className = 'chat-msg-row admin-row';
+        row.innerHTML = '<img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120" class="chat-bubble-avatar" alt="Admin"><div class="chat-bubble admin-bubble">' + text + '</div>';
+        chatMessagesContainer.appendChild(row);
+        chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+      };
+
+      window.sendQuickMessage = function (text) {
+        window.appendUserMessage(text);
+        if (chatQuickOptions) chatQuickOptions.style.display = 'none';
+        setTimeout(function () {
+          let reply = 'Cảm ơn bạn đã liên hệ! Admin LHD – Learning đã ghi nhận yêu cầu: <strong>"' + text + '"</strong>. Chúng tôi đang kiểm tra thông tin và sẽ hỗ trợ giải quyết ngay!';
+          if (text.includes('Live')) {
+            reply = 'Để vào phòng học Live, bạn vào mục <strong>"Khóa học của tôi"</strong> -> Chọn khóa học -> Bấm <strong>"Tham gia lớp học trực tuyến"</strong>. Giảng viên sẽ mở phòng trước 10 phút!';
+          } else if (text.includes('VNPay') || text.includes('toán')) {
+            reply = 'Hệ thống kết nối cổng thanh toán VNPay hoàn toàn tự động. Sau khi thanh toán thành công, khóa học sẽ được kích hoạt ngay lập tức vào tài khoản!';
+          } else if (text.includes('chứng chỉ')) {
+            reply = 'Chứng chỉ hoàn thành được cấp tự động sau khi bạn đạt trên 80% điểm bài test. Bạn có thể tải file PDF sắc nét tại trang <strong>"Chứng chỉ đạt được"</strong>!';
+          }
+          window.appendAdminMessage(reply);
+        }, 700);
+      };
+
+      window.handleSendChatMessage = function (e) {
+        if (e) e.preventDefault();
+        if (!chatInputMessage) return;
+        const val = chatInputMessage.value.trim();
+        if (!val) return;
+        window.appendUserMessage(val);
+        chatInputMessage.value = '';
+        if (chatQuickOptions) chatQuickOptions.style.display = 'none';
+
+        setTimeout(function () {
+          const u = getCurrentUser();
+          const userName = u ? u.name : 'bạn';
+          window.appendAdminMessage('Cảm ơn câu hỏi của ' + userName + ': <em>"' + val + '"</em>. Đội ngũ trợ giảng của LHD đã tiếp nhận và sẽ phản hồi trực tiếp cho bạn ngay!');
+        }, 800);
+      };
+
+      // Nav-links ripple animation
+      document.querySelectorAll('.nav-links a').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          const rect = this.getBoundingClientRect();
+          const ripple = document.createElement('span');
+          ripple.className = 'nav-click-ripple';
+          const diameter = Math.max(rect.width, rect.height);
+          ripple.style.width = ripple.style.height = diameter + 'px';
+          ripple.style.left = (e.clientX - rect.left - diameter / 2) + 'px';
+          ripple.style.top = (e.clientY - rect.top - diameter / 2) + 'px';
+          this.appendChild(ripple);
+          setTimeout(function () { ripple.remove(); }, 600);
+        });
+      });
+
+      
+    window.addToCartHome = function(title, instructor, priceVal, priceText, thumb, schedule, time, startDate, duration) {
+      const item = {
+        id: Date.now(),
+        title: title || 'Khóa học LHD',
+        instructor: instructor || 'Giảng viên LHD – Learning',
+        schedule: schedule || 'Thứ 2 - 4 - 6',
+        time: time || '19:30 – 21:00',
+        startDate: startDate || '05/10/2026',
+        duration: duration || '36 buổi Live (3 tháng)',
+        roomType: 'Phòng học Live trực tuyến (Google Meet HD)',
+        price: priceVal || 1290000,
+        priceVal: priceVal || 1290000,
+        priceText: priceText || '1.290.000đ',
+        thumb: thumb || 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600'
+      };
+      let cart = [];
+      try { cart = JSON.parse(localStorage.getItem('lhd_cart') || '[]'); } catch (e) { cart = []; }
+      const existsIndex = cart.findIndex(c => c.title === item.title);
+      if (existsIndex === -1) {
+        cart.push(item);
+      } else {
+        cart[existsIndex] = item;
+      }
+      localStorage.setItem('lhd_cart', JSON.stringify(cart));
+      if (typeof updateCartBadgeCount === 'function') updateCartBadgeCount();
+
+      if (typeof window.addNotification === 'function') {
+        window.addNotification(
+          '🛒 Đã thêm vào giỏ hàng',
+          'Bạn vừa thêm lớp Live "' + item.title + '" (' + item.schedule + ' ' + item.time + ') vào giỏ hàng.',
+          'cart.html'
+        );
+      }
+      if (typeof showToast === 'function') {
+        showToast('Đã thêm lớp học Live "' + item.title + '" vào giỏ hàng thành công!');
+      }
+      setTimeout(function() {
+        window.location.href = 'cart.html';
+      }, 500);
+    };
+
+      // Initial synchronization
+      window.addEventListener('DOMContentLoaded', function () {
+        syncUserUI();
+        updateCartBadgeCount();
+        renderNotifications();
+      });
+
+      syncUserUI();
+      updateCartBadgeCount();
+      renderNotifications();
+    })();
+  </script>
+
+</body>
+
+</html>
