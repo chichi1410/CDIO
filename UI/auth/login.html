@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>Đăng nhập | LHD – Learning</title>
   <!-- Google Fonts & FontAwesome Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -768,10 +771,8 @@
       }
       if (role === 'ROLE_ADMIN') {
         window.location.href = '../admin/dashboard.html';
-      } else if (role === 'ROLE_INSTRUCTOR') {
-        window.location.href = '../instructor/dashboard.html';
       } else {
-        // Đăng nhập học viên thành công -> Vào Phân hệ Học viên
+        // Cả Giảng viên và Học viên sau khi đăng nhập đều chuyển hướng vào Trang chủ
         window.location.href = '../student/home.html';
       }
     }
@@ -872,8 +873,8 @@
         }
 
         const roleLabel = authenticatedUser.role === 'ROLE_ADMIN' ? 'Quản trị viên' : (authenticatedUser.role === 'ROLE_INSTRUCTOR' ? 'Giảng viên' : 'Học viên');
-        const targetPortal = authenticatedUser.role === 'ROLE_ADMIN' ? 'Cổng Quản Trị' : (authenticatedUser.role === 'ROLE_INSTRUCTOR' ? 'Cổng Giảng Viên' : 'Không Gian Học Viên');
-        showToast(`Đăng nhập thành công! Xin chào ${authenticatedUser.name} (${roleLabel}). Đang chuyển hướng vào ${targetPortal}...`);
+        const targetPortal = authenticatedUser.role === 'ROLE_ADMIN' ? 'Cổng Quản Trị' : 'Trang Chủ';
+        showToast(`Đăng nhập thành công! Xin chào ${authenticatedUser.name} (${roleLabel}). Đang chuyển hướng về ${targetPortal}...`);
 
         setTimeout(() => {
           const params = new URLSearchParams(window.location.search);

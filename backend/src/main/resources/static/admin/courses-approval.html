@@ -3,60 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phê Duyệt Khóa Học | Admin Portal</title>
+  <title>Phê Duyệt Khóa Học | Admin Portal LHD</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
-    :root { --primary: #9333ea; }
+    :root {
+      --primary: #9333ea; --bg: #f8fafc; --text: #0f172a; --text-muted: #64748b;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-    body { background-color: #f8fafc; color: #0f172a; min-height: 100vh; }
+    body { background-color: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 4rem; }
 
-    header { background: #0f172a; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; color: white; }
+    header {
+      background: #0f172a; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; color: white;
+    }
     .container { max-width: 1100px; margin: 2.5rem auto; padding: 0 5%; }
 
+    .tabs { display: flex; gap: 10px; margin-bottom: 2rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
+    .tab-btn {
+      background: none; border: none; font-weight: 700; font-size: 0.95rem; color: #64748b;
+      padding: 0.6rem 1.2rem; border-radius: 12px; cursor: pointer; transition: all 0.2s;
+    }
+    .tab-btn.active { background: #0f172a; color: white; }
+
     .approval-card {
-      background: white; border-radius: 28px; padding: 2rem; border: 1.5px solid #f1f5f9;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.03); margin-bottom: 1.5rem;
-      display: flex; justify-content: space-between; align-items: center;
+      background: white; border-radius: 24px; padding: 1.8rem; border: 1.5px solid #f1f5f9;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.03); margin-bottom: 1.2rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
+    }
+
+    .card-thumb {
+      width: 100px; height: 70px; border-radius: 12px; object-fit: cover; background: #e2e8f0; flex-shrink: 0;
     }
 
     .btn-approve {
-      padding: 0.7rem 1.4rem; border-radius: 9999px; border: none; background: #16a34a;
-      color: white; font-weight: 700; cursor: pointer; margin-right: 8px;
+      padding: 0.65rem 1.4rem; border-radius: 9999px; border: none; background: #16a34a;
+      color: white; font-weight: 700; cursor: pointer; transition: all 0.2s;
     }
+    .btn-approve:hover { background: #15803d; }
 
     .btn-reject {
-      padding: 0.7rem 1.4rem; border-radius: 9999px; border: none; background: #dc2626;
-      color: white; font-weight: 700; cursor: pointer;
+      padding: 0.65rem 1.4rem; border-radius: 9999px; border: none; background: #dc2626;
+      color: white; font-weight: 700; cursor: pointer; transition: all 0.2s;
     }
+    .btn-reject:hover { background: #b91c1c; }
+
+    .toast {
+      position: fixed; bottom: 25px; right: 25px; background: #0f172a; color: white;
+      padding: 0.9rem 1.6rem; border-radius: 16px; font-weight: 700; font-size: 0.9rem;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25); z-index: 9999; display: none; align-items: center; gap: 10px;
+    }
+    .toast.show { display: flex; animation: slideUp 0.3s ease; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .empty-state { text-align: center; padding: 4rem 1rem; color: #94a3b8; }
+    .empty-state i { font-size: 3.5rem; color: #cbd5e1; margin-bottom: 1rem; }
   </style>
 </head>
 <body>
 
   <header>
-    <a href="dashboard.html" style="font-weight: 800; text-decoration: none; color: white;"> Quay lại Admin Dashboard</a>
-    <span style="font-weight: 800;">Duyệt Khóa Học Mới Từ Giảng Viên</span>
+    <a href="dashboard.html" style="font-weight: 800; text-decoration: none; color: white;"><i class="fa-solid fa-arrow-left"></i> Quay lại Admin Dashboard</a>
+    <span style="font-weight: 800;">Phê Duyệt Khóa Học Hệ Thống</span>
   </header>
 
   <div class="container">
-    <h1 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem;">Danh Sách Khóa Học Cho Phê Duyệt (1)</h1>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+      <h1 style="font-size: 1.8rem; font-weight: 800;">Kiểm Duyệt Khóa Học</h1>
+    </div>
 
-    <div class="approval-card">
-      <div>
-        <h3 style="font-weight: 800; font-size: 1.15rem;">🇯🇵 Luyện Thi JLPT N3 Đọc Hiểu & Nghe Hiểu</h3>
-        <p style="color: #64748b; font-size: 0.88rem; margin-top: 4px;">Giảng viên: Thầy Kenji Tanaka • Đơn giá: 1,690,000đ • Số bài giảng: 18 bài video</p>
-      </div>
-      <div>
-        <button class="btn-approve"><i class="fa-solid fa-check"></i> Duyệt Xuất Bản</button>
-        <button class="btn-reject"><i class="fa-solid fa-xmark"></i> Từ Chối</button>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('CHO_PHE_DUYET')">Chờ Phê Duyệt (<span id="countPending">0</span>)</button>
+      <button class="tab-btn" onclick="switchTab('DA_XUAT_BAN')">Đã Xuất Bản</button>
+      <button class="tab-btn" onclick="switchTab('TU_CHOI')">Bị Từ Chối</button>
+    </div>
+
+    <div id="courseListContainer">
+      <div style="text-align: center; padding: 2rem; color: #64748b;">
+        <i class="fa-solid fa-spinner fa-spin"></i> Đang tải danh sách khóa học...
       </div>
     </div>
   </div>
 
+  <div class="toast" id="toastBox">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMsg">Thao tác thành công!</span>
+  </div>
+
   <script>
+    const token = localStorage.getItem('auth_token') || sessionStorage.getItem('auth_token');
     let adminUser = null;
     try {
       adminUser = JSON.parse(localStorage.getItem('user_info') || sessionStorage.getItem('current_user') || 'null');
@@ -66,6 +103,148 @@
       alert('Bạn không có quyền truy cập trang này (Chỉ dành cho ROLE_ADMIN)!');
       window.location.replace('../auth/login.html');
     }
+
+    let currentStatusFilter = 'CHO_PHE_DUYET';
+
+    function showToast(msg, isError = false) {
+      const toast = document.getElementById('toastBox');
+      const text = document.getElementById('toastMsg');
+      toast.style.background = isError ? '#dc2626' : '#0f172a';
+      text.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    function switchTab(status) {
+      currentStatusFilter = status;
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      loadCourses();
+    }
+
+    function formatVND(val) {
+      if (!val || val === 0) return 'Miễn phí';
+      return Number(val).toLocaleString('vi-VN') + 'đ';
+    }
+
+    async function loadCourses() {
+      const container = document.getElementById('courseListContainer');
+      container.innerHTML = '<div style="text-align: center; padding: 2rem;"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải...</div>';
+
+      try {
+        const res = await fetch(`/api/v1/admin/courses?status=${currentStatusFilter}&size=50`, {
+          headers: { 'Authorization': 'Bearer ' + token }
+        });
+        if (!res.ok) {
+          container.innerHTML = '<div style="text-align: center; color: #ef4444; padding: 2rem;">Lỗi kết nối khi tải danh sách!</div>';
+          return;
+        }
+
+        const data = await res.json();
+        const page = data.data || data;
+        const courses = page.content || [];
+
+        if (currentStatusFilter === 'CHO_PHE_DUYET') {
+          document.getElementById('countPending').textContent = page.totalElements || courses.length;
+        }
+
+        if (courses.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <i class="fa-solid fa-inbox"></i>
+              <h3>Không có khóa học nào trong mục này!</h3>
+              <p style="margin-top: 6px;">Tất cả khóa học đã được xử lý hoặc chưa có yêu cầu mới.</p>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = courses.map(c => {
+          const thumb = c.thumbnailUrl || 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=150';
+          const instructorName = c.instructorName || 'Giảng viên LHD';
+          const priceStr = formatVND(c.originalPrice);
+
+          let actionButtons = '';
+          if (c.status === 'CHO_PHE_DUYET') {
+            actionButtons = `
+              <div style="display: flex; gap: 8px;">
+                <button class="btn-approve" onclick="approveCourse(${c.id})"><i class="fa-solid fa-check"></i> Duyệt Xuất Bản</button>
+                <button class="btn-reject" onclick="rejectCourse(${c.id})"><i class="fa-solid fa-xmark"></i> Từ Chối</button>
+              </div>
+            `;
+          } else if (c.status === 'DA_XUAT_BAN') {
+            actionButtons = `<span style="color: #16a34a; font-weight: 700; font-size: 0.9rem;"><i class="fa-solid fa-circle-check"></i> Đang xuất bản</span>`;
+          } else if (c.status === 'TU_CHOI') {
+            actionButtons = `<span style="color: #dc2626; font-weight: 700; font-size: 0.9rem;"><i class="fa-solid fa-circle-xmark"></i> Đã từ chối</span>`;
+          }
+
+          return `
+            <div class="approval-card">
+              <div style="display: flex; align-items: center; gap: 1rem;">
+                <img src="${thumb}" class="card-thumb" alt="">
+                <div>
+                  <h3 style="font-weight: 800; font-size: 1.15rem; color: #0f172a;">${c.title}</h3>
+                  <p style="color: #64748b; font-size: 0.88rem; margin-top: 4px;">
+                    Giảng viên: <strong>${instructorName}</strong> • Danh mục: <strong>${c.categoryName || 'Chung'}</strong> • Đơn giá: <strong>${priceStr}</strong>
+                  </p>
+                  <p style="color: #94a3b8; font-size: 0.8rem; margin-top: 2px;">Ngôn ngữ: ${c.language || 'Tiếng Việt'} • Trình độ: ${c.level || 'Tất cả'}</p>
+                </div>
+              </div>
+              <div>${actionButtons}</div>
+            </div>
+          `;
+        }).join('');
+
+      } catch (err) {
+        container.innerHTML = '<div style="text-align: center; color: #ef4444; padding: 2rem;">Lỗi tải dữ liệu khóa học!</div>';
+      }
+    }
+
+    async function approveCourse(id) {
+      if (!confirm('Bạn có chắc chắn muốn duyệt và xuất bản khóa học này lên trang chủ?')) return;
+      try {
+        const res = await fetch(`/api/v1/admin/courses/${id}/approve`, {
+          method: 'PATCH',
+          headers: { 'Authorization': 'Bearer ' + token }
+        });
+        if (res.ok) {
+          showToast('✅ Đã phê duyệt xuất bản khóa học thành công!');
+          loadCourses();
+        } else {
+          const d = await res.json().catch(() => ({}));
+          showToast(d.message || 'Lỗi khi duyệt khóa học!', true);
+        }
+      } catch (err) {
+        showToast('Lỗi kết nối máy chủ!', true);
+      }
+    }
+
+    async function rejectCourse(id) {
+      const reason = prompt('Nhập lý do từ chối khóa học để giảng viên khắc phục:');
+      if (!reason || reason.trim() === '') return;
+
+      try {
+        const res = await fetch(`/api/v1/admin/courses/${id}/reject`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+          },
+          body: JSON.stringify({ reason: reason.trim() })
+        });
+        if (res.ok) {
+          showToast('✅ Đã từ chối khóa học và gửi phản hồi cho giảng viên.');
+          loadCourses();
+        } else {
+          const d = await res.json().catch(() => ({}));
+          showToast(d.message || 'Lỗi khi từ chối khóa học!', true);
+        }
+      } catch (err) {
+        showToast('Lỗi kết nối máy chủ!', true);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadCourses);
   </script>
 </body>
 </html>

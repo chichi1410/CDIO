@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>LHD – Learning | Nền tảng Học Ngoại Ngữ Trực Tuyến Thế Hệ Mới</title>
   <!-- Google Fonts & Font Awesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2531,6 +2534,7 @@
         <li><a href="home.html" class="nav-item-active">Trang chủ</a></li>
         <li><a href="courses.html">Khóa học</a></li>
         <li><a href="my-courses.html">Khóa học của tôi</a></li>
+        <li id="navInstructorLink" style="display: none;"><a href="../instructor/dashboard.html" style="color: #9333ea; font-weight: 700;"><i class="fa-solid fa-chalkboard-user" style="margin-right: 5px;"></i>Kênh Giảng viên</a></li>
         <li><a href="home.html#about">Giới thiệu</a></li>
         <li><a href="home.html#footer">Liên hệ</a></li>
       </ul>
@@ -2607,9 +2611,19 @@
                   <div class="menu-banner-sub" id="menuBannerEmail">student@lhd.edu.vn</div>
                   <div class="menu-banner-verified">
                     <i class="fa-solid fa-circle-check"></i>
-                    <span>Thành viên / Đã xác thực</span>
+                    <span id="menuBannerRole">Thành viên / Đã xác thực</span>
                   </div>
                 </div>
+              </div>
+
+              <!-- Mục Kênh Giảng Viên (Hiển thị khi role là INSTRUCTOR hoặc ADMIN) -->
+              <div id="instructorMenuSection" style="display: none;">
+                <div class="menu-group-heading" style="color: #9333ea;">Dành Cho Giảng Viên</div>
+                <a href="../instructor/dashboard.html" class="student-menu-item" style="color: #9333ea; font-weight: 700; background: #faf5ff;">
+                  <div class="menu-item-icon" style="background: #9333ea; color: #ffffff;"><i class="fa-solid fa-chalkboard-user"></i></div>
+                  <span class="menu-item-title">Kênh Giảng Viên & Khóa Học</span>
+                </a>
+                <div class="dropdown-divider"></div>
               </div>
 
               <!-- 2. Quản lý Học tập -->
@@ -3609,6 +3623,22 @@
           document.querySelectorAll('.user-capsule-avatar, .menu-banner-avatar, #headerUserAvatar, #menuBannerAvatar, #heroAvatarImg').forEach(function (img) {
             img.src = savedAvatar;
           });
+        }
+
+        // Cập nhật chức vụ / vai trò người dùng trong Dropdown Menu
+        const roleLabel = u.role === 'ROLE_ADMIN' ? 'Quản trị viên' : (u.role === 'ROLE_INSTRUCTOR' ? 'Giảng viên' : 'Thành viên / Đã xác thực');
+        const roleEl = document.getElementById('menuBannerRole');
+        if (roleEl) roleEl.textContent = roleLabel;
+
+        // Hiển thị Mục Kênh Giảng Viên trên Menu ☰ và Navbar nếu tài khoản là Giảng viên hoặc Quản trị viên
+        const isInstructorOrAdmin = (u.role === 'ROLE_INSTRUCTOR' || u.role === 'ROLE_ADMIN');
+        const instMenu = document.getElementById('instructorMenuSection');
+        if (instMenu) {
+          instMenu.style.display = isInstructorOrAdmin ? 'block' : 'none';
+        }
+        const navInst = document.getElementById('navInstructorLink');
+        if (navInst) {
+          navInst.style.display = isInstructorOrAdmin ? 'inline-block' : 'none';
         }
       }
 

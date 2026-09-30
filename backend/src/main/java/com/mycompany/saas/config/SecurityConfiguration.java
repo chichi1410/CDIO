@@ -65,6 +65,13 @@ public class SecurityConfiguration {
                                 "/api/v1/auth/logout"
                         ).permitAll()
                         .requestMatchers(
+                                HttpMethod.GET,
+                                "/api/v1/courses/**",
+                                "/api/v1/categories/**"
+                        ).permitAll()
+                        .requestMatchers("/api/v1/admin/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/api/v1/instructor/**").hasAnyAuthority("ROLE_INSTRUCTOR", "ROLE_ADMIN")
+                        .requestMatchers(
                                 "/",
                                 "/index.html",
                                 "/*.html",

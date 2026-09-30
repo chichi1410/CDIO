@@ -2672,9 +2672,8 @@
     function redirectByRole(role) {
       if (role === 'ROLE_ADMIN') {
         window.location.href = 'admin/dashboard.html';
-      } else if (role === 'ROLE_INSTRUCTOR') {
-        window.location.href = 'instructor/dashboard.html';
       } else {
+        // Cả Giảng viên và Học viên đều vào Trang chủ
         window.location.href = 'student/home.html';
       }
     }
